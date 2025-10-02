@@ -1,16 +1,19 @@
 import { useTranslations } from "next-intl";
+import Button from "@/components/buttons/Button";
+import Navbar from "@/components/navigation/Navbar";
 
 export default function Home() {
   const t = useTranslations("hero");
   return (
-    <div className="">
+    <div className="p-2">
+      <Navbar />
       <h1 className="font-heading text-6xl text-primary">{t("title")}</h1>
 
       <p className="font-sans text-text">Professional cuts, fades & beard styling.</p>
 
-      <button className="bg-primary hover:bg-primary-hover text-background-1 px-6 py-3 rounded-xs font-bold uppercase">
+      <Button variant="primary" outline={false} disabled={false}>
         Book now
-      </button>
+      </Button>
     </div>
   );
 }

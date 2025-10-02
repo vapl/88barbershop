@@ -2,5 +2,11 @@
   "hero": {
     "title": "Look sharp. Feel fresh.",
     "cta": "Book an appointment"
+  },
+  "links": {
+    "home": "Home",
+    "about": "About us",
+    "services": "Services",
+    "contact": "Contact"
   }
 }
