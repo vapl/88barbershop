@@ -11,7 +11,7 @@ const libreBodoni = Libre_Bodoni({
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html className={`${inter.variable} ${libreBodoni.variable} bg-background text-foreground`}>
+    <html className={`${inter.variable} ${libreBodoni.variable} bg-white text-foreground`}>
       <body>{children}</body>
     </html>
   );
