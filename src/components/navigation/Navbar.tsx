@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import clsx from "clsx";
@@ -92,14 +91,35 @@ const Navbar: React.FC = () => {
           })}
         </div>
         <div className="flex items-center gap-2">
-          <ContactItem type="phone" value={siteData.contacts.phone.label} />
+          <ContactItem
+            type="phone"
+            value={siteData.contacts.phone.label}
+            link={siteData.contacts.phone.link}
+          />
+          <ContactItem
+            type="address"
+            value={siteData.contacts.address.label}
+            link={siteData.contacts.address.link}
+          />
           <span className="hidden lg:block">|</span>
           <LanguageSwitcher className="hidden lg:block" />
         </div>
         {/* Mobile Hamburger */}
         <div className="lg:hidden">
-          <button className="cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <X size={28} /> : <Menu size={28} />}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className={`relative z-50 flex flex-col justify-center gap-2 w-7 h-3 ${isOpen && "hover:rotate-180 transition-all duration-500"} cursor-pointer group`}
+          >
+            <span
+              className={`h-[3px] w-full bg-white rounded transition-all duration-300 ${
+                isOpen ? "rotate-45 translate-y-[5px]" : "group-hover:translate-x-1"
+              }`}
+            ></span>
+            <span
+              className={`h-[3px] w-full bg-white rounded transition-all duration-300 ${
+                isOpen ? "-rotate-45 -translate-y-[5px]" : "group-hover:-translate-x-1"
+              }`}
+            ></span>
           </button>
         </div>
         {/* Mobile Menu Overlay */}
@@ -112,7 +132,7 @@ const Navbar: React.FC = () => {
                 animate={{ x: 0, opacity: 1 }}
                 exit={{ x: "100%", opacity: 0 }}
                 transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-                className="fixed right-0 top-[80px] h-[calc(100vh-80px)] w-2/3 bg-black/90 backdrop-blur-md flex flex-col justify-between items-end px-4 pt-6 pb-16"
+                className="fixed right-0 top-[80px] h-[calc(100vh-80px)] pl-24 bg-black/90 backdrop-blur-md flex flex-col justify-between items-end px-4 md:px-16 lg:px-32 pt-6 pb-16"
               >
                 <div className="self-end">
                   <LanguageSwitcher />
@@ -149,8 +169,8 @@ const Navbar: React.FC = () => {
                   })}
                 </div>
                 <div className="flex items-center justify-end gap-4 w-full">
-                  <ContactItem type="instagram" />
-                  <ContactItem type="facebook" />
+                  <ContactItem type="instagram" link={siteData.contacts.social.instagram} />
+                  <ContactItem type="facebook" link={siteData.contacts.social.facebook} />
                 </div>
               </motion.div>
             </>

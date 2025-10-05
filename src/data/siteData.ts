@@ -95,9 +95,27 @@ export const siteData = {
     phone: { label: "+371 28 816 466", link: "tel:+37128816466" },
     email: { label: "88barbershop@gmail.com", link: "mailto:88barbershop@gmail.com" },
     address: {
-      lv: "Akmeņu iela 16, Rīga, LV-1048",
-      en: "16 Akmenu Street, Riga, LV-1048",
-      ru: "ул. Акменю 16, Рига, LV-1048",
+      label: "Akmeņu iela 16, Rīga, LV-1048",
+      link: "https://www.google.com/maps?q=Akmeņu+iela+16,+Rīga,+LV-1048",
+    },
+    social: {
+      instagram: "https://www.instagram.com/barbershop88.lv/",
+      facebook: "https://www.facebook.com/88barbershoplv",
+    },
+  },
+
+  modals: {
+    map_modal: {
+      title: {
+        lv: "Atvērt ar:",
+        en: "Open width:",
+        ru: "Открыть с помощью:",
+      },
+      cancel_button: {
+        lv: "Atcelt",
+        en: "Cancel",
+        ru: "Отмена",
+      },
     },
   },
 };
