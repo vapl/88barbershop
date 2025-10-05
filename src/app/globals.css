@@ -47,7 +47,17 @@
   }
 }
 
+@layer base {
+  ::selection {
+    background-color: var(--primary-hover);
+    color: #111;
+  }
+}
+
 body {
+  cursor:
+    url("/icons/clipper-cursor.svg") 4 4,
+    auto;
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-body, sans-serif);
