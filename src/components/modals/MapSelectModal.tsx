@@ -4,17 +4,17 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useLocale } from "next-intl";
 import { siteData } from "@/data/siteData";
 import Image from "next/image";
-import Button from "../buttons/Button";
+import Button from "../ui/Button";
 import ReactDOM from "react-dom";
 
 type Props = {
   isOpen: boolean;
-  onclose: () => void;
+  onClose: () => void;
   onSelect: (service: "apple" | "google" | "waze") => void;
   isIOS: boolean;
 };
 
-const MapSelectModal: React.FC<Props> = ({ isOpen, onclose, onSelect, isIOS }) => {
+const MapSelectModal: React.FC<Props> = ({ isOpen, onClose, onSelect, isIOS }) => {
   const locale = useLocale() as "lv" | "en" | "ru";
   if (typeof window === "undefined") return null;
 
@@ -27,7 +27,7 @@ const MapSelectModal: React.FC<Props> = ({ isOpen, onclose, onSelect, isIOS }) =
           initial={{ scale: 1, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 1, opacity: 0 }}
-          onClick={onclose}
+          onClick={onClose}
         >
           <motion.div
             className="bg-background w-full mx-4 max-w-[480px] border border-foreground/20 rounded-lg p-6 flex flex-col gap-6 text-center shadow-xl"
@@ -82,7 +82,7 @@ const MapSelectModal: React.FC<Props> = ({ isOpen, onclose, onSelect, isIOS }) =
                 <span className="text-extra-small">Waze</span>
               </button>
             </div>
-            <Button variant="primary" outline={false} onClick={onclose}>
+            <Button variant="primary" outline={false} onClick={onClose}>
               {siteData.modals.map_modal.cancel_button[locale]}
             </Button>
           </motion.div>

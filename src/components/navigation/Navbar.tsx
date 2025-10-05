@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import clsx from "clsx";
-import LanguageSwitcher from "../LanguageSwitcher";
+import LanguageSwitcher from "../ui/LanguageSwitcher";
 import ContactItem from "../contacts/Contacts";
 import { siteData } from "@/data/siteData";
 import { useLocale } from "next-intl";
@@ -96,11 +96,6 @@ const Navbar: React.FC = () => {
             value={siteData.contacts.phone.label}
             link={siteData.contacts.phone.link}
           />
-          <ContactItem
-            type="address"
-            value={siteData.contacts.address.label}
-            link={siteData.contacts.address.link}
-          />
           <span className="hidden lg:block">|</span>
           <LanguageSwitcher className="hidden lg:block" />
         </div>
@@ -137,7 +132,7 @@ const Navbar: React.FC = () => {
                 <div className="self-end">
                   <LanguageSwitcher />
                 </div>
-                <div className="flex flex-col items-end justify-center gap-10 uppercase text-h2">
+                <div className="flex flex-col items-end justify-center gap-10 uppercase font-heading text-h3">
                   {siteData.navigation.map((item) => {
                     const href = `/${locale}${item.href === "/" ? "" : item.href}`;
                     const isActive = pathname === href;

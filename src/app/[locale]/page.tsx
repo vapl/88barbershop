@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
-import Button from "@/components/buttons/Button";
+import Button from "@/components/ui/Button";
 import Navbar from "@/components/navigation/Navbar";
+import Footer from "@/components/sections/Footer";
 
 export default function Home() {
   const t = useTranslations("hero");
@@ -14,6 +15,8 @@ export default function Home() {
       <Button variant="primary" outline={false} disabled={false}>
         Book now
       </Button> */}
+      <div className="h-56 bg-white w-full"></div>
+      <Footer />
     </div>
   );
 }

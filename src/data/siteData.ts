@@ -1,3 +1,9 @@
+const currentYear = () => {
+  const d = new Date();
+  let year = d.getFullYear();
+  return year;
+};
+
 export const siteData = {
   general: {
     siteName: "88 Barbershop",
@@ -115,6 +121,69 @@ export const siteData = {
         lv: "Atcelt",
         en: "Cancel",
         ru: "Отмена",
+      },
+    },
+  },
+
+  footer: {
+    cpoyright: {
+      lv: `© 2025${currentYear() !== 2025 ? "–" + currentYear() : ""} 88Barbershop. Visas tiesības aizsargātas.`,
+      en: `© 2025${currentYear() !== 2025 ? "-" + currentYear : ""} 88Barbershop. All rights reserved.`,
+      ru: `© 2025${currentYear() !== 2025 ? "–" + currentYear() : ""} 88Barbershop. Все права защищены.`,
+    },
+    development: {
+      lv: {
+        text: "Dizains un izstrāde — - Valdis Vaščenkovs",
+        url: "https://valdisvascenkovs.dev", // temp
+      },
+      en: {
+        text: "Design and development by - Valdis Vascenkovs",
+        url: "https://valdisvascenkovs.dev", // temp
+      },
+      ru: {
+        text: "Дизайн и разработка — - Валдис Ващенков.",
+        url: "https://valdisvascenkovs.dev", // temp
+      },
+    },
+    sections: {
+      description: {
+        lv: "88 Barbershop Rīgā apvieno mūsdienīgu stilu un klasisku meistarību. Piedāvājam vīriešu matu griezumus, fade stilus un bārdas kopšanu.",
+        en: "Experience 88 Barbershop in Riga — where modern grooming meets timeless craftsmanship. Specializing in men’s haircuts, fades, and beard styling.",
+        ru: "88 Barbershop в Риге сочетает современный стиль и классическое мастерство. Мы предлагаем мужские стрижки, fade и уход за бородой.",
+      },
+      links: {
+        title: {
+          lv: "Saites",
+          en: "Quick links",
+          ru: "Ссылки",
+        },
+      },
+      contact: {
+        title: {
+          lv: "Kontakti",
+          en: "Contacts",
+          ru: "Контакты",
+        },
+        working: {
+          lv: {
+            days: [
+              { label: "Pirm. – Sest.", hours: "09:00 – 20:00" },
+              { label: "Svētdiena", hours: "SLĒGTS" },
+            ],
+          },
+          en: {
+            days: [
+              { label: "Mon – Sat", hours: "09:00 – 20:00" },
+              { label: "Sunday", hours: "CLOSED" },
+            ],
+          },
+          ru: {
+            days: [
+              { label: "Пн – Сб", hours: "09:00 – 20:00" },
+              { label: "Воскресенье", hours: "ЗАКРЫТО" },
+            ],
+          },
+        },
       },
     },
   },

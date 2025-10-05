@@ -133,7 +133,7 @@ const ContactItem: React.FC<Props> = ({ type, value, link, className }) => {
         {value && !isSocial && <span className="text-extra-small">{value}</span>}
       </div>
 
-      <MapSelectModal isOpen={isModalOpen} onclose={handleClose} onSelect={openApp} isIOS={isIOS} />
+      <MapSelectModal isOpen={isModalOpen} onClose={handleClose} onSelect={openApp} isIOS={isIOS} />
     </>
   );
 };
