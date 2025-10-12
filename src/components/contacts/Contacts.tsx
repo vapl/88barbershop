@@ -7,39 +7,18 @@ type Props = {
   value?: string | any;
   link?: string;
   className?: string;
+  color?: "primary" | "dark";
 };
 
 const icons = {
-  phone: (
-    <FaPhone
-      size={16}
-      className="text-primary hover:text-primary-hover transition-all duration-200"
-    />
-  ),
-  email: (
-    <FaAt size={16} className="text-primary hover:text-primary-hover transition-all duration-200" />
-  ),
-  address: (
-    <FaLocationDot
-      size={16}
-      className="text-primary hover:text-primary-hover transition-all duration-200"
-    />
-  ),
-  instagram: (
-    <FaInstagram
-      size={22}
-      className="text-primary hover:text-primary-hover transition-all duration-200"
-    />
-  ),
-  facebook: (
-    <FaFacebook
-      size={22}
-      className="text-primary hover:text-primary-hover transition-all duration-200"
-    />
-  ),
+  phone: <FaPhone size={16} className="transition-all duration-200" />,
+  email: <FaAt size={16} className="transition-all duration-200" />,
+  address: <FaLocationDot size={16} className="transition-all duration-200" />,
+  instagram: <FaInstagram size={22} className="transition-all duration-200" />,
+  facebook: <FaFacebook size={22} className="transition-all duration-200" />,
 };
 
-const ContactItem: React.FC<Props> = ({ type, value, link, className }) => {
+const ContactItem: React.FC<Props> = ({ type, value, link, className, color = "primary" }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const icon = icons[type];
   const isSocial = type === "instagram" || type === "facebook";
@@ -126,10 +105,14 @@ const ContactItem: React.FC<Props> = ({ type, value, link, className }) => {
   return (
     <>
       <div
-        className={`flex gap-2 items-center px-3 cursor-pointer hover:text-primary transition-all ${className}`}
+        className={`flex gap-2 items-center px-3 cursor-pointer ${color === "primary" ? "hover:text-primary" : "hover:text-background-alt"} transition-all ${className}`}
         onClick={handleClick}
       >
-        {icon}
+        <span
+          className={`${color === "primary" ? "text-primary hover:text-primary-hover" : "text-background hover:text-background-alt "}`}
+        >
+          {icon}
+        </span>
         {value && !isSocial && <span className="text-extra-small">{value}</span>}
       </div>
 

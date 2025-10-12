@@ -43,59 +43,120 @@ export const siteData = {
   ],
 
   hero: {
-    title: {
-      lv: "Moderns barbershop Rīgas centrā",
-      en: "Modern barbershop in the heart of Riga",
-      ru: "Современный барбершоп в центре Риги",
-    },
-    subtitle: {
-      lv: "Profesionāli griezumi, fades un bārdas stilings.",
-      en: "Professional cuts, fades & beard styling.",
-      ru: "Профессиональные стрижки, фейды и оформление бороды.",
-    },
-    backgroundImage: "/images/hero.jpg",
-    cta: {
+    backgroundImage: "/images/hero_image.jpg",
+    cta1: {
       lv: "Rezervēt vizīti",
       en: "Book appointment",
       ru: "Записаться",
-      link: "/book",
+      link: "/contact",
+    },
+    cta2: {
+      lv: "Pakalpojumi",
+      en: "Services",
+      ru: "Услуги",
+      link: "/services",
     },
   },
 
-  services: [
-    {
-      id: "cut",
+  services: {
+    services_section: {
       title: {
-        lv: "Matu griešana",
-        en: "Haircut",
-        ru: "Стрижка волос",
+        lv: "Pakalpojumi",
+        en: "Services",
+        ru: "Услуги",
       },
-      description: {
-        lv: "Klasisks vai moderns matu griezums ar profesionālu pieeju.",
-        en: "Classic or modern haircut with professional precision.",
-        ru: "Классическая или современная стрижка с профессиональным подходом.",
+      subtitle: {
+        en: "Premium barbershop services in Riga – classic cuts, sharp fades, and hot towel shaves.",
+        lv: "Premium barbershop pakalpojumi Rīgā – klasiskas frizūras, fade un karstā dvieļa skūšanās.",
+        ru: "Премиальные услуги барбершопа в Риге – классические стрижки, fade и бритьё горячим полотенцем.",
       },
-      price: "25€",
-      duration: "40 min",
-      image: "/images/services/haircut.jpg",
+      cards: {
+        haircut: {
+          title: {
+            lv: "Matu griešana",
+            en: "Haircut",
+            ru: "Стрижка волос",
+          },
+          description: {
+            en: "Classic or modern haircut with professional precision.",
+            lv: "Klasisks vai moderns matu griezums ar profesionālu pieeju.",
+            ru: "Классическая или современная стрижка с профессиональным подходом.",
+          },
+        },
+        shave: {
+          title: {
+            lv: "Skūšana",
+            en: "Shave",
+            ru: "Бритьё",
+          },
+          description: {
+            en: "Smooth hot towel shave for a fresh and clean look.",
+            lv: "Gluda skūšanās ar karstu dvieli – svaigs un tīrs izskats.",
+            ru: "Гладкое бритьё горячим полотенцем – свежий и чистый вид.",
+          },
+        },
+        combo: {
+          title: {
+            lv: "Komplekts",
+            en: "Combo",
+            ru: "Комплект",
+          },
+          description: {
+            en: "Haircut and beard trim combo for a complete grooming experience.",
+            lv: "Matu griešana un bārdas korekcija – pilnīga kopšanas pieredze.",
+            ru: "Стрижка и коррекция бороды – полный уход.",
+          },
+        },
+      },
     },
-    {
-      id: "beard",
-      title: {
-        lv: "Bārdas korekcija",
-        en: "Beard Trim",
-        ru: "Коррекция бороды",
+    services_list: [
+      {
+        id: "cut",
+        title: {
+          lv: "Matu griešana",
+          en: "Haircut",
+          ru: "Стрижка волос",
+        },
+        description: {
+          lv: "Klasisks vai moderns matu griezums ar profesionālu pieeju.",
+          en: "Classic or modern haircut with professional precision.",
+          ru: "Классическая или современная стрижка с профессиональным подходом.",
+        },
+        price: "25€",
+        duration: "40 min",
+        image: "/images/services/haircut.jpg",
       },
-      description: {
-        lv: "Bārdas apgriešana, formas uzturēšana un kopšana.",
-        en: "Beard trimming and maintenance for a clean look.",
-        ru: "Оформление и уход за бородой.",
+      {
+        id: "beard",
+        title: {
+          lv: "Bārdas korekcija",
+          en: "Beard Trim",
+          ru: "Коррекция бороды",
+        },
+        description: {
+          lv: "Bārdas apgriešana, formas uzturēšana un kopšana.",
+          en: "Beard trimming and maintenance for a clean look.",
+          ru: "Оформление и уход за бородой.",
+        },
+        price: "15€",
+        duration: "25 min",
+        image: "/images/services/beard.jpg",
       },
-      price: "15€",
-      duration: "25 min",
-      image: "/images/services/beard.jpg",
+    ],
+  },
+
+  ribbons: {
+    hair: {
+      en: ["HAIRCUTS", "FADES", "STYLING", "SHAPING", "TAPERING"],
+      lv: ["FRIZŪRAS", "FADE", "STILS", "FORMĒŠANA", "TAPERINGS"],
+      ru: ["СТРИЖКИ", "FADE", "УКЛАДКА", "ФОРМИРОВАНИЕ", "TAPERING"],
     },
-  ],
+    beard: {
+      en: ["BEARD TRIM", "SHAPING", "LINE UP", "HOT TOWEL", "RAZOR SHAVE"],
+      lv: ["BĀRDAS FORMĒŠANA", "KONTŪRAS", "KARSTĀ DVIEĻA SKŪŠANA", "ASMENS SKŪŠANA"],
+      ru: ["ФОРМИРОВАНИЕ БОРОДЫ", "КОНТУР", "ГОРЯЧЕЕ ПОЛОТЕНЦЕ", "БРИТЬЁ"],
+    },
+  },
 
   contacts: {
     phone: { label: "+371 28 816 466", link: "tel:+37128816466" },
@@ -107,6 +168,54 @@ export const siteData = {
     social: {
       instagram: "https://www.instagram.com/barbershop88.lv/",
       facebook: "https://www.facebook.com/88barbershoplv",
+    },
+  },
+
+  contact_form: {
+    label: {
+      name: {
+        lv: "Vārds",
+        en: "Name",
+        ru: "Имя",
+      },
+      email: {
+        lv: "E-pasts",
+        en: "Email",
+        ru: "Эл. почта",
+      },
+      message: {
+        lv: "Ziņojums",
+        en: "Message",
+        ru: "Сообщение",
+      },
+    },
+    button: {
+      lv: "Nosūtīt",
+      en: "Send",
+      ru: "Отправить",
+    },
+  },
+
+  working_time: {
+    days: {
+      working_days: {
+        lv: "Pirmdiena - Sestdiena",
+        en: "Monday - Saturday",
+        ru: "Понедельник - Суббота",
+      },
+      closed_days: {
+        lv: "Svētdiena",
+        en: "Sunday",
+        ru: "Воскресенье",
+      },
+    },
+    hours: {
+      working_hours: "09:00 – 20:00",
+      closed_hours: {
+        lv: "SLĒGTS",
+        en: "CLOSED",
+        ru: "ЗАКРЫТО",
+      },
     },
   },
 
@@ -164,27 +273,24 @@ export const siteData = {
           en: "Contacts",
           ru: "Контакты",
         },
-        working: {
-          lv: {
-            days: [
-              { label: "Pirm. – Sest.", hours: "09:00 – 20:00" },
-              { label: "Svētdiena", hours: "SLĒGTS" },
-            ],
-          },
-          en: {
-            days: [
-              { label: "Mon – Sat", hours: "09:00 – 20:00" },
-              { label: "Sunday", hours: "CLOSED" },
-            ],
-          },
-          ru: {
-            days: [
-              { label: "Пн – Сб", hours: "09:00 – 20:00" },
-              { label: "Воскресенье", hours: "ЗАКРЫТО" },
-            ],
-          },
-        },
       },
+    },
+  },
+  errors: {
+    name_error: {
+      lv: "Vārdam jābūt vismaz 2 simboli",
+      en: "Name must be at least 2 characters",
+      ru: "Имя должно содержать минимум 2 символа",
+    },
+    email_error: {
+      lv: "Lūdzu, ievadi derīgu e-pastu",
+      en: "Please enter a valid email address",
+      ru: "Введите корректный адрес эл. почты",
+    },
+    empty_error: {
+      lv: "Lūdzu, aizpildi visus laukus",
+      en: "Please fill in all required fields",
+      ru: "Пожалуйста, заполните все обязательные поля",
     },
   },
 };
