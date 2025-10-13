@@ -1,4 +1,4 @@
-import { Inter, Libre_Bodoni } from "next/font/google";
+import { Inter, Libre_Bodoni, Merriweather } from "next/font/google";
 import "./globals.css";
 import "./liquidGlass.css";
 
@@ -9,11 +9,16 @@ const libreBodoni = Libre_Bodoni({
   weight: ["400", "700"],
   variable: "--font-libre-bodoni",
 });
+const merriweather = Merriweather({
+  subsets: ["latin"],
+  weight: ["900"],
+  variable: "--font-merriweather",
+});
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
-      className={`${inter.variable} ${libreBodoni.variable} bg-white text-foreground scroll-smooth overflow-y-scroll [scrollbar-gutter:stable]`}
+      className={`${merriweather.variable} ${inter.variable} ${libreBodoni.variable} bg-white text-foreground scroll-smooth overflow-y-scroll [scrollbar-gutter:stable]`}
     >
       <body>{children}</body>
     </html>

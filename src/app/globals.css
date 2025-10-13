@@ -16,6 +16,7 @@
   /* Fonts */
   --font-heading: var(--font-libre-bodoni);
   --font-body: var(--font-inter);
+  --font-highlight: var(--font-merriweather);
 }
 
 @theme inline {
@@ -30,6 +31,7 @@
 
   --font-sans: var(--font-body);
   --font-heading: var(--font-heading);
+  --font-highlight: var(--font-highlight);
 
   /* Custom font sizes */
   --text-h1: 64px;
@@ -78,6 +80,33 @@
       transparent 80%
     );
     mix-blend-mode: screen;
+  }
+
+  .text-gold-inset {
+    position: relative;
+    display: inline-block;
+    font-weight: 800;
+    color: transparent;
+    background: linear-gradient(to bottom, #e8ca6f, #b2852b);
+    -webkit-background-clip: text;
+  }
+
+  .text-gold-inset::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 60%, rgba(0, 0, 0, 0.7), transparent 70%);
+    mix-blend-mode: multiply;
+    pointer-events: none;
+
+    /* 🧩 Mask setup */
+    -webkit-mask-image: text;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+    -webkit-mask-clip: text;
+    -webkit-mask-composite: subtract;
+    mask-composite: exclude;
   }
 }
 

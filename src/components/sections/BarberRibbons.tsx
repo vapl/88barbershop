@@ -43,7 +43,7 @@ const BarberRibbons = () => {
 
   return (
     <motion.section
-      className="relative w-full overflow-hidden bg-background flex items-center justify-center"
+      className="relative w-full overflow-hidden bg-background flex items-center justify-center bg-radial-[at_50%_50%] from-background-alt/50 via-background-alt/50 to-background to-90%"
       initial={{ height: 0, opacity: 0 }}
       whileInView={{ height: 192, opacity: 1 }}
       transition={{
