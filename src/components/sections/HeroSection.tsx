@@ -26,7 +26,7 @@ const HeroSection = () => {
   return (
     <section
       ref={ref}
-      className="relative flex flex-col items-center justify-end h-[100dvh] overflow-hidden px-4 pb-24"
+      className="relative flex flex-col items-center justify-center min-h-[100svh] overflow-hidden px-4 pb-24"
     >
       {/* --- Background image --- */}
       <motion.div className="absolute inset-0 z-0 will-change-transform" style={{ y }}>
@@ -46,8 +46,10 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-black/60 z-10" />
 
       {/* --- Content (logo + buttons) --- */}
-      <div className="relative z-20 flex flex-col items-center gap-8">
+
+      <div className="z-20 h-full flex flex-col items-center justify-center gap-24 pt-[100px]">
         <motion.div
+          className="z-20 flex items-center justify-center top-0"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: [0.4, 0, 0.3, 1] }}
@@ -61,7 +63,7 @@ const HeroSection = () => {
           />
         </motion.div>
         <motion.div
-          className="flex gap-8 mt-16"
+          className="flex gap-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}

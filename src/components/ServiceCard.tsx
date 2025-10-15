@@ -36,7 +36,7 @@ const ServiceCard: React.FC<Props> = ({ cardType }) => {
 
   return (
     <Link href={selecteCard.link} className="w-full">
-      <div className="flex h-[80vh] w-full md:max-w-[300] lg:max-w-[360px] flex-col gap-6 items-center justify-center text-center bg-secondary-accent/10 backdrop-blur-xs hover:bg-secondary-accent/20 hover:backdrop-blur-sm hover:shadow-2xl hover:scale-105 cursor-pointer transition-all duration-300 border-1 border-primary rounded-sm p-2 active:scale-95">
+      <div className="flex h-[512px] md:h-[640px] w-full md:max-w-[300] lg:max-w-[360px] flex-col gap-6 items-center justify-center text-center bg-secondary-accent/10 backdrop-blur-xs hover:bg-secondary-accent/20 hover:backdrop-blur-sm hover:shadow-2xl hover:scale-105 cursor-pointer transition-all duration-300 border-1 border-primary rounded-sm p-2 active:scale-95">
         <div className="flex flex-col gap-4">
           <div className="flex flex-col h-full gap-4 text-primary font-heading uppercase font-semibold text-center">
             <Image
@@ -44,7 +44,7 @@ const ServiceCard: React.FC<Props> = ({ cardType }) => {
               alt="Scissors icon"
               width={73}
               height={110}
-              className="w-auto h-[110px]"
+              className="w-auto h-[150px] md:h-[110px]"
             />
             <h3>{selecteCard.title}</h3>
           </div>

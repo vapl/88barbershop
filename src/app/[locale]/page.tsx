@@ -1,5 +1,4 @@
 import { useTranslations } from "next-intl";
-import Button from "@/components/ui/Button";
 import Navbar from "@/components/navigation/Navbar";
 import Footer from "@/components/sections/FooterSection";
 import Contacts from "@/components/sections/ContactsSection";
