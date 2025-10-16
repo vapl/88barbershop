@@ -11,6 +11,9 @@ import ImagesCarousel from "../ImagesCarousel";
 const AboutSection: React.FC = () => {
   const locale = useLocale() as "lv" | "en" | "ru";
 
+  const experienceText = siteData.about.experience[locale];
+  const splittedText = experienceText.split(" ");
+
   return (
     <div className="flex flex-col w-full py-[120px] bg-gradient-to-br from-background via-background-alt/80 to-background ">
       <section
@@ -25,9 +28,9 @@ const AboutSection: React.FC = () => {
         {/* Left */}
         <div className="relative h-[250px] sm:h-[300px] flex justify-center text-white">
           <div className="absolute top-0 z-20 text-primary pl-10 justify-center leading-none">
-            <div className="flex gap-6 leading-none mask-origin-content">
+            <div className="relative flex gap-6 leading-none mask-origin-content">
               <motion.span
-                className="font-highlight text-[150px] sm:text-[186px] leading-none"
+                className="relative font-highlight text-[150px] sm:text-[186px] leading-none"
                 initial={{ y: -20 }}
                 whileInView={{ y: 0 }}
                 transition={{ duration: 1, ease: [0.4, 0, 0.3, 1] }}
@@ -36,7 +39,7 @@ const AboutSection: React.FC = () => {
                 1
               </motion.span>
               <motion.span
-                className="font-highlight text-[180px] sm:text-[216px] leading-none"
+                className="relative font-highlight text-[180px] sm:text-[216px] leading-none"
                 initial={{ y: 20 }}
                 whileInView={{ y: 0 }}
                 transition={{ duration: 1, ease: [0.4, 0, 0.3, 1] }}
@@ -55,22 +58,20 @@ const AboutSection: React.FC = () => {
               </motion.span>
             </div>
           </div>
-          <div className="absolute bottom-[45px] flex flex-col font-heading text-[38px] sm:text-[48px] tracking-[5px] leading-none">
-            <span className="">Years</span>
-            <span>Experience</span>
+          <div
+            className={`absolute ${locale === "lv" ? "bottom-[40px]" : "bottom-[45px]"} ${locale === "ru" ? "left-16" : ""} flex flex-col font-heading text-[38px] sm:text-[48px] tracking-[5px] leading-none capitalize`}
+          >
+            <span className="">{splittedText[0]}</span>
+            <span>{splittedText[1]}</span>
           </div>
         </div>
 
         {/* Right */}
         <div className="col-span-1 lg:pl-36 lg:col-span-2 flex flex-col gap-10 items-center lg:items-start">
-          <SectionHeading title="Who we are" />
-          <p className="text-foreground text-body">
-            At 88 Barbershop in Rīga, every haircut and shave is more than just a service — it’s a
-            craft. With 15+ years of experience, our barbers deliver precision cuts, clean fades,
-            and traditional shaves in a modern, relaxed atmosphere.
-          </p>
+          <SectionHeading title={siteData.about.title[locale]} />
+          <p className="text-foreground text-body">{siteData.about.description_short[locale]}</p>
           <Button type="button" outline>
-            Learn More
+            {siteData.about.ctaButton[locale]}
           </Button>
         </div>
       </section>

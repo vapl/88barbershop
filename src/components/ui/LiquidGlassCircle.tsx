@@ -21,14 +21,8 @@ export default function LiquidGlassCircle() {
 
         <div className="liquidGlass-shine" />
 
-        <div className="z-10">
-          <Image
-            src="/icons/barber-pole.svg"
-            alt="Barber pole"
-            width={isMobile ? 28 : 40}
-            height={0}
-            className="opacity-95"
-          />
+        <div className="relative z-10 h-[130px] w-[28px] md:w-[40px]">
+          <Image src="/icons/barber-pole.svg" alt="Barber pole" fill className="object-contain" />
         </div>
       </div>
       <svg className="display-none absolute">

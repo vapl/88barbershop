@@ -68,7 +68,7 @@ const Navbar: React.FC = () => {
         {/* LOGO */}
         <Link href={"/"}>
           <Image
-            src="/logo/logo_outline_gold.svg"
+            src="/logo/logo-outline-gold.svg"
             alt="Logo 88barbershop"
             width={50}
             height={50}

@@ -93,6 +93,7 @@ export default function MobileCarousel({ IMAGES }: { IMAGES: { src: string }[] }
             <Image
               src={img.src}
               alt={`Slide ${i}`}
+              sizes="auto"
               fill
               className="object-cover rounded-sm shadow-[0_10px_40px_rgba(0,0,0,0.7)]"
             />

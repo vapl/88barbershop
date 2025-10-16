@@ -79,7 +79,9 @@ export default function DesktopCarousel({ IMAGES }: { IMAGES: Img[] }) {
                 <Image
                   src={card.src}
                   alt={card.alt ?? `Image ${card.displayIndex}`}
+                  sizes="auto"
                   fill
+                  //   priority={i === 0}
                   className="object-cover"
                 />
               </div>

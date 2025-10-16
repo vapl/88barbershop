@@ -10,7 +10,7 @@ import AboutSection from "@/components/sections/AboutSection";
 export default function Home() {
   const t = useTranslations("hero");
   return (
-    <div className="p-2">
+    <div className="relative">
       <Navbar />
       <HeroSection />
       <BarberRibbons />

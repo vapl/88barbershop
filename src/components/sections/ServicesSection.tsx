@@ -32,7 +32,6 @@ const ServicesSection = () => {
         <Image
           src={bg}
           alt="Services background image 88barbershop"
-          quality={100}
           fill
           sizes="100vw"
           style={{

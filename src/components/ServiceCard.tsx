@@ -45,6 +45,7 @@ const ServiceCard: React.FC<Props> = ({ cardType }) => {
               width={73}
               height={110}
               className="w-auto h-[150px] md:h-[110px]"
+              style={{ width: "auto", height: "auto" }}
             />
             <h3>{selecteCard.title}</h3>
           </div>

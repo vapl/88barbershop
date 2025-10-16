@@ -44,7 +44,7 @@ const Footer = () => {
         <div className="flex flex-col w-full gap-8 max-w-xs items-center text-center">
           <Link href={"/"}>
             <Image
-              src="/logo/logo_outline_gold.svg"
+              src="/logo/logo-outline-gold.svg"
               alt="Logo 88barbershop"
               width={50}
               height={50}

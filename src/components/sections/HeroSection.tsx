@@ -33,7 +33,6 @@ const HeroSection = () => {
         <Image
           src={bg}
           alt="Hero image 88barbershop"
-          quality={100}
           fill
           sizes="100vw"
           style={{
@@ -54,13 +53,15 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: [0.4, 0, 0.3, 1] }}
         >
-          <Image
-            src="/logo/hero_logo_gold.svg"
-            alt="Logo 88barbershop"
-            width={544}
-            height={407}
-            priority
-          />
+          <div className="relative w-[544px] h-[407px]">
+            <Image
+              src="/logo/hero-logo-gold.svg"
+              alt="Logo 88barbershop"
+              fill
+              priority
+              className="object-contain"
+            />
+          </div>
         </motion.div>
         <motion.div
           className="flex gap-8"

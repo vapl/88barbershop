@@ -145,6 +145,34 @@ export const siteData = {
     ],
   },
 
+  about: {
+    experience: {
+      lv: "Gadi pieredzes",
+      en: "Years Experience",
+      ru: "Лет опыта",
+    },
+    title: {
+      lv: "Kas mēs esam",
+      en: "Who we are",
+      ru: "Кто мы",
+    },
+    description_short: {
+      lv: "88 Barbershop Rīgā – katrs matu griezums un skūšanās ir vairāk nekā tikai pakalpojums — tā ir meistarība. Ar vairāk nekā 15 gadu pieredzi mūsu barberi piedāvā precīzus griezumus, tīras pārejas un klasisku skūšanos mūsdienīgā, relaksētā atmosfērā.",
+      en: "At 88 Barbershop in Rīga, every haircut and shave is more than just a service — it’s a craft. With 15+ years of experience, our barbers deliver precision cuts, clean fades, and traditional shaves in a modern, relaxed atmosphere.",
+      ru: "В 88 Barbershop в Риге каждая стрижка и бритьё — это не просто услуга, а настоящее ремесло. С более чем 15-летним опытом наши барберы предлагают точные стрижки, чистые фейды и классическое бритьё в современной и уютной атмосфере.",
+    },
+    description_long: {
+      lv: "Dibināts ar aizrautību pret tradicionālo barberinga kultūru un mūsdienīgu vīriešu stilu, 88 Barbershop apvieno klasiskas tehnikas ar šodienas tendencēm. No asiem matu griezumiem un karstā dvieļa skūšanās līdz bārdas korekcijām un stilam — mūsu mērķis ir vienkāršs: palīdzēt katram vīrietim izskatīties nevainojami un justies pārliecināti. Ērta atrašanās vieta ar bezmaksas autostāvvietu — mēs gaidām ikvienu, kurš novērtē kvalitāti, komfortu un autentisku barbershopa atmosfēru.",
+      en: "Founded with a passion for traditional barbering and modern men’s style, 88 Barbershop combines classic techniques with today’s trends. From sharp haircuts and smooth hot towel shaves to beard trims and styling, our goal is simple — to help every man look sharp and feel confident. Conveniently located with free parking, we welcome clients who value quality, comfort, and authentic barbershop culture.",
+      ru: "Основанный из любви к традиционному барберингу и современному мужскому стилю, 88 Barbershop сочетает классические техники с актуальными трендами. От точных стрижек и горячего полотенца до ухода за бородой и укладки — наша цель проста: помочь каждому мужчине выглядеть безупречно и чувствовать уверенность. Удобное расположение и бесплатная парковка — мы ждём тех, кто ценит качество, комфорт и настоящую атмосферу барбершопа.",
+    },
+    ctaButton: {
+      lv: "Uzzināt vairāk",
+      en: "Learn more",
+      ru: "Узнать больше",
+    },
+  },
+
   ribbons: {
     hair: {
       en: ["HAIRCUTS", "FADES", "STYLING", "SHAPING", "TAPERING"],

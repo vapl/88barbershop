@@ -36,7 +36,7 @@ const BarberRibbons = () => {
       setIsTop(window.scrollY < 100);
     };
     handleTop();
-    console.log(isTop);
+
     window.addEventListener("scroll", handleTop);
     return () => window.removeEventListener("scroll", handleTop);
   });

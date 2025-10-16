@@ -1,18 +1,28 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { siteData } from "@/data/siteData";
 import { useLocale } from "next-intl";
 import ContactItem from "../contacts/Contacts";
 import InputForm from "../contacts/InputForm";
 
 const Contacts: React.FC = () => {
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
   const locale = useLocale() as "lv" | "en" | "ru";
   const working = siteData.working_time;
+
+  useEffect(() => {
+    const checkWidth = () => setIsMobile(window.innerWidth <= 560);
+    checkWidth();
+
+    window.addEventListener("resize", checkWidth);
+    return () => window.removeEventListener("resize", checkWidth);
+  }, []);
 
   const shortenDays = (text: string) => {
     const days = text.split(" ").filter((m) => m !== "-" && m.trim() !== "");
     const [first, second] = days;
+
     const map: Record<"lv" | "en" | "ru", Record<string, string>> = {
       lv: {
         Pirmdiena: "Pr",
@@ -32,7 +42,7 @@ const Contacts: React.FC = () => {
     };
     const short1 = map[locale][first] ?? first;
     const short2 = map[locale][second] ?? second;
-    if (days.length > 2) {
+    if (first && second) {
       return `${short1} - ${short2}`;
     } else {
       return `${short1}`;
@@ -40,12 +50,14 @@ const Contacts: React.FC = () => {
   };
 
   return (
-    <section className="flex gap-[56px] flex-col items-center w-full bg-primary text-background px-4 md:px-16 lg:px-32 py-[80px]">
+    <section className="flex gap-[56px] flex-col flex-wrap items-center w-full bg-primary text-background px-4 md:px-16 lg:px-32 py-[80px]">
       {/* WORKING */}
       <div className="flex justify-between w-full">
         <div className="flex flex-col items-start">
           <span className="uppercase text-h2 md:text-h1 font-heading">
-            {working.days.working_days[locale]}
+            {isMobile
+              ? shortenDays(working.days.working_days[locale])
+              : working.days.working_days[locale]}
           </span>
           <span className="text-h3 md:text-h2 font-heading">{working.hours.working_hours}</span>
         </div>
