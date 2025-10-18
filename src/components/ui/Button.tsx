@@ -42,6 +42,14 @@ const Button: React.FC<ButtonProps> = ({
     className
   );
 
+  if (link?.startsWith("http")) {
+    return (
+      <a href={link} target="_blank" rel="noopener noreferrer" className={baseClasses}>
+        {children}
+      </a>
+    );
+  }
+
   // 👉 ja padots "link", renderē <Link> (navigācija)
   if (link) {
     return (

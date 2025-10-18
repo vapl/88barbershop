@@ -44,24 +44,31 @@ const ReviewsSection = () => {
 
       {/* Slided container */}
       <div
-        className="relative w-full overflow-hidden"
+        className="relative w-full overflow-hidden py-3"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
         <div
-          className="flex gap-8 w-max animate-infinite-scroll"
+          className="flex w-max animate-infinite-scroll"
           style={{
             animationPlayState: paused ? "paused" : "running",
           }}
         >
           {[...REVIEWS, ...REVIEWS].map((r, i) => (
-            <ReviewCard key={`${r.id}-copy-${i}`} {...r} />
+            <div key={i} className="mr-8 flex">
+              <ReviewCard {...r} />
+            </div>
           ))}
         </div>
       </div>
 
       <div className="flex px-4 md:px-16 lg:px-32">
-        <Button outline type="button" variant="secondary">
+        <Button
+          outline
+          type="button"
+          variant="secondary"
+          link="https://search.google.com/local/writereview?placeid=ChIJZ8ENsrXP7kYRFpM0KzA2ApU"
+        >
           {siteData.reviews.ctaButton[locale]}
         </Button>
       </div>

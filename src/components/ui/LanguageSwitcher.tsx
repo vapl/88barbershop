@@ -38,7 +38,7 @@ const LanguageSwitcher: React.FC<Props> = ({ className }) => {
 
   const handleChange = (locale: string) => {
     setOpen(false);
-    router.replace(pathname, { locale });
+    router.replace(pathname, { locale, scroll: false });
   };
 
   return (
@@ -63,7 +63,7 @@ const LanguageSwitcher: React.FC<Props> = ({ className }) => {
 
       {/* Dropdown */}
       {open && (
-        <div className="absolute right-0 mt-2 w-19 border border-foreground/20 rounded-xs shadow-md z-50">
+        <div className="absolute right-0 mt-2 w-19 bg-background-alt/80 border border-foreground/20 rounded-xs shadow-md z-50">
           {LANGS.map(({ code, flag, label }) => (
             <button
               key={code}
