@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import DecorationIcon from "@/icons/decoration-icon.svg";
 
 type Props = {
   title: string;
@@ -22,29 +23,9 @@ const SectionHeading: React.FC<Props> = ({ title, subtitle, color = "gold", deco
         transition={{ duration: 1, ease: [0.4, 0, 0.3, 1] }}
         viewport={{ once: false, amount: 0.2 }}
       >
-        {decoration && (
-          <span className="h-full">
-            <Image
-              src="/icons/decoration-icon.svg"
-              alt="Decoration icon"
-              width={60}
-              height={6}
-              className="h-auto w-[40px] md:w-[60px]"
-            />
-          </span>
-        )}
+        {decoration && <DecorationIcon className="w-[42px] md:w-[62px] h-auto fill-current" />}
         <h1 className="text-h2 md:text-h1 font-heading h-full uppercase">{title}</h1>
-        {decoration && (
-          <span className="h-full rotate-180">
-            <Image
-              src="/icons/decoration-icon.svg"
-              alt="Decoration icon"
-              width={60}
-              height={6}
-              className="h-auto w-[40px] md:w-[60px]"
-            />
-          </span>
-        )}
+        {decoration && <DecorationIcon className="w-[42px] md:w-[62px] fill-current rotate-180" />}
       </motion.div>
       {subtitle && (
         <motion.div

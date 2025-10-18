@@ -173,6 +173,19 @@ export const siteData = {
     },
   },
 
+  reviews: {
+    title: {
+      lv: "Par mums saka",
+      en: "Clients say",
+      ru: "О нас говорят",
+    },
+    ctaButton: {
+      lv: "Atstāt atsauksmi",
+      en: "Leave a review",
+      ru: "Оставить отзыв",
+    },
+  },
+
   ribbons: {
     hair: {
       en: ["HAIRCUTS", "FADES", "STYLING", "SHAPING", "TAPERING"],

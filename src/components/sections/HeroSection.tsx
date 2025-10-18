@@ -53,7 +53,7 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: [0.4, 0, 0.3, 1] }}
         >
-          <div className="relative w-[544px] h-[407px]">
+          <div className="relative w-[360px] md:w-[544px] h-[407px]">
             <Image
               src="/logo/hero-logo-gold.svg"
               alt="Logo 88barbershop"

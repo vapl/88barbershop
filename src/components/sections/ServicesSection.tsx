@@ -6,7 +6,7 @@ import Image from "next/image";
 import bg from "../../../public/images/services-bg.jpg";
 import { siteData } from "@/data/siteData";
 import { useLocale } from "next-intl";
-import SercviceCard from "@/components/ServiceCard";
+import SercviceCard from "@/components/cards/ServiceCard";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 const ServicesSection = () => {
@@ -49,7 +49,7 @@ const ServicesSection = () => {
           subtitle={siteData.services.services_section.subtitle[locale]}
           decoration
         />
-        <div className="flex flex-col md:flex-row w-full justify-center gap-10">
+        <div className="flex flex-col md:flex-row w-full justify-center gap-4 lg:gap-10">
           <SercviceCard cardType="haircut" />
           <SercviceCard cardType="shave" />
           <SercviceCard cardType="combo" />

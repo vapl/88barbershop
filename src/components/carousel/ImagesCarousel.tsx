@@ -12,7 +12,7 @@ type ImageType = {
   alt?: string;
 };
 
-export default function BarberCarousel() {
+export default function ImagesCarousel() {
   const [images, setImages] = useState<ImageType[]>([]);
 
   useEffect(() => {

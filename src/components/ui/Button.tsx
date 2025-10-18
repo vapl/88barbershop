@@ -25,7 +25,7 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   const baseClasses = clsx(
     "inline-block px-5 py-2 rounded-xs font-semibold transition-all duration-200 active:scale-95",
-    "disabled:opacity-40 disabled:cursor-not-allowed",
+    "disabled:opacity-40 disabled:cursor-not-allowed capitalize",
     {
       // PRIMARY
       "bg-primary text-gray-900 hover:bg-primary-hover":

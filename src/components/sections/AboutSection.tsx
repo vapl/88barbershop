@@ -6,7 +6,7 @@ import { useLocale } from "next-intl";
 import SectionHeading from "../SectionHeading";
 import Button from "../ui/Button";
 import { motion } from "framer-motion";
-import ImagesCarousel from "../ImagesCarousel";
+import ImagesCarousel from "../carousel/ImagesCarousel";
 
 const AboutSection: React.FC = () => {
   const locale = useLocale() as "lv" | "en" | "ru";
