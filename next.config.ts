@@ -4,7 +4,7 @@ import type { NextConfig } from "next";
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 /** @type {import('next').NextConfig} */
-const nextConfig: NextConfig = {
+const baseConfig: NextConfig = {
   webpack(config) {
     // 🔹 Atrodam noklusēto noteikumu un izslēdzam SVG no fail-loader
     const fileLoaderRule = config.module.rules.find(
@@ -25,4 +25,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withNextIntl(nextConfig);
+export default withNextIntl(baseConfig);

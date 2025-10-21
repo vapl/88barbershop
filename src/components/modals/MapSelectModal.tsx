@@ -12,9 +12,10 @@ type Props = {
   onClose: () => void;
   onSelect: (service: "apple" | "google" | "waze") => void;
   isIOS: boolean;
+  value?: string;
 };
 
-const MapSelectModal: React.FC<Props> = ({ isOpen, onClose, onSelect, isIOS }) => {
+const MapSelectModal: React.FC<Props> = ({ isOpen, onClose, onSelect, isIOS, value }) => {
   const locale = useLocale() as "lv" | "en" | "ru";
   if (typeof window === "undefined") return null;
 
@@ -30,13 +31,13 @@ const MapSelectModal: React.FC<Props> = ({ isOpen, onClose, onSelect, isIOS }) =
           onClick={onClose}
         >
           <motion.div
-            className="bg-background w-full mx-4 max-w-[480px] border border-foreground/20 rounded-lg p-6 flex flex-col gap-6 text-center shadow-xl"
+            className="bg-background/80 w-full mx-4 max-w-[480px] border border-foreground/20 rounded-sm p-6 flex flex-col gap-6 text-center shadow-xl"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
             onClick={(e) => e.stopPropagation()}
           >
-            <h3 className="text-h3 mb-2">{siteData.modals.map_modal.title[locale]}</h3>
+            <h3 className="text-body mb-2">{value}</h3>
 
             <div className="flex gap-3 justify-center">
               {isIOS && (
@@ -83,7 +84,7 @@ const MapSelectModal: React.FC<Props> = ({ isOpen, onClose, onSelect, isIOS }) =
               </button>
             </div>
             <Button variant="primary" outline={false} onClick={onClose}>
-              {siteData.modals.map_modal.cancel_button[locale]}
+              {siteData.modals.modal.cancel_button[locale]}
             </Button>
           </motion.div>
         </motion.div>

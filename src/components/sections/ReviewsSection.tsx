@@ -1,12 +1,11 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import SectionHeading from "../SectionHeading";
 import { siteData } from "@/data/siteData";
 import { useLocale } from "next-intl";
 import Button from "../ui/Button";
 import ReviewCard from "../cards/ReviewCard";
-import { motion, useAnimation } from "framer-motion";
 
 const REVIEWS = [
   {

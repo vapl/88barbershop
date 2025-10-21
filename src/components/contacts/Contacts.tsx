@@ -1,25 +1,39 @@
 import React, { useRef, useState } from "react";
 import { FaInstagram, FaFacebook, FaPhone, FaLocationDot, FaAt } from "react-icons/fa6";
 import MapSelectModal from "../modals/MapSelectModal";
+import PhoneSelectModal from "../modals/PhoneSelectModal";
+import PhoneIcon from "@/icons/PhoneIcon";
 
 type Props = {
   type: "phone" | "email" | "address" | "instagram" | "facebook";
   value?: string | any;
-  link?: string;
+  valueVisible?: boolean;
+  link?: string | any;
   className?: string;
   color?: "primary" | "dark";
+  iconSize?: number;
 };
 
-const icons = {
-  phone: <FaPhone size={16} className="transition-all duration-200" />,
-  email: <FaAt size={16} className="transition-all duration-200" />,
-  address: <FaLocationDot size={16} className="transition-all duration-200" />,
-  instagram: <FaInstagram size={22} className="transition-all duration-200" />,
-  facebook: <FaFacebook size={22} className="transition-all duration-200" />,
-};
-
-const ContactItem: React.FC<Props> = ({ type, value, link, className, color = "primary" }) => {
+const ContactItem: React.FC<Props> = ({
+  type,
+  value,
+  valueVisible = true,
+  link,
+  className,
+  color = "primary",
+  iconSize = 16,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPhoneModalOpen, setIsPhoneModalOpen] = useState(false);
+
+  const icons = {
+    phone: <PhoneIcon size={iconSize} color={color} className="transition-all duration-200" />,
+    email: <FaAt size={iconSize} className="transition-all duration-200" />,
+    address: <FaLocationDot size={iconSize} className="transition-all duration-200" />,
+    instagram: <FaInstagram size={22} className="transition-all duration-200" />,
+    facebook: <FaFacebook size={22} className="transition-all duration-200" />,
+  };
+
   const icon = icons[type];
   const isSocial = type === "instagram" || type === "facebook";
 
@@ -44,8 +58,12 @@ const ContactItem: React.FC<Props> = ({ type, value, link, className, color = "p
           "noopener,noreferrer"
         );
       }
-    } else if (link) {
-      window.open(link, isSocial ? "_blank" : "_self", "noopener, noreferrer");
+    } else if (type === "phone" && link) {
+      setIsPhoneModalOpen(true);
+    } else if (isSocial && link) {
+      window.open(link, "_blank", "noopener, noreferrer");
+    } else if (type === "email" && link) {
+      window.location.href = link;
     }
   };
 
@@ -102,6 +120,20 @@ const ContactItem: React.FC<Props> = ({ type, value, link, className, color = "p
     setIsModalOpen(false);
   };
 
+  const handlePhoneSelect = (action: "call" | "whatsapp") => {
+    const number = link.toString();
+    const cleanNumber = number.replace(/[^\d]/g, "");
+
+    if (action === "call") {
+      window.location.href = `tel:${number}`;
+    } else if (action === "whatsapp") {
+      const appUrl = `whatsapp://send?phone=${cleanNumber}`;
+      window.location.href = appUrl;
+    }
+
+    setIsPhoneModalOpen(false);
+  };
+
   return (
     <>
       <div
@@ -113,10 +145,22 @@ const ContactItem: React.FC<Props> = ({ type, value, link, className, color = "p
         >
           {icon}
         </span>
-        {value && !isSocial && <span className="text-extra-small">{value}</span>}
+        {value && valueVisible && !isSocial && <span className="text-extra-small">{value}</span>}
       </div>
 
-      <MapSelectModal isOpen={isModalOpen} onClose={handleClose} onSelect={openApp} isIOS={isIOS} />
+      <MapSelectModal
+        isOpen={isModalOpen}
+        onClose={handleClose}
+        onSelect={openApp}
+        isIOS={isIOS}
+        value={value}
+      />
+      <PhoneSelectModal
+        isOpen={isPhoneModalOpen}
+        onClose={() => setIsPhoneModalOpen(false)}
+        onSelect={handlePhoneSelect}
+        phone={link}
+      />
     </>
   );
 };

@@ -56,6 +56,21 @@ export const siteData = {
       ru: "Услуги",
       link: "/services",
     },
+    hero_about: {
+      lv: "Par mums",
+      en: "About us",
+      ru: "О нас",
+    },
+    hero_services: {
+      lv: "Mūsu pakalpojumi",
+      en: "Our services",
+      ru: "Наши услуги",
+    },
+    hero_contact: {
+      lv: "Mūsu kontakti",
+      en: "Our contacts",
+      ru: "Наши контакты",
+    },
   },
 
   services: {
@@ -200,7 +215,7 @@ export const siteData = {
   },
 
   contacts: {
-    phone: { label: "+371 28 816 466", link: "tel:+37128816466" },
+    phone: { label: "+371 28 816 466", link: "+37128816466" },
     email: { label: "88barbershop@gmail.com", link: "mailto:88barbershop@gmail.com" },
     address: {
       label: "Akmeņu iela 16, Rīga, LV-1048",
@@ -261,16 +276,31 @@ export const siteData = {
   },
 
   modals: {
-    map_modal: {
+    modal: {
       title: {
         lv: "Atvērt ar:",
         en: "Open width:",
         ru: "Открыть с помощью:",
       },
+      call: {
+        lv: "Piezvanīt",
+        en: "Call",
+        ru: "Звонок",
+      },
       cancel_button: {
         lv: "Atcelt",
         en: "Cancel",
         ru: "Отмена",
+      },
+    },
+  },
+
+  pages: {
+    contact_page: {
+      heading_intro: {
+        lv: "Rezervējiet apmeklējumu vai sazinaties ar mums!",
+        en: "Book an appointment or get in touch!",
+        ru: "Запишитесь или свяжитесь с nами!",
       },
     },
   },

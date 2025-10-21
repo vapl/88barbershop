@@ -73,7 +73,7 @@ const Contacts: React.FC = () => {
       <div className="w-full">
         <div className="w-full border-t-1 border-t-background-alt/80" />
         {/* CONTACT LINKS */}
-        <div className="md:flex lg:flex py-4 justify-between w-full">
+        <div className="md:flex lg:flex gap-6 py-4 justify-between w-full">
           <ContactItem
             className="hover:underline whitespace-nowrap"
             type="phone"

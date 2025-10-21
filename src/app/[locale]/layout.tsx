@@ -1,6 +1,8 @@
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import Navbar from "@/components/navigation/Navbar";
+import Footer from "@/components/sections/FooterSection";
 
 type Props = {
   children: React.ReactNode;
@@ -13,5 +15,11 @@ export default async function LocaleLayout({ children, params }: Props) {
     notFound();
   }
 
-  return <NextIntlClientProvider locale={locale}>{children}</NextIntlClientProvider>;
+  return (
+    <NextIntlClientProvider locale={locale}>
+      <Navbar />
+      {children}
+      <Footer />
+    </NextIntlClientProvider>
+  );
 }

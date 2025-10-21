@@ -70,7 +70,7 @@ const AboutSection: React.FC = () => {
         <div className="col-span-1 lg:pl-36 lg:col-span-2 flex flex-col gap-10 items-center lg:items-start">
           <SectionHeading title={siteData.about.title[locale]} />
           <p className="text-foreground text-body">{siteData.about.description_short[locale]}</p>
-          <Button type="button" outline>
+          <Button type="button" outline link="/about">
             {siteData.about.ctaButton[locale]}
           </Button>
         </div>

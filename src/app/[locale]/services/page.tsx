@@ -1,3 +1,11 @@
+import Contacts from "@/components/sections/ContactsSection";
+import HeroServices from "@/components/sections/HeroServices";
+
 export default function ServicesPage() {
-  return <div className="p-2">Services</div>;
+  return (
+    <>
+      <HeroServices />
+      <Contacts />
+    </>
+  );
 }

@@ -20,12 +20,15 @@ const Navbar: React.FC = () => {
   const locale = useLocale() as "lv" | "en" | "ru";
   const pathname = usePathname();
 
+  const isHome = pathname === `/${locale}`;
+
   // Window width logic
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 768) setIsOpen(false);
     };
     window.addEventListener("resize", handleResize);
+    console.log("Is home? ", pathname);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -56,11 +59,12 @@ const Navbar: React.FC = () => {
     <nav
       className={clsx(
         "fixed top-0 left-0 w-full z-50 transition-[background-color,backdrop-filter] duration-500 ease-in-out",
-        isTransparent
+        isTransparent && isHome
           ? "bg-transparent"
           : "bg-black/80 backdrop-blur-md transition-transform duration-300",
         showNav ? "translate-y-0" : "-translate-y-full",
         isOpen && "translate-y-0 bg-transparent backdrop-blur-none"
+        // !isHome && "bg-black/80 backdrop-blur-md"
       )}
       style={{ height: "80px" }}
     >

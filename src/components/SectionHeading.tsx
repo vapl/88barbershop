@@ -1,5 +1,6 @@
+"use client";
+
 import React from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import DecorationIcon from "@/icons/decoration-icon.svg";
 
@@ -8,9 +9,16 @@ type Props = {
   subtitle?: string;
   color?: "gold" | "black" | "white";
   decoration?: boolean;
+  className?: string;
 };
 
-const SectionHeading: React.FC<Props> = ({ title, subtitle, color = "gold", decoration }) => {
+const SectionHeading: React.FC<Props> = ({
+  title,
+  subtitle,
+  color = "gold",
+  decoration,
+  className,
+}) => {
   const colorClass =
     color === "gold" ? "primary" : color === "black" ? "bacground-alt" : "foreground";
 
@@ -24,7 +32,9 @@ const SectionHeading: React.FC<Props> = ({ title, subtitle, color = "gold", deco
         viewport={{ once: false, amount: 0.2 }}
       >
         {decoration && <DecorationIcon className="w-[42px] md:w-[62px] h-auto fill-current" />}
-        <h1 className="text-h2 md:text-h1 font-heading h-full uppercase">{title}</h1>
+        <h1 className={`text-h2 md:text-h1 font-heading h-full uppercase text-center ${className}`}>
+          {title}
+        </h1>
         {decoration && <DecorationIcon className="w-[42px] md:w-[62px] fill-current rotate-180" />}
       </motion.div>
       {subtitle && (
