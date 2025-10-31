@@ -14,6 +14,8 @@ const HeroServices = () => {
         backgroundPosition: "center",
       }}
     >
+      <div className="absolute inset-0 bg-black/20" />
+
       <h1 className="text-h2 md:text-h1 text-foreground font-heading uppercase text-shadow-black/60 text-shadow-lg text-center">
         {siteData.hero.hero_about[locale]}
       </h1>

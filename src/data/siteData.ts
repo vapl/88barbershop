@@ -17,6 +17,56 @@ export const siteData = {
       en: "Modern barbershop in Riga offering professional haircuts and beard styling.",
       ru: "Современный барбершоп в Риге — профессиональные стрижки и уход за бородой.",
     },
+    barbers: [
+      {
+        name: {
+          lv: "Vitālijs",
+          en: "Vitalij",
+          ru: "Виталий",
+        },
+        position: {
+          lv: "Bārddzinis | Īpašnieks",
+          en: "Barber | Owner",
+          ru: "Барбер | Владелец",
+        },
+      },
+      {
+        name: {
+          lv: "Šahs",
+          en: "Shah",
+          ru: "Шах",
+        },
+        position: {
+          lv: "Bārddzinis",
+          en: "Barber",
+          ru: "Барбер",
+        },
+      },
+      {
+        name: {
+          lv: "Diāna",
+          en: "Diana",
+          ru: "Диана",
+        },
+        position: {
+          lv: "Bārddzine",
+          en: "Barber",
+          ru: "Барбер",
+        },
+      },
+      {
+        name: {
+          lv: "Diāna",
+          en: "Diana",
+          ru: "Диана",
+        },
+        position: {
+          lv: "Bārddzine",
+          en: "Barber",
+          ru: "Барбер",
+        },
+      },
+    ],
   },
 
   navigation: [
@@ -86,6 +136,16 @@ export const siteData = {
         ru: "Премиальные услуги барбершопа в Риге – классические стрижки, fade и бритьё горячим полотенцем.",
       },
       cards: {
+        label: {
+          lv: "Mūsu pakalpojumi",
+          en: "Our services",
+          ru: "Наши услуги",
+        },
+        cta_button: {
+          lv: "Pierakstīties tagad",
+          en: "Book Now",
+          ru: "Записаться",
+        },
         haircut: {
           title: {
             lv: "Matu griešana",
@@ -125,8 +185,9 @@ export const siteData = {
       },
     },
     services_list: [
+      // ——— HAIRCUT ———
       {
-        id: "cut",
+        id: "haircut",
         title: {
           lv: "Matu griešana",
           en: "Haircut",
@@ -137,25 +198,137 @@ export const siteData = {
           en: "Classic or modern haircut with professional precision.",
           ru: "Классическая или современная стрижка с профессиональным подходом.",
         },
-        price: "25€",
-        duration: "40 min",
+        services: [
+          {
+            name: {
+              lv: "Vīriešu griezums",
+              en: "Men’s Cut",
+              ru: "Мужская стрижка",
+            },
+            note: {
+              lv: "Tradicionāls griezums",
+              en: "Traditional cut",
+              ru: "Классическая стрижка",
+            },
+            price: "€28",
+          },
+          {
+            name: {
+              lv: "Bērnu griezums",
+              en: "Kid’s Cut",
+              ru: "Детская стрижка",
+            },
+            note: {
+              lv: "Līdz 12 gadu vecumam",
+              en: "Ages 12 & under",
+              ru: "До 12 лет",
+            },
+            price: "€25",
+          },
+          {
+            name: {
+              lv: "Matu tonēšana",
+              en: "Hair Tinting",
+              ru: "Тонирование волос",
+            },
+            price: "€25",
+          },
+        ],
         image: "/images/services/haircut.jpg",
       },
+
+      // ——— SHAVE ———
       {
-        id: "beard",
+        id: "shave",
         title: {
-          lv: "Bārdas korekcija",
-          en: "Beard Trim",
-          ru: "Коррекция бороды",
+          lv: "Bārdas kopšana",
+          en: "Shave",
+          ru: "Бритьё",
         },
         description: {
-          lv: "Bārdas apgriešana, formas uzturēšana un kopšana.",
-          en: "Beard trimming and maintenance for a clean look.",
+          lv: "Bārdas formēšana un kopšana perfektam izskatam.",
+          en: "Beard shaping and grooming for a sharp look.",
           ru: "Оформление и уход за бородой.",
         },
-        price: "15€",
-        duration: "25 min",
-        image: "/images/services/beard.jpg",
+        services: [
+          {
+            name: {
+              lv: "Bārdas formēšana",
+              en: "Beard Shaping",
+              ru: "Оформление бороды",
+            },
+            note: {
+              lv: "Līniju korekcija",
+              en: "Trim / Lineup",
+              ru: "Подравнивание линий",
+            },
+            price: "€20",
+          },
+          {
+            name: {
+              lv: "Bārdas tonēšana",
+              en: "Beard Tinting",
+              ru: "Тонирование бороды",
+            },
+            price: "€20",
+          },
+        ],
+        image: "/images/services/shave.jpg",
+      },
+
+      // ——— COMBO ———
+      {
+        id: "combo",
+        title: {
+          lv: "Kombinētie pakalpojumi",
+          en: "Combo",
+          ru: "Комбо",
+        },
+        description: {
+          lv: "Izvēlies perfektu kombināciju matiem un bārdai.",
+          en: "Choose the perfect combo for your hair and beard.",
+          ru: "Идеальное сочетание ухода за волосами и бородой.",
+        },
+        services: [
+          {
+            name: {
+              lv: "Matu un bārdas griezums",
+              en: "Men’s Cut & Beard Shaping",
+              ru: "Стрижка и оформление бороды",
+            },
+            price: "€45",
+          },
+          {
+            name: {
+              lv: "Matu griezums un tonēšana",
+              en: "Men’s Cut & Hair Tinting",
+              ru: "Стрижка и тонирование волос",
+            },
+            price: "€50",
+          },
+          {
+            name: {
+              lv: "Matu un bārdas griezums ar tonēšanu",
+              en: "Men’s Cut & Beard Shaping & Beard Tinting",
+              ru: "Стрижка и борода с тонированием",
+            },
+            price: "€65",
+          },
+          {
+            name: {
+              lv: "All in One",
+              en: "All in One",
+              ru: "Всё включено",
+            },
+            note: {
+              lv: "Matu un bārdas griezums + bārdas un matu tonēšana",
+              en: "Men’s cut & beard shaping & beard & hair tinting",
+              ru: "Стрижка, борода и тонирование всего",
+            },
+            price: "€90",
+          },
+        ],
+        image: "/images/services/combo.jpg",
       },
     ],
   },
@@ -301,6 +474,53 @@ export const siteData = {
         lv: "Rezervējiet apmeklējumu vai sazinaties ar mums!",
         en: "Book an appointment or get in touch!",
         ru: "Запишитесь или свяжитесь с nами!",
+      },
+      heading_map: {
+        lv: "Atrodiet mūs kartē",
+        en: "Find us on map",
+        ru: "Найдите нас на карте",
+      },
+    },
+    about_page: {
+      heading_intro: {
+        lv: "Kvalitatīvi griezumi. Atslābinoša atmosfēra. Pārliecība katrā detaļā.",
+        en: "Quality cuts. Relaxed atmosphere. Confidence in every detail.",
+        ru: "Kачественные стрижки. Расслабленная атмосфера. Уверенность в каждой детали.",
+      },
+      stats: {
+        s1: {
+          h1: {
+            lv: "Bezmaksas",
+            en: "Free",
+            ru: "Бесплатная",
+          },
+          h3: {
+            lv: "Stāvvieta",
+            en: "Parking",
+            ru: "Парковка",
+          },
+        },
+        s2: {
+          h3: {
+            lv: "Bārdziņi",
+            en: "Barbers",
+            ru: "Барбера",
+          },
+        },
+        s3: {
+          h3: {
+            lv: "Meistarība un precizitāte",
+            en: "Craft & precision",
+            ru: "Мастерство и точность",
+          },
+        },
+        s4: {
+          h3: {
+            lv: "Gadu pieredze",
+            en: "Years of experience",
+            ru: "Лет опыта",
+          },
+        },
       },
     },
   },

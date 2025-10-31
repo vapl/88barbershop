@@ -10,7 +10,7 @@ type Props = {
   valueVisible?: boolean;
   link?: string | any;
   className?: string;
-  color?: "primary" | "dark";
+  color?: "primary" | "dark" | string;
   iconSize?: number;
 };
 
@@ -25,13 +25,21 @@ const ContactItem: React.FC<Props> = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPhoneModalOpen, setIsPhoneModalOpen] = useState(false);
+  const colorClass =
+    color === "dark"
+      ? "fill-background text-background"
+      : color === "primary"
+        ? "fill-primary text-primary"
+        : `fill-[${color}] text-[${color}]`;
 
   const icons = {
-    phone: <PhoneIcon size={iconSize} color={color} className="transition-all duration-200" />,
-    email: <FaAt size={iconSize} className="transition-all duration-200" />,
-    address: <FaLocationDot size={iconSize} className="transition-all duration-200" />,
-    instagram: <FaInstagram size={22} className="transition-all duration-200" />,
-    facebook: <FaFacebook size={22} className="transition-all duration-200" />,
+    phone: <PhoneIcon size={iconSize} className={`transition-all duration-200 ${colorClass}`} />,
+    email: <FaAt size={iconSize} className={`transition-all duration-200 ${colorClass}`} />,
+    address: (
+      <FaLocationDot size={iconSize} className={`transition-all duration-200 ${colorClass}`} />
+    ),
+    instagram: <FaInstagram size={22} className={`transition-all duration-200 ${colorClass}`} />,
+    facebook: <FaFacebook size={22} className={`transition-all duration-200 ${colorClass}`} />,
   };
 
   const icon = icons[type];
@@ -137,7 +145,7 @@ const ContactItem: React.FC<Props> = ({
   return (
     <>
       <div
-        className={`flex gap-2 items-center px-3 cursor-pointer ${color === "primary" ? "hover:text-primary" : "hover:text-background-alt"} transition-all ${className}`}
+        className={`flex gap-2 items-center px-3 cursor-pointer ${color === "primary" ? "hover:text-primary" : "hover:text-background-alt"} transition-all active:scale-95 duration-200 ${className}`}
         onClick={handleClick}
       >
         <span

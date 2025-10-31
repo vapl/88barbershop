@@ -9,7 +9,7 @@ const PhoneIcon: React.FC<Props> = ({ size = 36, className, color = "primary" })
     <svg
       viewBox="0 0 132.6241 98.51236"
       xmlns="http://www.w3.org/2000/svg"
-      className={`fill-${color} ${className}`}
+      className={`${className}`}
       style={{ width: size, height: size }}
     >
       <g id="layer1" transform="translate(-49.488346,-99.909123)">

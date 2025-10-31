@@ -14,7 +14,6 @@ export default function Home() {
       <ServicesSection />
       <AboutSection />
       <ReviewsSection />
-      <MobileActionButton />
       <Contacts />
     </div>
   );

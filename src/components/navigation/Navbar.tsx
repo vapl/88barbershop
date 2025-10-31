@@ -124,6 +124,7 @@ const Navbar: React.FC = () => {
           {!isOpen && (
             <ContactItem
               type="phone"
+              color="primary"
               value={siteData.contacts.phone.label}
               link={siteData.contacts.phone.link}
             />

@@ -1,3 +1,4 @@
+import MapEmbed from "@/components/MapEmbed";
 import SectionHeading from "@/components/SectionHeading";
 import Contacts from "@/components/sections/ContactsSection";
 import HeroContact from "@/components/sections/HeroContact";
@@ -19,6 +20,15 @@ export default function ContactPage() {
         />
       </div>
       <Contacts />
+      <section className="relative flex flex-col gap-[95px] items-center w-full text-background pt-[120px] bg-gradient-to-br from-background via-background-alt/80 to-background overflow-hidden">
+        <SectionHeading
+          title={siteData.pages.contact_page.heading_map[locale]}
+          decoration={true}
+          className="text-h3 md:text-h2"
+          color="gold"
+        />
+        <MapEmbed />
+      </section>
     </>
   );
 }
