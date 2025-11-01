@@ -9,7 +9,7 @@ const StatsSection = () => {
   const locale = useLocale() as "lv" | "en" | "ru";
 
   return (
-    <section className="flex justify-center items-center w-full bg-background-alt px-4 md:px-16 lg:px-32 pb-[80px]">
+    <section className="flex justify-center items-center w-full bg-background-alt px-4 md:px-16 lg:px-32 pb-[80px] overflow-hidden">
       <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-center">
         <motion.div
           className="flex w-full flex-col gap-1 items-center"

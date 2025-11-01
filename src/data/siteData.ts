@@ -25,9 +25,13 @@ export const siteData = {
           ru: "Виталий",
         },
         position: {
-          lv: "Bārddzinis | Īpašnieks",
-          en: "Barber | Owner",
-          ru: "Барбер | Владелец",
+          lv: "Īpašnieks | Bārddzinis",
+          en: "Owner | Barber",
+          ru: "Владелец | Барбер",
+        },
+        social: {
+          instagram: "https://www.instagram.com/",
+          facebook: "",
         },
       },
       {
@@ -41,17 +45,9 @@ export const siteData = {
           en: "Barber",
           ru: "Барбер",
         },
-      },
-      {
-        name: {
-          lv: "Diāna",
-          en: "Diana",
-          ru: "Диана",
-        },
-        position: {
-          lv: "Bārddzine",
-          en: "Barber",
-          ru: "Барбер",
+        social: {
+          instagram: "https://www.instagram.com/",
+          facebook: "",
         },
       },
       {
@@ -64,6 +60,26 @@ export const siteData = {
           lv: "Bārddzine",
           en: "Barber",
           ru: "Барбер",
+        },
+        social: {
+          instagram: "https://www.instagram.com/",
+          facebook: "",
+        },
+      },
+      {
+        name: {
+          lv: "Diāna2",
+          en: "Diana2",
+          ru: "Диана2",
+        },
+        position: {
+          lv: "Bārddzine",
+          en: "Barber",
+          ru: "Барбер",
+        },
+        social: {
+          instagram: "https://www.instagram.com/",
+          facebook: "",
         },
       },
     ],
@@ -486,6 +502,11 @@ export const siteData = {
         lv: "Kvalitatīvi griezumi. Atslābinoša atmosfēra. Pārliecība katrā detaļā.",
         en: "Quality cuts. Relaxed atmosphere. Confidence in every detail.",
         ru: "Kачественные стрижки. Расслабленная атмосфера. Уверенность в каждой детали.",
+      },
+      heading_team: {
+        lv: "Mūsu komanda",
+        en: "Our team",
+        ru: "Наша команда",
       },
       stats: {
         s1: {

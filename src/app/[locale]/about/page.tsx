@@ -1,6 +1,7 @@
 import ImagesCarousel from "@/components/carousel/ImagesCarousel";
 import SectionHeading from "@/components/SectionHeading";
 import AboutSection2 from "@/components/sections/AboutSection2";
+import TeamSection from "@/components/sections/TeamSection";
 import Contacts from "@/components/sections/ContactsSection";
 import HeroAbout from "@/components/sections/HeroAbout";
 import StatsSection from "@/components/sections/StatsSection";
@@ -22,10 +23,11 @@ export default function AboutPage() {
         />
       </div>
       <StatsSection />
-      <div className="bg-background-alt pb-[80px]">
+      <div className="bg-background-alt pb-[80px] overflow-hidden">
         <ImagesCarousel />
       </div>
       <AboutSection2 />
+      <TeamSection />
       <Contacts />
     </>
   );
