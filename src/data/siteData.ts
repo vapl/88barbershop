@@ -523,7 +523,7 @@ export const siteData = {
         },
         s2: {
           h3: {
-            lv: "Bārdziņi",
+            lv: "Bārddziņi",
             en: "Barbers",
             ru: "Барбера",
           },
