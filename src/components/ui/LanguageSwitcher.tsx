@@ -64,7 +64,7 @@ const LanguageSwitcher: React.FC<Props> = ({ className }) => {
       {/* Dropdown */}
       {open && (
         <div className="absolute right-0 mt-2 w-19 bg-background-alt/80 border border-foreground/20 rounded-xs shadow-md z-50">
-          {LANGS.map(({ code, flag, label }) => (
+          {LANGS.map(({ code, label }) => (
             <button
               key={code}
               onClick={() => handleChange(code)}

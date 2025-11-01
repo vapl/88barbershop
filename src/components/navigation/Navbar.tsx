@@ -30,7 +30,7 @@ const Navbar: React.FC = () => {
     window.addEventListener("resize", handleResize);
     console.log("Is home? ", pathname);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [pathname]);
 
   // Scroll logic
   useEffect(() => {
@@ -42,7 +42,7 @@ const Navbar: React.FC = () => {
     const lastScrollYRef = { current: 0 };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isOpen]);
 
   useEffect(() => {
     const handleScroll = () => {

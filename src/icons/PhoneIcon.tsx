@@ -1,10 +1,9 @@
 type Props = {
   size?: number;
   className?: string;
-  color?: string;
 };
 
-const PhoneIcon: React.FC<Props> = ({ size = 36, className, color = "primary" }) => {
+const PhoneIcon: React.FC<Props> = ({ size = 36, className }) => {
   return (
     <svg
       viewBox="0 0 132.6241 98.51236"

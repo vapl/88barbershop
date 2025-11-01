@@ -4,7 +4,6 @@ import BarberRibbons from "@/components/sections/BarberRibbons";
 import ServicesSection from "@/components/sections/ServicesSection";
 import AboutSection from "@/components/sections/AboutSection";
 import ReviewsSection from "@/components/sections/ReviewsSection";
-import MobileActionButton from "@/components/ui/MobileActionButton";
 
 export default function Home() {
   return (

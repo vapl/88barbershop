@@ -7,12 +7,10 @@ import { siteData } from "@/data/siteData";
 import bg from "../../../public/images/hero-bg.jpg";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useLocale } from "next-intl";
-import { usePathname } from "next/navigation";
 
 const HeroSection = () => {
   const ref = useRef<HTMLDivElement>(null);
   const locale = useLocale() as "lv" | "en" | "ru";
-  const pathname = usePathname();
 
   // Track scroll progress
   const { scrollYProgress } = useScroll({

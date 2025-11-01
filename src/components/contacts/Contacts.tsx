@@ -1,14 +1,14 @@
 import React, { useRef, useState } from "react";
-import { FaInstagram, FaFacebook, FaPhone, FaLocationDot, FaAt } from "react-icons/fa6";
+import { FaInstagram, FaFacebook, FaLocationDot, FaAt } from "react-icons/fa6";
 import MapSelectModal from "../modals/MapSelectModal";
 import PhoneSelectModal from "../modals/PhoneSelectModal";
 import PhoneIcon from "@/icons/PhoneIcon";
 
 type Props = {
   type: "phone" | "email" | "address" | "instagram" | "facebook";
-  value?: string | any;
+  value?: string;
   valueVisible?: boolean;
-  link?: string | any;
+  link?: string;
   className?: string;
   color?: "primary" | "dark" | string;
   iconSize?: number;
@@ -51,9 +51,9 @@ const ContactItem: React.FC<Props> = ({
   const ua = typeof navigator !== "undefined" ? navigator.userAgent.toLowerCase() : "";
   const isIOS = /iphone|ipad|ipod/.test(ua);
   const isAndroid = /android/.test(ua);
-  const encoded = encodeURIComponent(value);
+  const encoded = encodeURIComponent(value || "");
 
-  const handleClick = (e: any) => {
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
 
     if (type === "address" && value) {
@@ -129,6 +129,7 @@ const ContactItem: React.FC<Props> = ({
   };
 
   const handlePhoneSelect = (action: "call" | "whatsapp") => {
+    if (!link) return;
     const number = link.toString();
     const cleanNumber = number.replace(/[^\d]/g, "");
 
@@ -167,7 +168,7 @@ const ContactItem: React.FC<Props> = ({
         isOpen={isPhoneModalOpen}
         onClose={() => setIsPhoneModalOpen(false)}
         onSelect={handlePhoneSelect}
-        phone={link}
+        phone={link || ""}
       />
     </>
   );

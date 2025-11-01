@@ -3,7 +3,6 @@
 import React from "react";
 import ContactItem from "../contacts/Contacts";
 import { siteData } from "@/data/siteData";
-import PhoneIcon from "@/icons/PhoneIcon";
 
 const MobileActionButton = () => {
   return (

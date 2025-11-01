@@ -8,7 +8,7 @@ const baseConfig: NextConfig = {
   webpack(config) {
     // 🔹 Atrodam noklusēto noteikumu un izslēdzam SVG no fail-loader
     const fileLoaderRule = config.module.rules.find(
-      (rule: { test: { test: (arg0: string) => any } }) => rule.test?.test?.(".svg")
+      (rule: { test: { test: (arg0: string) => unknown } }) => rule.test?.test?.(".svg")
     );
     if (fileLoaderRule) {
       fileLoaderRule.exclude = /\.svg$/i;

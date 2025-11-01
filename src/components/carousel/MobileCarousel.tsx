@@ -2,26 +2,29 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export default function MobileCarousel({ IMAGES }: { IMAGES: { src: string }[] }) {
   const [index, setIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
 
-  const paginate = (newDirection: number) => {
-    if (newDirection > 0) {
-      setIndex((i) => (i + 1) % IMAGES.length);
-    } else {
-      setIndex((i) => (i - 1 + IMAGES.length) % IMAGES.length);
-    }
-  };
+  const paginate = useCallback(
+    (newDirection: number) => {
+      if (newDirection > 0) {
+        setIndex((i) => (i + 1) % IMAGES.length);
+      } else {
+        setIndex((i) => (i - 1 + IMAGES.length) % IMAGES.length);
+      }
+    },
+    [IMAGES.length]
+  );
 
   // autoplay (apstājas, kad skar)
   useEffect(() => {
     if (isDragging || IMAGES.length === 0) return;
     const timer = setInterval(() => paginate(1), 4000);
     return () => clearInterval(timer);
-  }, [isDragging, IMAGES.length, index]);
+  }, [isDragging, IMAGES.length, index, paginate]);
 
   // Swipe detection
   const swipeConfidenceThreshold = 10000;

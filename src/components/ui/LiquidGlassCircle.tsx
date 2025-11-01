@@ -1,17 +1,7 @@
 "use client";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 
 export default function LiquidGlassCircle() {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkWidth = () => setIsMobile(window.innerWidth <= 768);
-    checkWidth();
-    window.addEventListener("resize", checkWidth);
-    return () => window.removeEventListener("resize", checkWidth);
-  }, []);
-
   return (
     <div className="relative flex items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:scale-110">
       <div className="flex items-center justify-center h-[100px] w-[100px] md:h-[150px] md:w-[150px] liquidGlass-wrapper ">

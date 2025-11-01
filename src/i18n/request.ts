@@ -2,7 +2,7 @@ import { getRequestConfig } from "next-intl/server";
 import { routing } from "./routing";
 
 function isSupportedLocale(locale: string): locale is (typeof routing.locales)[number] {
-  return routing.locales.includes(locale as any);
+  return routing.locales.includes(locale as "lv" | "en" | "ru");
 }
 
 export default getRequestConfig(async ({ requestLocale }) => {
