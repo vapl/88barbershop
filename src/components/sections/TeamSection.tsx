@@ -2,7 +2,7 @@
 
 import React from "react";
 import EmployeeCard from "../cards/EmployeeCard";
-import { useLocale } from "next-intl";
+
 import SectionHeading from "../SectionHeading";
 import { urlFor } from "@/lib/sanityClient";
 import { Barber, LocaleString } from "@/lib/types";

@@ -2,7 +2,7 @@
 
 import React from "react";
 import ContactItem from "../contacts/Contacts";
-import { useLocale } from "next-intl";
+
 import Link from "next/link";
 import Image from "next/image";
 import { NavigationItem, ContactsData, FooterData, WorkingTimeData } from "@/lib/types";

@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { usePathname, useRouter } from "@/i18n/navigation";
-import { useLocale } from "next-intl";
 
 const LANGS = [
   { code: "lv", flag: "fi fi-lv", label: "LV" },
@@ -12,12 +11,12 @@ const LANGS = [
 
 type Props = {
   className?: string;
+  locale: "lv" | "en" | "ru";
 };
 
-const LanguageSwitcher: React.FC<Props> = ({ className }) => {
+const LanguageSwitcher: React.FC<Props> = ({ className, locale }) => {
   const router = useRouter();
   const pathname = usePathname();
-  const locale = useLocale();
   const [open, setOpen] = useState(false);
 
   const dropdownRef = useRef<HTMLDivElement>(null);

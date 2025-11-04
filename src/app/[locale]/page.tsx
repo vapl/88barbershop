@@ -12,6 +12,7 @@ export async function generateMetadata({ params }: PageProps) {
   const { locale } = await params;
   return getSEOData(locale);
 }
+
 export default async function Home({ params }: PageProps) {
   const { locale } = await params;
   const sanityData = await getSanityData();

@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocale } from "next-intl";
+
 import { HeroData } from "@/lib/types";
 
 interface HeroProps {

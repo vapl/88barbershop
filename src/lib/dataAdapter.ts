@@ -1,27 +1,26 @@
-// Šī funkcija pārveido Sanity datus atpakaļ vecajā 'siteData' formātā
-export function adaptSanityData(data: any) {
-  // 1. Pārveido 'services' sarakstu
-  const adaptedServicesList = data.services.map((service: any) => ({
-    id: service._id.replace("service-", ""), // Atgriežam veco ID formātu
+import { SanityRawData, ServiceGroup, SiteData } from "./types"; // ja vēl nav, izveido SiteData interfeisu, skat. zemāk
+
+export function adaptSanityData(data: SanityRawData): SiteData {
+  const adaptedServicesList: ServiceGroup[] = data.services.map((service) => ({
+    id: service._id.replace("service-", ""),
     slug: service.slug?.current || "",
     title: service.title,
     description: service.description,
-    services: service.servicesList, // Atceries, ka mēs pārsaucām šo lauku shēmā
-    image: service.image, // Šis tagad ir Sanity attēla OBJEKTS, nevis string
+    services: service.servicesList,
+    image: service.image,
   }));
 
-  // 2. Saliekam visu atpakaļ vienā lielā objektā
-  const siteData = {
+  const siteData: SiteData = {
     general: {
       ...data.settings.general_group,
-      barbers: data.barbers || [], // Pievienojam bārddziņus no atsevišķa vaicājuma
+      barbers: data.barbers || [],
     },
     navigation: data.settings.navigation_group,
     hero: data.settings.hero_group,
     contacts: data.settings.contacts_group,
     services: {
       services_section: data.settings.services_section_group,
-      services_list: adaptedServicesList, // Izmantojam mūsu pārveidoto sarakstu
+      services_list: adaptedServicesList,
     },
     about: {
       ...data.settings.about_group,
@@ -36,9 +35,12 @@ export function adaptSanityData(data: any) {
     pages: {
       ...data.settings.pages_group,
       about_page: {
-        ...data.settings.pages_group?.about_page,
-        businessHighlights: data.settings.pages_group?.about_page?.businessHighlights || {
-          highlight1: { title: { lv: "", en: "", ru: "" }, subtitle: { lv: "", en: "", ru: "" } },
+        ...data.settings.pages_group.about_page,
+        businessHighlights: data.settings.pages_group.about_page.businessHighlights || {
+          highlight1: {
+            title: { lv: "", en: "", ru: "" },
+            subtitle: { lv: "", en: "", ru: "" },
+          },
           highlight2: { subtitle: { lv: "", en: "", ru: "" } },
           highlight3: { title: "", subtitle: { lv: "", en: "", ru: "" } },
           highlight4: { title: "", subtitle: { lv: "", en: "", ru: "" } },

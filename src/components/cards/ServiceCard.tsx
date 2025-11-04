@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import { siteData } from "@/data/siteData";
-import { useLocale } from "next-intl";
 import Link from "next/link";
 
 type Props = {

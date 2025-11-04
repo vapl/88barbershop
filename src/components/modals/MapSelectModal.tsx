@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useLocale } from "next-intl";
 import Image from "next/image";
 import Button from "../ui/Button";
 import ReactDOM from "react-dom";

@@ -4,7 +4,7 @@ import React, { useRef } from "react";
 import Image from "next/image";
 import Button from "../ui/Button";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useLocale } from "next-intl";
+
 import { urlFor } from "@/lib/sanityClient";
 import { HeroData } from "@/lib/types";
 

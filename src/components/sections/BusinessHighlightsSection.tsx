@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useLocale } from "next-intl";
+
 import { motion } from "framer-motion";
 import { PagesData } from "@/lib/types";
 

@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import LiquidGlassCircle from "../ui/LiquidGlassCircle";
 import { useEffect, useLayoutEffect, useMemo, useState } from "react";
-import { useLocale } from "next-intl";
+
 import { RibbonsData } from "@/lib/types";
 
 interface Props {
@@ -16,9 +16,15 @@ const BarberRibbons: React.FC<Props> = ({ ribbonsData, locale }) => {
     return Array(repeatCount).fill(words.join(" • ")).join(" • ") + " • ";
   };
 
-  const hiarText = useMemo(() => repeatWords(ribbonsData.hair[locale], 5), [locale]);
+  const hairText = useMemo(
+    () => repeatWords(ribbonsData.hair[locale], 5),
+    [ribbonsData.hair, locale]
+  );
 
-  const beardText = useMemo(() => repeatWords(ribbonsData.beard[locale], 5), [locale]);
+  const beardText = useMemo(
+    () => repeatWords(ribbonsData.beard[locale], 5),
+    [ribbonsData.beard, locale]
+  );
 
   const [duration, setDuration] = useState<number | undefined>(40);
   const [isTop, setIsTop] = useState(true);
@@ -68,8 +74,8 @@ const BarberRibbons: React.FC<Props> = ({ ribbonsData, locale }) => {
             ease: "linear",
           }}
         >
-          <span className="mr-[2rem]">{hiarText}</span>
-          <span className="mr-[2rem]">{hiarText}</span>
+          <span className="mr-[2rem]">{hairText}</span>
+          <span className="mr-[2rem]">{hairText}</span>
         </motion.div>
       </motion.div>
 

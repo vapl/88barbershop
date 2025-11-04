@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { useLocale } from "next-intl";
 import SectionHeading from "../SectionHeading";
 import Image from "next/image";
 import { urlFor } from "@/lib/sanityClient";

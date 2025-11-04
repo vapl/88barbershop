@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useLocale } from "next-intl";
 import Button from "../ui/Button";
 import { ContactFormData, ErrorsData } from "@/lib/types";
 

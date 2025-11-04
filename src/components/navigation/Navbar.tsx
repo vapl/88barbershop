@@ -6,7 +6,6 @@ import Image from "next/image";
 import clsx from "clsx";
 import LanguageSwitcher from "../ui/LanguageSwitcher";
 import ContactItem from "../contacts/Contacts";
-import { useLocale } from "next-intl";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { NavigationItem, ContactsData } from "@/lib/types";
@@ -134,7 +133,7 @@ const Navbar: React.FC<NavbarProps> = ({ navData, contactsData, locale }) => {
             />
           )}
           <span className="hidden lg:block">|</span>
-          <LanguageSwitcher className="hidden lg:block" />
+          <LanguageSwitcher className="hidden lg:block" locale={locale} />
         </div>
         {/* Mobile Hamburger */}
         <div className="lg:hidden">
@@ -173,7 +172,7 @@ const Navbar: React.FC<NavbarProps> = ({ navData, contactsData, locale }) => {
                     link={contactsData.phone.link}
                   />
                   <span>|</span>
-                  <LanguageSwitcher />
+                  <LanguageSwitcher locale={locale} />
                 </div>
                 <div className="flex flex-col items-end justify-center gap-10 uppercase font-heading text-h3">
                   {navData.map((item) => {

@@ -81,7 +81,7 @@ export interface HeroCtaButton extends LocaleString {
 }
 
 export interface HeroData {
-  backgroundImage: any;
+  backgroundImage: Image;
   cta1: HeroCtaButton;
   cta2: HeroCtaButton;
   hero_about: LocaleString;
@@ -195,4 +195,52 @@ export interface ModalData {
     call: LocaleString;
     cancel_button: LocaleString;
   };
+}
+
+// Sanity "raw" struktūra — kā tiek atgriezti dati no query
+export interface SanityRawData {
+  barbers: Barber[];
+  gallery: Image[];
+  services: {
+    _id: string;
+    slug?: { current: string };
+    title: LocaleString;
+    description: LocaleString;
+    servicesList: ServicePriceItem[];
+    image: Image;
+  }[];
+  settings: {
+    general_group: GeneralData;
+    navigation_group: NavigationItem[];
+    hero_group: HeroData;
+    contacts_group: ContactsData;
+    services_section_group: ServicesSectionData;
+    about_group: AboutData & { backgroundImage: Image };
+    reviews_group: ReviewsSectionData;
+    ribbons_group: RibbonsData;
+    contact_form_group: ContactFormData;
+    working_time_group: WorkingTimeData;
+    modals_group: ModalData;
+    pages_group: PagesData;
+    footer_group: FooterData;
+    errors_group: ErrorsData;
+  };
+}
+
+export interface SiteData {
+  general: GeneralData;
+  navigation: NavigationItem[];
+  hero: HeroData;
+  contacts: ContactsData;
+  services: ServicesData;
+  about: AboutData;
+  gallery: Image[];
+  reviews: ReviewsSectionData;
+  ribbons: RibbonsData;
+  contact_form: ContactFormData;
+  working_time: WorkingTimeData;
+  modals: ModalData;
+  pages: PagesData;
+  footer: FooterData;
+  errors: ErrorsData;
 }

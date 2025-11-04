@@ -1,7 +1,7 @@
 import React from "react";
-import { useLocale } from "next-intl";
+
 import PricingCard from "../cards/PricingCard";
-import { ServiceGroup, ServicesData } from "../../lib/types";
+import { ServicesData } from "../../lib/types";
 
 interface PricingProps {
   serviceData: ServicesData;

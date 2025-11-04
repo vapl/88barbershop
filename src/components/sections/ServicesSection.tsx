@@ -4,7 +4,7 @@ import React, { useRef } from "react";
 import SectionHeading from "@/components/SectionHeading";
 import Image from "next/image";
 import bg from "../../../public/images/services-bg.jpg";
-import { useLocale } from "next-intl";
+
 import SercviceCard from "@/components/cards/ServiceCard";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ServicesData } from "@/lib/types";

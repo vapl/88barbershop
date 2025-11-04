@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useLocale } from "next-intl";
 import ContactItem from "../contacts/Contacts";
 import InputForm from "../contacts/InputForm";
 import { WorkingTimeData, ContactsData, ContactFormData, ErrorsData } from "@/lib/types";

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import SectionHeading from "../SectionHeading";
-import { useLocale } from "next-intl";
+
 import Button from "../ui/Button";
 import ReviewCard from "../cards/ReviewCard";
 import { ReviewsSectionData } from "@/lib/types";
