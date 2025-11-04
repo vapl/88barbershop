@@ -1,36 +1,34 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import MobileCaurusel from "./MobileCarousel";
 import DesktopCarousel from "./DesktopCarousel";
+import { Image } from "@/lib/types";
+import { urlFor } from "@/lib/sanityClient";
+
+interface Props {
+  images: Image[];
+}
 
 type ImageType = {
   src: string;
   alt?: string;
 };
 
-export default function ImagesCarousel() {
-  const [images, setImages] = useState<ImageType[]>([]);
-
-  useEffect(() => {
-    const fetchImages = async () => {
-      const res = await fetch("/api/carousel");
-      const data = await res.json();
-      setImages(data);
-    };
-
-    fetchImages();
-  }, []);
+const ImagesCarousel: React.FC<Props> = ({ images }) => {
+  const formattedImages: ImageType[] = (images || []).map((image) => ({
+    src: urlFor(image).url(),
+    alt: image.alt || "88 Barber Shop galery image",
+  }));
 
   return (
     <section className="relative w-full overflow-hidden">
-      {images.length > 0 ? (
+      {formattedImages.length > 0 ? (
         <>
-          {/* ======= DESKTOP (vairākas rindā, step-by-step) ======= */}
-          <DesktopCarousel IMAGES={images} />
+          {/* ======= DESKTOP (multiple in one line) ======= */}
+          <DesktopCarousel IMAGES={formattedImages} />
 
-          {/* ======= MOBILE (coverflow efekts) ======= */}
-          <MobileCaurusel IMAGES={images} />
+          {/* ======= MOBILE (coverflow effect) ======= */}
+          <MobileCaurusel IMAGES={formattedImages} />
         </>
       ) : (
         <div className="flex justify-center items-center h-[400px] text-gray-400">
@@ -39,4 +37,6 @@ export default function ImagesCarousel() {
       )}
     </section>
   );
-}
+};
+
+export default ImagesCarousel;

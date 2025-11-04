@@ -1,18 +1,24 @@
 "use client";
 
 import React from "react";
-import { siteData } from "@/data/siteData";
 import { useLocale } from "next-intl";
 import SectionHeading from "../SectionHeading";
 import Button from "../ui/Button";
 import { motion } from "framer-motion";
 import ImagesCarousel from "../carousel/ImagesCarousel";
+import { AboutData, Image, PagesData } from "@/lib/types";
 
-const AboutSection: React.FC = () => {
-  const locale = useLocale() as "lv" | "en" | "ru";
+interface Props {
+  about: AboutData;
+  gallery: Image[];
+  highlights: PagesData["about_page"]["businessHighlights"];
+  locale: "lv" | "en" | "ru";
+}
 
-  const experienceText = siteData.about.experience[locale];
+const AboutSection: React.FC<Props> = ({ about, gallery, highlights, locale }) => {
+  const experienceText = about.experience[locale];
   const splittedText = experienceText.split(" ");
+  const yearsOfExperience = highlights.highlight4.title.split("");
 
   return (
     <div className="flex flex-col w-full py-[120px] bg-gradient-to-br from-background via-background-alt/80 to-background ">
@@ -36,7 +42,7 @@ const AboutSection: React.FC = () => {
                 transition={{ duration: 1, ease: [0.4, 0, 0.3, 1] }}
                 viewport={{ once: false, amount: 0.5 }}
               >
-                1
+                {yearsOfExperience[0]}
               </motion.span>
               <motion.span
                 className="relative font-highlight text-[180px] sm:text-[216px] leading-none"
@@ -45,7 +51,7 @@ const AboutSection: React.FC = () => {
                 transition={{ duration: 1, ease: [0.4, 0, 0.3, 1] }}
                 viewport={{ once: false, amount: 0.5 }}
               >
-                5
+                {yearsOfExperience[1]}
               </motion.span>
               <motion.span
                 className="absolute -top-[90px] -right-[60px] sm:-top-[120px] sm:-right-[80px] text-[150px] sm:text-[200px] text-white/10 z-[5]"
@@ -54,7 +60,7 @@ const AboutSection: React.FC = () => {
                 transition={{ duration: 1, ease: [0.4, 0, 0.3, 1] }}
                 viewport={{ once: false, amount: 0.5 }}
               >
-                +
+                {yearsOfExperience[2]}
               </motion.span>
             </div>
           </div>
@@ -68,14 +74,14 @@ const AboutSection: React.FC = () => {
 
         {/* Right */}
         <div className="col-span-1 lg:pl-36 lg:col-span-2 flex flex-col gap-10 items-center lg:items-start">
-          <SectionHeading title={siteData.about.title[locale]} />
-          <p className="text-foreground text-body">{siteData.about.description_short[locale]}</p>
+          <SectionHeading title={about.title[locale]} />
+          <p className="text-foreground text-body">{about.description_short[locale]}</p>
           <Button type="button" outline link="/about">
-            {siteData.about.ctaButton[locale]}
+            {about.ctaButton[locale]}
           </Button>
         </div>
       </section>
-      <ImagesCarousel />
+      <ImagesCarousel images={gallery} />
     </div>
   );
 };

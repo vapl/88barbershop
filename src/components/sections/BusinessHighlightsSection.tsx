@@ -1,13 +1,18 @@
 "use client";
 
 import React from "react";
-import { siteData } from "@/data/siteData";
 import { useLocale } from "next-intl";
 import { motion } from "framer-motion";
+import { PagesData } from "@/lib/types";
 
-const StatsSection = () => {
-  const locale = useLocale() as "lv" | "en" | "ru";
+interface Props {
+  highlights: PagesData["about_page"]["businessHighlights"];
+  barbersCount: number;
+  locale: "lv" | "en" | "ru";
+}
 
+const BusinessHighlightsSection: React.FC<Props> = ({ highlights, barbersCount, locale }) => {
+  if (!highlights) return null;
   return (
     <section className="flex justify-center items-center w-full bg-background-alt px-4 md:px-16 lg:px-32 pb-[80px] overflow-hidden">
       <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-center">
@@ -19,10 +24,10 @@ const StatsSection = () => {
           viewport={{ once: false, amount: 0.2 }}
         >
           <h2 className="text-h3 md:text-h2 font-heading text-primary uppercase">
-            {siteData.pages.about_page.stats.s1.h1[locale]}
+            {highlights.highlight1.title[locale]}
           </h2>
           <h3 className="text-body font-heading text-foreground">
-            {siteData.pages.about_page.stats.s1.h3[locale]}
+            {highlights.highlight1.subtitle[locale]}
           </h3>
         </motion.div>
         <motion.div
@@ -32,35 +37,37 @@ const StatsSection = () => {
           transition={{ duration: 1, ease: [0.4, 0, 0.3, 1] }}
           viewport={{ once: false, amount: 0.2 }}
         >
+          <h2 className="text-h3 md:text-h2 font-heading text-primary uppercase">{barbersCount}</h2>
+          <h3 className="text-body font-heading text-foreground">
+            {highlights.highlight2.subtitle[locale]}
+          </h3>
+        </motion.div>
+        <motion.div
+          className="flex w-full flex-col gap-1 items-center text-center"
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, ease: [0.4, 0, 0.3, 1] }}
+          viewport={{ once: false, amount: 0.2 }}
+        >
           <h2 className="text-h3 md:text-h2 font-heading text-primary uppercase">
-            {siteData.general.barbers.length}
+            {highlights.highlight3.title}
+          </h2>
+          <h3 className="text-body font-heading text-foreground text-wrap">
+            {highlights.highlight3.subtitle[locale]}
+          </h3>
+        </motion.div>
+        <motion.div
+          className="flex w-full flex-col gap-1 items-center text-center"
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, ease: [0.4, 0, 0.3, 1] }}
+          viewport={{ once: false, amount: 0.2 }}
+        >
+          <h2 className="text-h3 md:text-h2 font-heading text-primary uppercase">
+            {highlights.highlight4.title}
           </h2>
           <h3 className="text-body font-heading text-foreground">
-            {siteData.pages.about_page.stats.s2.h3[locale]}
-          </h3>
-        </motion.div>
-        <motion.div
-          className="flex w-full flex-col gap-1 items-center text-center"
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, ease: [0.4, 0, 0.3, 1] }}
-          viewport={{ once: false, amount: 0.2 }}
-        >
-          <h2 className="text-h3 md:text-h2 font-heading text-primary uppercase">100%</h2>
-          <h3 className="text-body font-heading text-foreground text-wrap">
-            {siteData.pages.about_page.stats.s3.h3[locale]}
-          </h3>
-        </motion.div>
-        <motion.div
-          className="flex w-full flex-col gap-1 items-center text-center"
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, ease: [0.4, 0, 0.3, 1] }}
-          viewport={{ once: false, amount: 0.2 }}
-        >
-          <h2 className="text-h3 md:text-h2 font-heading text-primary uppercase">15+</h2>
-          <h3 className="text-body font-heading text-foreground">
-            {siteData.pages.about_page.stats.s4.h3[locale]}
+            {highlights.highlight4.subtitle[locale]}
           </h3>
         </motion.div>
       </div>
@@ -68,4 +75,4 @@ const StatsSection = () => {
   );
 };
 
-export default StatsSection;
+export default BusinessHighlightsSection;

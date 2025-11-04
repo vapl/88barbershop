@@ -1,3 +1,6 @@
+import { PageProps, getSanityData } from "@/lib/pageUtils";
+import { adaptSanityData } from "@/lib/dataAdapter";
+import { ModalProvider } from "@/context/ModalContext";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
@@ -5,23 +8,32 @@ import Navbar from "@/components/navigation/Navbar";
 import Footer from "@/components/sections/FooterSection";
 import MobileActionButton from "@/components/ui/MobileActionButton";
 
-type Props = {
-  children: React.ReactNode;
-  params: Promise<{ locale: string }> | { locale: string };
-};
-
-export default async function LocaleLayout({ children, params }: Props) {
+export default async function LocaleLayout({
+  children,
+  params,
+}: PageProps & { children: React.ReactNode }) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
 
+  const sanityData = await getSanityData();
+  const siteData = adaptSanityData(sanityData);
+
   return (
     <NextIntlClientProvider locale={locale}>
-      <Navbar />
-      {children}
-      <MobileActionButton />
-      <Footer />
+      <ModalProvider modals={siteData.modals} locale={locale}>
+        <Navbar navData={siteData.navigation} contactsData={siteData.contacts} locale={locale} />
+        {children}
+        <MobileActionButton contactsData={siteData.contacts} />
+        <Footer
+          footerData={siteData.footer}
+          contactsData={siteData.contacts}
+          navData={siteData.navigation}
+          workingTimeData={siteData.working_time}
+          locale={locale}
+        />
+      </ModalProvider>
     </NextIntlClientProvider>
   );
 }

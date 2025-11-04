@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import { useLocale } from "next-intl";
-import { siteData } from "@/data/siteData";
 import Button from "../ui/Button";
+import { ContactFormData, ErrorsData } from "@/lib/types";
 
-const ContactForm: React.FC = () => {
-  const locale = useLocale() as "lv" | "en" | "ru";
+interface Props {
+  contactsFormData: ContactFormData;
+  errorsData: ErrorsData;
+  locale: "lv" | "en" | "ru";
+}
+
+const ContactForm: React.FC<Props> = ({ contactsFormData, errorsData, locale }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -26,26 +31,26 @@ const ContactForm: React.FC = () => {
 
     // Name check
     if (formData.name.trim() === "") {
-      newErrors.name = siteData.errors.empty_error[locale];
+      newErrors.name = errorsData.empty_error[locale];
       isValid = false;
     } else if (formData.name.trim().length < 2) {
-      newErrors.name = siteData.errors.name_error[locale];
+      newErrors.name = errorsData.name_error[locale];
       isValid = false;
     }
 
     // Email check
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (formData.email.trim() === "") {
-      newErrors.email = siteData.errors.empty_error[locale];
+      newErrors.email = errorsData.empty_error[locale];
       isValid = false;
     } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = siteData.errors.email_error[locale];
+      newErrors.email = errorsData.email_error[locale];
       isValid = false;
     }
 
     // Message check
     if (formData.message.trim() === "") {
-      newErrors.message = siteData.errors.empty_error[locale];
+      newErrors.message = errorsData.empty_error[locale];
       isValid = false;
     }
 
@@ -67,7 +72,7 @@ const ContactForm: React.FC = () => {
       <div className="flex flex-col sm:flex-row w-full gap-4">
         <div className="flex flex-col w-full items-start gap-1">
           <label htmlFor="name" className="text-extra-small">
-            {siteData.contact_form.label.name[locale]}
+            {contactsFormData.label.name[locale]}
           </label>
           <input
             id="name"
@@ -85,7 +90,7 @@ const ContactForm: React.FC = () => {
         </div>
         <div className="flex flex-col w-full items-start gap-1">
           <label htmlFor="email" className="text-extra-small">
-            {siteData.contact_form.label.email[locale]}
+            {contactsFormData.label.email[locale]}
           </label>
           <input
             id="email"
@@ -107,7 +112,7 @@ const ContactForm: React.FC = () => {
       <div className="flex w-full mb-4">
         <div className="flex flex-col w-full items-start gap-1">
           <label htmlFor="name" className="text-extra-small">
-            {siteData.contact_form.label.message[locale]}
+            {contactsFormData.label.message[locale]}
           </label>
           <textarea
             id="message"
@@ -125,7 +130,7 @@ const ContactForm: React.FC = () => {
       </div>
       <div className="flex w-full justify-center">
         <Button type="submit" variant="secondary">
-          {siteData.contact_form.button[locale]}
+          {contactsFormData.button[locale]}
         </Button>
       </div>
     </form>

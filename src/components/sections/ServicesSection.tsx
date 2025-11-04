@@ -4,14 +4,18 @@ import React, { useRef } from "react";
 import SectionHeading from "@/components/SectionHeading";
 import Image from "next/image";
 import bg from "../../../public/images/services-bg.jpg";
-import { siteData } from "@/data/siteData";
 import { useLocale } from "next-intl";
 import SercviceCard from "@/components/cards/ServiceCard";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { ServicesData } from "@/lib/types";
 
-const ServicesSection = () => {
+interface Props {
+  servicesData: ServicesData;
+  locale: "lv" | "en" | "ru";
+}
+
+const ServicesSection: React.FC<Props> = ({ servicesData, locale }) => {
   const ref = useRef<HTMLDivElement>(null);
-  const locale = useLocale() as "lv" | "en" | "ru";
 
   // Track scroll progress
   const { scrollYProgress } = useScroll({
@@ -45,14 +49,14 @@ const ServicesSection = () => {
       {/* Content */}
       <div className="relative z-20 flex flex-col items-center gap-[96px]">
         <SectionHeading
-          title={siteData.services.services_section.title[locale]}
-          subtitle={siteData.services.services_section.subtitle[locale]}
+          title={servicesData.services_section.title[locale]}
+          subtitle={servicesData.services_section.subtitle[locale]}
           decoration
         />
         <div className="flex flex-col md:flex-row w-full justify-center gap-4 lg:gap-10">
-          <SercviceCard cardType="haircut" />
-          <SercviceCard cardType="shave" />
-          <SercviceCard cardType="combo" />
+          <SercviceCard cardType="haircut" locale={locale} />
+          <SercviceCard cardType="shave" locale={locale} />
+          <SercviceCard cardType="combo" locale={locale} />
         </div>
       </div>
     </section>

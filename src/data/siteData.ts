@@ -508,35 +508,37 @@ export const siteData = {
         en: "Our team",
         ru: "Наша команда",
       },
-      stats: {
-        s1: {
-          h1: {
+      businessHighlights: {
+        highlight1: {
+          title: {
             lv: "Bezmaksas",
             en: "Free",
             ru: "Бесплатная",
           },
-          h3: {
+          subtitle: {
             lv: "Stāvvieta",
             en: "Parking",
             ru: "Парковка",
           },
         },
-        s2: {
-          h3: {
+        highlight2: {
+          subtitle: {
             lv: "Bārddziņi",
             en: "Barbers",
             ru: "Барбера",
           },
         },
-        s3: {
-          h3: {
+        highlight3: {
+          title: "100%",
+          subtitle: {
             lv: "Meistarība un precizitāte",
             en: "Craft & precision",
             ru: "Мастерство и точность",
           },
         },
-        s4: {
-          h3: {
+        highlight4: {
+          title: "15+",
+          subtitle: {
             lv: "Gadu pieredze",
             en: "Years of experience",
             ru: "Лет опыта",
@@ -547,24 +549,14 @@ export const siteData = {
   },
 
   footer: {
-    cpoyright: {
-      lv: `© 2025${currentYear() !== 2025 ? "–" + currentYear() : ""} 88Barbershop. Visas tiesības aizsargātas.`,
+    copyright: {
+      lv: `© 2025${currentYear() !== 2025 ? "-" + currentYear() : ""} 88Barbershop. Visas tiesības aizsargātas.`,
       en: `© 2025${currentYear() !== 2025 ? "-" + currentYear : ""} 88Barbershop. All rights reserved.`,
-      ru: `© 2025${currentYear() !== 2025 ? "–" + currentYear() : ""} 88Barbershop. Все права защищены.`,
+      ru: `© 2025${currentYear() !== 2025 ? "-" + currentYear() : ""} 88Barbershop. Все права защищены.`,
     },
     development: {
-      lv: {
-        text: "Dizains un izstrāde — - Valdis Vaščenkovs",
-        url: "https://valdisvascenkovs.dev", // temp
-      },
-      en: {
-        text: "Design and development by - Valdis Vascenkovs",
-        url: "https://valdisvascenkovs.dev", // temp
-      },
-      ru: {
-        text: "Дизайн и разработка — - Валдис Ващенков.",
-        url: "https://valdisvascenkovs.dev", // temp
-      },
+      text: "Design and development by - Valdis Vascenkovs",
+      url: "https://valdisvascenkovs.dev", // temp
     },
     sections: {
       description: {
@@ -588,6 +580,7 @@ export const siteData = {
       },
     },
   },
+
   errors: {
     name_error: {
       lv: "Vārdam jābūt vismaz 2 simboli",

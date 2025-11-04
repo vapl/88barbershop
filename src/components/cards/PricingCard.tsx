@@ -1,56 +1,41 @@
 "use client";
 
 import React from "react";
-import { siteData } from "@/data/siteData";
 import Button from "../ui/Button";
 import Scissors from "../../../public/icons/scissors-filled.svg";
 import BarberPole from "../../../public/icons/barber-pole-bg.svg";
 import Razor from "../../../public/icons/razor-bg.svg";
-
-type Service = {
-  name: Record<string, string>;
-  note?: Record<string, string>;
-  price: string;
-};
-
-type ServiceList = {
-  id: string;
-  title: Record<string, string>;
-  services: Service[];
-  image?: string;
-};
+import { ServiceGroup, ServiceCards } from "../../lib/types";
 
 type Props = {
-  list: ServiceList;
+  list: ServiceGroup;
+  cardsData: ServiceCards;
   locale: "lv" | "en" | "ru";
 };
 
-const PricingCard: React.FC<Props> = ({ list, locale }) => {
+const PricingCard: React.FC<Props> = ({ list, locale, cardsData }) => {
   return (
     <>
       <div
-        id={list.id}
+        id={list.slug}
         className="relative flex flex-col gap-16 w-full rounded-xs p-6 md:p-10 border-white/3 border-1 shadow-black/50 shadow-lg scroll-mt-[100px]"
       >
-        <div
-          className={`absolute inset-0 flex justify-center sm:justify-end items-center sm:pr-${list.id === "combo" ? "32" : "16"}`}
-        >
-          {list.id === "haircut" && <Scissors className="flex h-[80%] opacity-30" />}
-          {list.id === "shave" && <Razor className="flex h-[60%] opacity-30" />}
-          {list.id === "combo" && <BarberPole className="flex h-[80%] opacity-30" />}
+        <div className={`absolute inset-0 flex justify-center items-center sm:justify-end`}>
+          {list.slug === "haircut" && <Scissors className="flex h-[80%] opacity-30 sm:pr-16" />}
+          {list.slug === "shave" && <Razor className="flex h-[60%] opacity-30 sm:pr-16" />}
+          {list.slug === "combo" && <BarberPole className="flex h-[80%] opacity-30 sm:pr-32" />}
         </div>
         {/* Header */}
         <div className="z-10 flex flex-col gap-4">
-          <span className="text-xs text-primary uppercase">
-            {siteData.services.services_section.cards.label[locale]}
-          </span>
+          <span className="text-xs text-primary uppercase">{cardsData.label[locale]}</span>
           <h3 className="text-h3 text-foreground font-heading uppercase">{list.title[locale]}</h3>
         </div>
         {/* Services */}
         <div className="flex flex-col z-10 gap-8 text-wrap md:text-nowrap">
-          {list.services.map((service, i) => {
+          {list.services?.map((service, i) => {
             const text = service.name[locale];
             const isLong = text.length > 24;
+
             return (
               <div key={`${list.id}-${i}`} className="p-2 text-foreground hover:bg-primary/20">
                 <div className="gap-4 w-full items-center hover:scale-95 transition-all duration-300">
@@ -83,7 +68,7 @@ const PricingCard: React.FC<Props> = ({ list, locale }) => {
         </div>
         <div className="flex z-10 justify-center items-center">
           <Button type="button" outline link="/contact">
-            {siteData.services.services_section.cards.cta_button[locale]}
+            {cardsData.cta_button[locale]}
           </Button>
         </div>
       </div>

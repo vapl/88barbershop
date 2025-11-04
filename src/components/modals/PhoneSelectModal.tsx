@@ -1,11 +1,10 @@
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { useLocale } from "next-intl";
-import { siteData } from "@/data/siteData";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { FaPhone } from "react-icons/fa6";
 import Button from "../ui/Button";
 import ReactDOM from "react-dom";
+import { useModals } from "@/context/ModalContext";
 
 type Props = {
   isOpen: boolean;
@@ -15,7 +14,9 @@ type Props = {
 };
 
 const PhoneSelectModal: React.FC<Props> = ({ isOpen, onClose, onSelect, phone }) => {
-  const locale = useLocale() as "lv" | "en" | "ru";
+  const { modals, locale } = useModals();
+  const phoneModalData = modals.modal;
+
   if (!isOpen) return null;
 
   const modalContent = (
@@ -59,11 +60,11 @@ const PhoneSelectModal: React.FC<Props> = ({ isOpen, onClose, onSelect, phone })
                   color="var(--color-primary)"
                   className="text-primary hover:text-primary-hover active:text-primary-hover transition-all duration-200 active:scale-95"
                 />
-                <span className="text-extra-small">{siteData.modals.modal.call[locale]}</span>
+                <span className="text-extra-small">{phoneModalData.call[locale]}</span>
               </button>
             </div>
             <Button variant="primary" outline={false} onClick={onClose}>
-              {siteData.modals.modal.cancel_button[locale]}
+              {phoneModalData.cancel_button[locale] ?? ""}
             </Button>
           </motion.div>
         </motion.div>

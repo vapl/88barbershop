@@ -1,0 +1,11 @@
+# *
+User-agent: *
+Disallow: /admin
+Disallow: /api
+Disallow: /studio-88barbershop
+
+# Host
+Host: https://88barbershop.lv
+
+# Sitemaps
+Sitemap: https://88barbershop.lv/sitemap.xml

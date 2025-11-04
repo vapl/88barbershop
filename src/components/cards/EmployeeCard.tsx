@@ -24,10 +24,10 @@ const EmployeeCard: React.FC<Props> = ({ name, position, photo, alt, socialLinks
     setShowSocial((prev) => !prev);
   };
   return (
-    <div className="group flex gap-2 h-[460px] max-w-[360px] overflow-hidden">
+    <div className="group flex h-[460px] max-w-[380px] overflow-hidden">
       {/* === PHOTO BLOCK === */}
       <motion.div
-        className="relative w-full aspect-[3/4] overflow-hidden rounded-xs"
+        className="relative aspect-[3/4] overflow-hidden rounded-xs"
         initial="initial"
         whileHover="hover"
         onClick={toggleSocial}

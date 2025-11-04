@@ -3,14 +3,18 @@
 import React, { useRef } from "react";
 import Image from "next/image";
 import Button from "../ui/Button";
-import { siteData } from "@/data/siteData";
-import bg from "../../../public/images/hero-bg.jpg";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useLocale } from "next-intl";
+import { urlFor } from "@/lib/sanityClient";
+import { HeroData } from "@/lib/types";
 
-const HeroSection = () => {
+interface HeroProps {
+  heroData: HeroData;
+  locale: "lv" | "en" | "ru";
+}
+
+const HeroSection: React.FC<HeroProps> = ({ heroData, locale }) => {
   const ref = useRef<HTMLDivElement>(null);
-  const locale = useLocale() as "lv" | "en" | "ru";
 
   // Track scroll progress
   const { scrollYProgress } = useScroll({
@@ -29,7 +33,7 @@ const HeroSection = () => {
       {/* --- Background image --- */}
       <motion.div className="absolute inset-0 z-0 will-change-transform" style={{ y }}>
         <Image
-          src={bg}
+          src={urlFor(heroData.backgroundImage).url()}
           alt="Hero image 88barbershop"
           fill
           sizes="100vw"
@@ -68,10 +72,10 @@ const HeroSection = () => {
           transition={{ duration: 1, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
         >
           <Button variant="primary" outline={false} disabled={false} link={`/${locale}/contact`}>
-            {siteData.hero.cta1[locale]}
+            {heroData.cta1[locale]}
           </Button>
           <Button variant="primary" outline={true} disabled={false} link={`/${locale}/services`}>
-            {siteData.hero.cta2[locale]}
+            {heroData.cta2[locale]}
           </Button>
         </motion.div>
       </div>

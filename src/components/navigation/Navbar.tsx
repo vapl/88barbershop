@@ -6,18 +6,23 @@ import Image from "next/image";
 import clsx from "clsx";
 import LanguageSwitcher from "../ui/LanguageSwitcher";
 import ContactItem from "../contacts/Contacts";
-import { siteData } from "@/data/siteData";
 import { useLocale } from "next-intl";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
+import { NavigationItem, ContactsData } from "@/lib/types";
 
-const Navbar: React.FC = () => {
+interface NavbarProps {
+  navData: NavigationItem[];
+  contactsData: ContactsData;
+  locale: "lv" | "en" | "ru";
+}
+
+const Navbar: React.FC<NavbarProps> = ({ navData, contactsData, locale }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [showNav, setShowNav] = useState<boolean>(true);
   const [isHovered, setIsHovered] = useState(false);
   const [isTransparent, setIsTransparent] = useState(false);
 
-  const locale = useLocale() as "lv" | "en" | "ru";
   const pathname = usePathname();
 
   const isHome = pathname === `/${locale}`;
@@ -28,9 +33,8 @@ const Navbar: React.FC = () => {
       if (window.innerWidth > 768) setIsOpen(false);
     };
     window.addEventListener("resize", handleResize);
-    console.log("Is home? ", pathname);
     return () => window.removeEventListener("resize", handleResize);
-  }, [pathname]);
+  }, []);
 
   // Scroll logic
   useEffect(() => {
@@ -81,7 +85,7 @@ const Navbar: React.FC = () => {
         </Link>
         {/* Desktop Menu */}
         <div className="hidden lg:flex items-center gap-8 text-body">
-          {siteData.navigation.map((item) => {
+          {navData.map((item) => {
             const href = `/${locale}${item.href === "/" ? "" : item.href}`;
             const isActive = pathname === href;
 
@@ -125,8 +129,8 @@ const Navbar: React.FC = () => {
             <ContactItem
               type="phone"
               color="primary"
-              value={siteData.contacts.phone.label}
-              link={siteData.contacts.phone.link}
+              value={contactsData.phone.label}
+              link={contactsData.phone.link}
             />
           )}
           <span className="hidden lg:block">|</span>
@@ -165,14 +169,14 @@ const Navbar: React.FC = () => {
                 <div className="flex self-end pt-[80px] items-center">
                   <ContactItem
                     type="phone"
-                    value={siteData.contacts.phone.label}
-                    link={siteData.contacts.phone.link}
+                    value={contactsData.phone.label}
+                    link={contactsData.phone.link}
                   />
                   <span>|</span>
                   <LanguageSwitcher />
                 </div>
                 <div className="flex flex-col items-end justify-center gap-10 uppercase font-heading text-h3">
-                  {siteData.navigation.map((item) => {
+                  {navData.map((item) => {
                     const href = `/${locale}${item.href === "/" ? "" : item.href}`;
                     const isActive = pathname === href;
 
@@ -211,9 +215,9 @@ const Navbar: React.FC = () => {
                     );
                   })}
                 </div>
-                <div className="flex items-center justify-end gap-4 w-full">
-                  <ContactItem type="instagram" link={siteData.contacts.social.instagram} />
-                  <ContactItem type="facebook" link={siteData.contacts.social.facebook} />
+                <div className="flex items-center justify-center gap-4 w-full">
+                  <ContactItem type="instagram" link={contactsData.social.instagram} />
+                  <ContactItem type="facebook" link={contactsData.social.facebook} />
                 </div>
               </motion.div>
             </>

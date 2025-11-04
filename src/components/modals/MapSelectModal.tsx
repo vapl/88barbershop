@@ -2,10 +2,10 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocale } from "next-intl";
-import { siteData } from "@/data/siteData";
 import Image from "next/image";
 import Button from "../ui/Button";
 import ReactDOM from "react-dom";
+import { useModals } from "@/context/ModalContext";
 
 type Props = {
   isOpen: boolean;
@@ -16,7 +16,9 @@ type Props = {
 };
 
 const MapSelectModal: React.FC<Props> = ({ isOpen, onClose, onSelect, isIOS, value }) => {
-  const locale = useLocale() as "lv" | "en" | "ru";
+  const { modals, locale } = useModals();
+  const mapModalData = modals.modal;
+
   if (typeof window === "undefined") return null;
 
   const modalContent = (
@@ -84,7 +86,7 @@ const MapSelectModal: React.FC<Props> = ({ isOpen, onClose, onSelect, isIOS, val
               </button>
             </div>
             <Button variant="primary" outline={false} onClick={onClose}>
-              {siteData.modals.modal.cancel_button[locale]}
+              {mapModalData.cancel_button[locale]}
             </Button>
           </motion.div>
         </motion.div>

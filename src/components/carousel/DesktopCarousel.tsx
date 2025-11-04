@@ -10,7 +10,7 @@ export default function DesktopCarousel({ IMAGES }: { IMAGES: Img[] }) {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
-  const VISIBLE_CARDS = IMAGES.length; // Cik kartes redzamas vienlaikus
+  const VISIBLE_CARDS = Math.min(IMAGES.length, 10); // Cik kartes redzamas vienlaikus
   const CARD_WIDTH = 350;
 
   // autoplay

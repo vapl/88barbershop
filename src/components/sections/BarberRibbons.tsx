@@ -3,19 +3,22 @@
 import { motion } from "framer-motion";
 import LiquidGlassCircle from "../ui/LiquidGlassCircle";
 import { useEffect, useLayoutEffect, useMemo, useState } from "react";
-import { siteData } from "@/data/siteData";
 import { useLocale } from "next-intl";
+import { RibbonsData } from "@/lib/types";
 
-const BarberRibbons = () => {
-  const locale = useLocale() as "lv" | "en" | "ru";
+interface Props {
+  ribbonsData: RibbonsData;
+  locale: "lv" | "en" | "ru";
+}
 
+const BarberRibbons: React.FC<Props> = ({ ribbonsData, locale }) => {
   const repeatWords = (words: string[], repeatCount = 4) => {
     return Array(repeatCount).fill(words.join(" • ")).join(" • ") + " • ";
   };
 
-  const hiarText = useMemo(() => repeatWords(siteData.ribbons.hair[locale], 5), [locale]);
+  const hiarText = useMemo(() => repeatWords(ribbonsData.hair[locale], 5), [locale]);
 
-  const beardText = useMemo(() => repeatWords(siteData.ribbons.beard[locale], 5), [locale]);
+  const beardText = useMemo(() => repeatWords(ribbonsData.beard[locale], 5), [locale]);
 
   const [duration, setDuration] = useState<number | undefined>(40);
   const [isTop, setIsTop] = useState(true);

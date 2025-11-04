@@ -1,14 +1,18 @@
 "use client";
 
 import React from "react";
-import { siteData } from "@/data/siteData";
 import { useLocale } from "next-intl";
 import SectionHeading from "../SectionHeading";
 import Image from "next/image";
+import { urlFor } from "@/lib/sanityClient";
+import { AboutData } from "@/lib/types";
 
-const AboutSection2: React.FC = () => {
-  const locale = useLocale() as "lv" | "en" | "ru";
+interface Props {
+  about: AboutData;
+  locale: "lv" | "en" | "ru";
+}
 
+const AboutSection2: React.FC<Props> = ({ about, locale }) => {
   return (
     <section
       className="
@@ -23,7 +27,7 @@ const AboutSection2: React.FC = () => {
       {/* Left */}
       <div className="order-2 lg:order-1 relative h-[400px] lg:h-[500px] w-full flex justify-center text-white">
         <Image
-          src={"/images/about/about.webp"}
+          src={about.image ? urlFor(about.image).url() : "/images/about/default-placeholder.png"}
           alt={"88 Barber shop photo"}
           sizes="auto"
           fill
@@ -33,8 +37,8 @@ const AboutSection2: React.FC = () => {
 
       {/* Right */}
       <div className="order-1 lg:order-2 lg:pl-16 flex flex-col gap-10 items-center lg:items-start">
-        <SectionHeading title={siteData.about.title[locale]} />
-        <p className="text-foreground text-body">{siteData.about.description_long[locale]}</p>
+        <SectionHeading title={about.title[locale]} />
+        <p className="text-foreground text-body">{about.description_long[locale]}</p>
       </div>
     </section>
   );

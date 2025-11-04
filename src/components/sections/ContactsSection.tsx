@@ -1,15 +1,27 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { siteData } from "@/data/siteData";
 import { useLocale } from "next-intl";
 import ContactItem from "../contacts/Contacts";
 import InputForm from "../contacts/InputForm";
+import { WorkingTimeData, ContactsData, ContactFormData, ErrorsData } from "@/lib/types";
 
-const Contacts: React.FC = () => {
+interface Props {
+  workingTime: WorkingTimeData;
+  contacts: ContactsData;
+  contactsFormData: ContactFormData;
+  errorsData: ErrorsData;
+  locale: "lv" | "en" | "ru";
+}
+
+const Contacts: React.FC<Props> = ({
+  workingTime,
+  contacts,
+  contactsFormData,
+  errorsData,
+  locale,
+}) => {
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
-  const locale = useLocale() as "lv" | "en" | "ru";
-  const working = siteData.working_time;
 
   useEffect(() => {
     const checkWidth = () => setIsMobile(window.innerWidth <= 560);
@@ -56,17 +68,17 @@ const Contacts: React.FC = () => {
         <div className="flex flex-col items-start">
           <span className="uppercase text-h2 md:text-h1 font-heading">
             {isMobile
-              ? shortenDays(working.days.working_days[locale])
-              : working.days.working_days[locale]}
+              ? shortenDays(workingTime.days.working_days[locale])
+              : workingTime.days.working_days[locale]}
           </span>
-          <span className="text-h3 md:text-h2 font-heading">{working.hours.working_hours}</span>
+          <span className="text-h3 md:text-h2 font-heading">{workingTime.hours.working_hours}</span>
         </div>
         <div className="flex flex-col items-end">
           <span className="uppercase text-h2 md:text-h1 font-heading">
-            {shortenDays(working.days.closed_days[locale])}
+            {shortenDays(workingTime.days.closed_days[locale])}
           </span>
           <span className="text-h3 md:text-h2 font-heading">
-            {working.hours.closed_hours[locale]}
+            {workingTime.hours.closed_hours[locale]}
           </span>
         </div>
       </div>
@@ -77,22 +89,22 @@ const Contacts: React.FC = () => {
           <ContactItem
             className="hover:underline whitespace-nowrap"
             type="phone"
-            value={siteData.contacts.phone.label}
-            link={siteData.contacts.phone.link}
+            value={contacts.phone.label}
+            link={contacts.phone.link}
             color="dark"
           />
           <ContactItem
             className="hover:underline"
             type="email"
-            value={siteData.contacts.email.label}
-            link={siteData.contacts.email.link}
+            value={contacts.email.label}
+            link={contacts.email.link}
             color="dark"
           />
           <ContactItem
             className="hover:underline"
             type="address"
-            value={siteData.contacts.address.label}
-            link={siteData.contacts.address.link}
+            value={contacts.address.label}
+            link={contacts.address.link}
             color="dark"
           />
         </div>
@@ -100,7 +112,7 @@ const Contacts: React.FC = () => {
 
       {/* CONTACT FORM */}
       <div className="flex w-full sm:max-w-xl">
-        <InputForm />
+        <InputForm contactsFormData={contactsFormData} errorsData={errorsData} locale={locale} />
       </div>
     </section>
   );

@@ -6,11 +6,10 @@ import Link from "next/link";
 
 type Props = {
   cardType?: "haircut" | "shave" | "combo";
+  locale: "lv" | "en" | "ru";
 };
 
-const ServiceCard: React.FC<Props> = ({ cardType }) => {
-  const locale = useLocale() as "lv" | "en" | "ru";
-
+const ServiceCard: React.FC<Props> = ({ cardType, locale }) => {
   const card = {
     haircut: {
       link: "/services#haircut",

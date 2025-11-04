@@ -2,16 +2,28 @@
 
 import React from "react";
 import ContactItem from "../contacts/Contacts";
-import { siteData } from "@/data/siteData";
 import { useLocale } from "next-intl";
 import Link from "next/link";
 import Image from "next/image";
+import { NavigationItem, ContactsData, FooterData, WorkingTimeData } from "@/lib/types";
 
-const Footer = () => {
-  const locale = useLocale() as "lv" | "en" | "ru";
-  const footerData = siteData.footer;
-  const dev = footerData.development[locale];
-  const working = siteData.working_time;
+interface FooterProps {
+  footerData: FooterData;
+  contactsData: ContactsData;
+  navData: NavigationItem[];
+  workingTimeData: WorkingTimeData;
+  locale: "lv" | "en" | "ru";
+}
+
+const Footer: React.FC<FooterProps> = ({
+  footerData,
+  contactsData,
+  navData,
+  workingTimeData,
+  locale,
+}) => {
+  const { development: dev } = footerData;
+  const working = workingTimeData;
 
   const shortenDays = () => {
     const text = working.days.working_days[locale];
@@ -58,7 +70,7 @@ const Footer = () => {
           <h1 className="hidden lg:flex font-heading text-h3 pb-6">
             {footerData.sections.links.title[locale]}
           </h1>
-          {siteData.navigation
+          {navData
             .filter((item) => item.href !== "/")
             .map((item) => (
               <Link key={item.href} href={item.href} className="hover:underline">
@@ -74,18 +86,18 @@ const Footer = () => {
             </h1>
             <ContactItem
               type="phone"
-              value={siteData.contacts.phone.label}
-              link={siteData.contacts.phone.link}
+              value={contactsData.phone.label}
+              link={contactsData.phone.link}
             />
             <ContactItem
               type="email"
-              value={siteData.contacts.email.label}
-              link={siteData.contacts.email.link}
+              value={contactsData.email.label}
+              link={contactsData.email.link}
             />
             <ContactItem
               type="address"
-              value={siteData.contacts.address.label}
-              link={siteData.contacts.address.link}
+              value={contactsData.address.label}
+              link={contactsData.address.link}
             />
           </div>
           <div className="flex flex-col">
@@ -113,13 +125,13 @@ const Footer = () => {
       {/* ### Footer Bottom ### */}
       <div className="flex gap-4 flex-col lg:flex-row items-center  pt-6 lg:justify-between w-full border-t-1 border-white/30 text-extra-small">
         <div className="flex lg:hidden items-center justify-start gap-4">
-          <ContactItem type="instagram" link={siteData.contacts.social.instagram} />
-          <ContactItem type="facebook" link={siteData.contacts.social.facebook} />
+          <ContactItem type="instagram" link={contactsData.social.instagram} />
+          <ContactItem type="facebook" link={contactsData.social.facebook} />
         </div>
-        <p>{siteData.footer.cpoyright[locale]}</p>
+        <p>{footerData.copyright[locale]}</p>
         <div className="hidden lg:flex items-center justify-start gap-4">
-          <ContactItem type="instagram" link={siteData.contacts.social.instagram} />
-          <ContactItem type="facebook" link={siteData.contacts.social.facebook} />
+          <ContactItem type="instagram" link={contactsData.social.instagram} />
+          <ContactItem type="facebook" link={contactsData.social.facebook} />
         </div>
         <p>
           {dev.text.split("-")[0]}
