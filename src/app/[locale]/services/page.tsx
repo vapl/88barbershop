@@ -6,12 +6,12 @@ import ServicePricingSection from "@/components/sections/ServicePricingSection";
 import { getSEOData } from "@/lib/getSEOData";
 
 export async function generateMetadata({ params }: PageProps) {
-  const { locale } = params;
+  const { locale } = await params;
   return getSEOData(locale);
 }
 
 export default async function ServicesPage({ params }: PageProps) {
-  const { locale } = params;
+  const { locale } = await params;
   const sanityData = await getSanityData();
   const siteData = adaptSanityData(sanityData);
   return (

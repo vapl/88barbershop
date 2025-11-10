@@ -9,12 +9,12 @@ import ReviewsSection from "@/components/sections/ReviewsSection";
 import { getSEOData } from "@/lib/getSEOData";
 
 export async function generateMetadata({ params }: PageProps) {
-  const { locale } = params;
+  const { locale } = await params;
   return getSEOData(locale);
 }
 
 export default async function Home({ params }: PageProps) {
-  const { locale } = params;
+  const { locale } = await params;
   const sanityData = await getSanityData();
   const siteData = adaptSanityData(sanityData);
 

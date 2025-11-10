@@ -20,7 +20,7 @@ const merriweather = Merriweather({
 });
 
 export async function generateMetadata({ params }: PageProps) {
-  const { locale } = params;
+  const { locale } = await params;
   return getSEOData(locale);
 }
 

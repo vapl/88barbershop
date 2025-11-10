@@ -10,12 +10,12 @@ import BusinessHighlightsSection from "@/components/sections/BusinessHighlightsS
 import { getSEOData } from "@/lib/getSEOData";
 
 export async function generateMetadata({ params }: PageProps) {
-  const { locale } = params;
+  const { locale } = await params;
   return getSEOData(locale);
 }
 
 export default async function AboutPage({ params }: PageProps) {
-  const { locale } = params;
+  const { locale } = await params;
 
   const sanityData = await getSanityData();
   if (!sanityData) {
