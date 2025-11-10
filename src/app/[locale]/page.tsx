@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 export default async function Home({ params }: PageProps) {
-  const { locale } = await params;
+  const { locale } = params;
   const sanityData = await getSanityData();
   const siteData = adaptSanityData(sanityData);
 
