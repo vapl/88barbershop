@@ -1,4 +1,4 @@
-import { PageProps } from "@/lib/pageUtils";
+import { Locale } from "@/lib/pageUtils";
 import { Inter, Libre_Bodoni, Merriweather } from "next/font/google";
 import "./globals.css";
 import "./liquidGlass.css";
@@ -19,21 +19,23 @@ const merriweather = Merriweather({
   variable: "--font-merriweather",
 });
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params;
   return getSEOData(locale);
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: { locale: "lv" | "en" | "ru" };
+  params: Promise<{ locale: Locale }>;
 }) {
+  const { locale } = await params;
+
   return (
     <html
-      lang={params.locale}
+      lang={locale}
       className={`${merriweather.variable} ${inter.variable} ${libreBodoni.variable} bg-white text-foreground scroll-smooth overflow-y-scroll [scrollbar-gutter:stable]`}
     >
       <body>
@@ -68,9 +70,7 @@ export default function RootLayout({
                 reviewCount: "395",
               },
               url:
-                params.locale === "lv"
-                  ? "https://88barbershop.lv"
-                  : `https://88barbershop.lv/${params.locale}`,
+                locale === "lv" ? "https://88barbershop.lv" : `https://88barbershop.lv/${locale}`,
             }),
           }}
         />
