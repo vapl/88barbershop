@@ -16,7 +16,7 @@ export function generateStaticParams() {
 export default async function LocaleLayout({
   children,
   params,
-}: PageProps & { children: React.ReactNode; params: PageProps }) {
+}: PageProps & { children: React.ReactNode }) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) {
     notFound();
