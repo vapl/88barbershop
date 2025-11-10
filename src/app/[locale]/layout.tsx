@@ -11,8 +11,8 @@ import MobileActionButton from "@/components/ui/MobileActionButton";
 export default async function LocaleLayout({
   children,
   params,
-}: PageProps & { children: React.ReactNode }) {
-  const { locale } = await params;
+}: PageProps & { children: React.ReactNode; params: PageProps }) {
+  const { locale } = params;
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
