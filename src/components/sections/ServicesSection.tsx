@@ -3,11 +3,11 @@
 import React, { useRef } from "react";
 import SectionHeading from "@/components/SectionHeading";
 import Image from "next/image";
-import bg from "../../../public/images/services-bg.jpg";
 
 import SercviceCard from "@/components/cards/ServiceCard";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ServicesData } from "@/lib/types";
+import { urlFor } from "@/lib/sanityClient";
 
 interface Props {
   servicesData: ServicesData;
@@ -34,7 +34,7 @@ const ServicesSection: React.FC<Props> = ({ servicesData, locale }) => {
       {/* --- Background image --- */}
       <motion.div className="absolute inset-0 z-0 will-change-transform" style={{ y }}>
         <Image
-          src={bg}
+          src={urlFor(servicesData.services_section.backgroundImage).url()}
           alt="Services background image 88barbershop"
           fill
           sizes="100vw"

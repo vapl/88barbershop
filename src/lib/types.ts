@@ -122,6 +122,7 @@ export interface ServiceCards {
 }
 
 export interface ServicesSectionData {
+  backgroundImage: Image;
   title: LocaleString;
   subtitle: LocaleString;
   cards: ServiceCards;
@@ -138,6 +139,7 @@ export interface ContactFormData {
     email: LocaleString;
     message: LocaleString;
   };
+  privacy_policy_message: LocaleString;
   button: LocaleString;
 }
 
@@ -145,6 +147,9 @@ export interface ErrorsData {
   name_error: LocaleString;
   email_error: LocaleString;
   empty_error: LocaleString;
+  success: LocaleString;
+  message_short_error: LocaleString;
+  message_long_error: LocaleString;
 }
 
 export interface AboutData {

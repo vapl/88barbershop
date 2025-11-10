@@ -163,16 +163,28 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-y: scroll; /* vienmēr rezervē scrollbar vietu */
+  overflow-y: scroll;
+  min-height: -webkit-fill-available;
 }
 
 body {
-  /* cursor:
+  cursor:
     url("/icons/clipper-cursor.svg") 4 4,
-    auto; */
+    auto;
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-body, sans-serif);
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+}
+
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* ========== Custom scrollbar for textarea ========== */
@@ -222,3 +234,31 @@ input:-webkit-autofill:focus {
   outline: none !important;
 }
 /* === / Autofill fix (Chrome, Safari, Edge) === */
+
+.fullscreen-safe {
+  position: fixed;
+  inset: 0 !important;
+  height: 100% !important;
+  width: 100%;
+  background-color: black;
+  z-index: 9999;
+
+  height: 100vh;
+  /* height: 100dvh !important; */
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+
+  min-height: -webkit-fill-available;
+}
+
+.content-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease-in-out;
+}
+
+.content-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.8s ease-in-out;
+}

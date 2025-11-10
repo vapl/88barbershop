@@ -23,16 +23,18 @@ export default async function LocaleLayout({
   return (
     <NextIntlClientProvider locale={locale}>
       <ModalProvider modals={siteData.modals} locale={locale}>
-        <Navbar navData={siteData.navigation} contactsData={siteData.contacts} locale={locale} />
-        {children}
-        <MobileActionButton contactsData={siteData.contacts} />
-        <Footer
-          footerData={siteData.footer}
-          contactsData={siteData.contacts}
-          navData={siteData.navigation}
-          workingTimeData={siteData.working_time}
-          locale={locale}
-        />
+        <div id="preloader" className="">
+          <Navbar navData={siteData.navigation} contactsData={siteData.contacts} locale={locale} />
+          {children}
+          <MobileActionButton contactsData={siteData.contacts} />
+          <Footer
+            footerData={siteData.footer}
+            contactsData={siteData.contacts}
+            navData={siteData.navigation}
+            workingTimeData={siteData.working_time}
+            locale={locale}
+          />
+        </div>
       </ModalProvider>
     </NextIntlClientProvider>
   );

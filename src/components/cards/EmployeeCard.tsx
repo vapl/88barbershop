@@ -36,6 +36,7 @@ const EmployeeCard: React.FC<Props> = ({ name, position, photo, alt, socialLinks
           src={photo}
           alt={alt}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 380px"
           className="object-cover transition-all duration-300 group-hover:scale-105"
         />
         <motion.div
