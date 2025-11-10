@@ -11,12 +11,12 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps) {
-  const { locale } = await params;
+  const { locale } = params;
   return getSEOData(locale);
 }
 
 export default async function ServicesPage({ params }: PageProps) {
-  const { locale } = await params;
+  const { locale } = params;
   const sanityData = await getSanityData();
   const siteData = adaptSanityData(sanityData);
   return (

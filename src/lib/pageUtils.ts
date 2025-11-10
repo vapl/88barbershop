@@ -4,7 +4,7 @@ import { siteDataQuery } from "@/lib/sanityQuery";
 export type Locale = "lv" | "en" | "ru";
 
 export type PageProps = {
-  params: Promise<{ locale: Locale }>;
+  params: { locale: Locale };
 };
 
 export async function getSanityData() {

@@ -24,8 +24,8 @@ export function generateStaticParams() {
   return [{ locale: "lv" }, { locale: "en" }, { locale: "ru" }];
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }) {
-  const { locale } = await params;
+export async function generateMetadata({ params }: { params: { locale: Locale } }) {
+  const { locale } = params;
   return getSEOData(locale);
 }
 
@@ -34,9 +34,9 @@ export default async function RootLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ locale: Locale }>;
+  params: { locale: Locale };
 }) {
-  const { locale } = await params;
+  const { locale } = params;
 
   return (
     <html
