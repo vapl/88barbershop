@@ -5,7 +5,7 @@ import HeroServices from "@/components/sections/HeroServices";
 import ServicePricingSection from "@/components/sections/ServicePricingSection";
 import { getSEOData } from "@/lib/getSEOData";
 
-export function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({ params }: PageProps) {
   const { locale } = params;
   return getSEOData(locale);
 }

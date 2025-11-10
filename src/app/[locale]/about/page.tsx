@@ -9,7 +9,7 @@ import HeroAbout from "@/components/sections/HeroAbout";
 import BusinessHighlightsSection from "@/components/sections/BusinessHighlightsSection";
 import { getSEOData } from "@/lib/getSEOData";
 
-export function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({ params }: PageProps) {
   const { locale } = params;
   return getSEOData(locale);
 }
