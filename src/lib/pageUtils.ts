@@ -8,6 +8,11 @@ export type PageProps = {
 };
 
 export async function getSanityData() {
-  const data = await client.fetch(siteDataQuery, {}, { next: { revalidate: 3600 } });
-  return data;
+  try {
+    const data = await client.fetch(siteDataQuery, {}, { next: { revalidate: 3600 } });
+    return data;
+  } catch (err) {
+    console.error("Sanity fetch error:", err);
+    return null;
+  }
 }
