@@ -1,4 +1,4 @@
-import { PageProps, getSanityData } from "@/lib/pageUtils";
+import { PageProps, Locale, getSanityData } from "@/lib/pageUtils";
 import { adaptSanityData } from "@/lib/dataAdapter";
 import ImagesCarousel from "@/components/carousel/ImagesCarousel";
 import SectionHeading from "@/components/SectionHeading";
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: PageProps) {
   return getSEOData(locale);
 }
 
-export default async function AboutPage({ params }: PageProps) {
+export default async function AboutPage({ params }: { params: { locale: Locale } }) {
   const { locale } = params;
 
   const sanityData = await getSanityData();
