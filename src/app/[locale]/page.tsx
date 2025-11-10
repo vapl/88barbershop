@@ -8,7 +8,7 @@ import AboutSection from "@/components/sections/AboutSection";
 import ReviewsSection from "@/components/sections/ReviewsSection";
 import { getSEOData } from "@/lib/getSEOData";
 
-export async function generateMetadata({ params }: PageProps) {
+export function generateMetadata({ params }: PageProps) {
   const { locale } = params;
   return getSEOData(locale);
 }
