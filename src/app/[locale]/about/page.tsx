@@ -18,6 +18,10 @@ export default async function AboutPage({ params }: PageProps) {
   const { locale } = params;
 
   const sanityData = await getSanityData();
+  if (!sanityData) {
+    console.error("Sanity data not found");
+    return null;
+  }
   const siteData = adaptSanityData(sanityData);
 
   return (
