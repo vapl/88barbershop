@@ -3,10 +3,6 @@ import { siteDataQuery } from "@/lib/sanityQuery";
 
 export type Locale = "lv" | "en" | "ru";
 
-export type PageProps = {
-  params: { locale: string };
-};
-
 export function toLocale(locale: string): Locale {
   if (locale === "lv" || locale === "en" || locale === "ru") {
     return locale;
