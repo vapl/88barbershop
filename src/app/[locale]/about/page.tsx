@@ -1,4 +1,4 @@
-import { PageProps, getSanityData } from "@/lib/pageUtils";
+import { toLocale, getSanityData } from "@/lib/pageUtils";
 import { adaptSanityData } from "@/lib/dataAdapter";
 import ImagesCarousel from "@/components/carousel/ImagesCarousel";
 import SectionHeading from "@/components/SectionHeading";
@@ -14,13 +14,14 @@ export function generateStaticParams() {
   return [{ locale: "lv" }, { locale: "en" }, { locale: "ru" }];
 }
 
-export async function generateMetadata({ params }: PageProps) {
-  const { locale } = params;
+export async function generateMetadata({ params }: { params: { locale: string } }) {
+  const locale = toLocale(params.locale);
+
   return getSEOData(locale);
 }
 
-export default async function AboutPage({ params }: PageProps) {
-  const { locale } = params;
+export default async function AboutPage({ params }: { params: { locale: string } }) {
+  const locale = toLocale(params.locale);
 
   const sanityData = await getSanityData();
   if (!sanityData) {

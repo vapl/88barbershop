@@ -1,4 +1,4 @@
-import { PageProps, getSanityData } from "@/lib/pageUtils";
+import { toLocale, getSanityData } from "@/lib/pageUtils";
 import { adaptSanityData } from "@/lib/dataAdapter";
 import { ModalProvider } from "@/context/ModalContext";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
@@ -16,8 +16,9 @@ export function generateStaticParams() {
 export default async function LocaleLayout({
   children,
   params,
-}: PageProps & { children: React.ReactNode }) {
-  const { locale } = params;
+}: { params: { locale: string } } & { children: React.ReactNode }) {
+  const locale = toLocale(params.locale);
+
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }

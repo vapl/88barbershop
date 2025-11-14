@@ -1,4 +1,4 @@
-import { Locale, PageProps } from "@/lib/pageUtils";
+import { toLocale } from "@/lib/pageUtils";
 import { Inter, Libre_Bodoni, Merriweather } from "next/font/google";
 import "./globals.css";
 import "./liquidGlass.css";
@@ -24,18 +24,19 @@ export function generateStaticParams() {
   return [{ locale: "lv" }, { locale: "en" }, { locale: "ru" }];
 }
 
-export async function generateMetadata({ params }: PageProps) {
-  const { locale } = params;
+export async function generateMetadata({ params }: { params: { locale: string } }) {
+  const locale = toLocale(params.locale);
+
   return getSEOData(locale);
 }
 
 export default async function RootLayout({
   children,
   params,
-}: PageProps & {
+}: { params: { locale: string } } & {
   children: React.ReactNode;
 }) {
-  const { locale } = params;
+  const locale = toLocale(params.locale);
 
   return (
     <html
