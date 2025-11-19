@@ -1,4 +1,4 @@
-import { toLocale } from "@/lib/pageUtils";
+import { PageProps } from "@/lib/pageUtils";
 import { Inter, Libre_Bodoni, Merriweather } from "next/font/google";
 import "./globals.css";
 import "./liquidGlass.css";
@@ -24,23 +24,16 @@ export function generateStaticParams() {
   return [{ locale: "lv" }, { locale: "en" }, { locale: "ru" }];
 }
 
-export async function generateMetadata({ params }: { params: { locale: string } }) {
-  const locale = toLocale(params.locale);
+export async function generateMetadata({ params }: PageProps) {
+  const { locale } = await params;
 
   return getSEOData(locale);
 }
 
-export default async function RootLayout({
-  children,
-  params,
-}: { params: { locale: string } } & {
-  children: React.ReactNode;
-}) {
-  const locale = toLocale(params.locale);
-
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
-      lang={locale}
+      lang="lv"
       className={`${merriweather.variable} ${inter.variable} ${libreBodoni.variable} bg-white text-foreground scroll-smooth overflow-y-scroll [scrollbar-gutter:stable]`}
     >
       <body>
@@ -74,8 +67,7 @@ export default async function RootLayout({
                 ratingValue: "4.9",
                 reviewCount: "395",
               },
-              url:
-                locale === "lv" ? "https://88barbershop.lv" : `https://88barbershop.lv/${locale}`,
+              url: "https://88barbershop.lv",
             }),
           }}
         />

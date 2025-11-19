@@ -3,12 +3,9 @@ import { siteDataQuery } from "@/lib/sanityQuery";
 
 export type Locale = "lv" | "en" | "ru";
 
-export function toLocale(locale: string): Locale {
-  if (locale === "lv" || locale === "en" || locale === "ru") {
-    return locale;
-  }
-  return "lv";
-}
+export type PageProps = {
+  params: Promise<{ locale: Locale }>;
+};
 
 export async function getSanityData() {
   try {

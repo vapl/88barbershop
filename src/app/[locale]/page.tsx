@@ -1,4 +1,4 @@
-import { toLocale, getSanityData } from "@/lib/pageUtils";
+import { PageProps, getSanityData } from "@/lib/pageUtils";
 import { adaptSanityData } from "@/lib/dataAdapter";
 import Contacts from "@/components/sections/ContactsSection";
 import HeroSection from "@/components/sections/HeroSection";
@@ -13,14 +13,14 @@ export function generateStaticParams() {
   return [{ locale: "lv" }, { locale: "en" }, { locale: "ru" }];
 }
 
-export async function generateMetadata({ params }: { params: { locale: string } }) {
-  const locale = toLocale(params.locale);
+export async function generateMetadata({ params }: PageProps) {
+  const { locale } = await params;
 
   return getSEOData(locale);
 }
 
-export default async function Home({ params }: { params: { locale: string } }) {
-  const locale = toLocale(params.locale);
+export default async function Home({ params }: PageProps) {
+  const { locale } = await params;
 
   const sanityData = await getSanityData();
   const siteData = adaptSanityData(sanityData);
