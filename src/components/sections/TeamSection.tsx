@@ -24,7 +24,7 @@ const TeamSection: React.FC<TeamSectionProps> = ({ heading, barbers, locale }) =
   });
 
   return (
-    <div className="bg-background grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3 md:justify-normal xl:justify-normal px-4 md:px-16 lg:px-32 py-[80px]">
+    <div className="bg-background grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3 md:justify-normal xl:justify-normal px-4 md:px-16 lg:px-32 py-20">
       <SectionHeading title={heading[locale]} />
       <div className="mb-12 md:hidden" />
       {sortedBarbers.map((barber) => (

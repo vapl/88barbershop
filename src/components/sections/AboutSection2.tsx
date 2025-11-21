@@ -19,7 +19,7 @@ const AboutSection2: React.FC<Props> = ({ about, locale }) => {
         items-start 
         w-full
         px-4 md:px-16 lg:px-32 
-        py-[80px] lg:py-[120px]
+        py-20 lg:py-[120px]
         bg-background-alt
     "
     >

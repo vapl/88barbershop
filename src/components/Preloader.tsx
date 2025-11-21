@@ -4,14 +4,16 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import LogoWeb from "../../public/logo/logo-88barbershop.svg";
 import LogoMobile from "../../public/logo/logo-88barbershop-mobile.svg";
+import { usePathname } from "next/navigation";
 
 const Preloader = () => {
-  // useRealViewportHeight();
   const [show, setShow] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const pathName = usePathname();
 
   useEffect(() => {
     const preloaderWrapper = document.getElementById("preloader");
+    if (pathName.startsWith("/admin")) setShow(false);
 
     if (!preloaderWrapper) return;
 
@@ -21,7 +23,7 @@ const Preloader = () => {
       preloaderWrapper.classList.remove("content-hidden");
       preloaderWrapper.classList.add("content-visible");
     }
-  }, [show]);
+  }, [show, pathName]);
 
   useEffect(() => {
     const checkWidth = () => setIsMobile(window.innerWidth < 560);

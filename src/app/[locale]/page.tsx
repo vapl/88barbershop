@@ -26,7 +26,7 @@ export default async function Home({ params }: PageProps) {
   const siteData = adaptSanityData(sanityData);
 
   return (
-    <div className="relative">
+    <div className="relative trimmer-cursor">
       <HeroSection heroData={siteData.hero} locale={locale} />
       <BarberRibbons ribbonsData={siteData.ribbons} locale={locale} />
       <ServicesSection servicesData={siteData.services} locale={locale} />

@@ -61,7 +61,7 @@ const Contacts: React.FC<Props> = ({
   };
 
   return (
-    <section className="flex gap-[56px] flex-col flex-wrap items-center w-full bg-primary text-background px-4 md:px-16 lg:px-32 py-[80px]">
+    <section className="flex gap-[56px] flex-col flex-wrap items-center w-full bg-primary text-background px-4 md:px-16 lg:px-32 py-20">
       {/* WORKING */}
       <div className="flex justify-between w-full">
         <div className="flex flex-col items-start">

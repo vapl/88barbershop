@@ -49,7 +49,7 @@ const Footer: React.FC<FooterProps> = ({
   };
 
   return (
-    <footer className="flex gap-[56px] flex-col items-center w-full bg-background px-4 md:px-16 lg:px-32 pt-[80px] pb-[36px]">
+    <footer className="flex gap-14 flex-col items-center w-full bg-background px-4 md:px-16 lg:px-32 pt-20 pb-9">
       {/* ### Footer Top ### */}
       <div className="flex flex-col w-full gap-8 lg:flex-row items-center lg:items-start lg:justify-between text-extra-small">
         {/* LOGO */}
@@ -123,7 +123,7 @@ const Footer: React.FC<FooterProps> = ({
         </div>
       </div>
       {/* ### Footer Bottom ### */}
-      <div className="flex gap-4 flex-col lg:flex-row items-center  pt-6 lg:justify-between w-full border-t-1 border-white/30 text-extra-small">
+      <div className="flex gap-4 flex-col lg:flex-row items-center  pt-6 lg:justify-between w-full border-t border-white/30 text-extra-small">
         <div className="flex lg:hidden items-center justify-start gap-4">
           <ContactItem type="instagram" link={contactsData.social.instagram} />
           <ContactItem type="facebook" link={contactsData.social.facebook} />
