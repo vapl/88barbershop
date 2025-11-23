@@ -41,7 +41,7 @@ const Preloader = () => {
 
   return (
     <AnimatePresence>
-      {true && (
+      {show && (
         <motion.div
           key="preloader"
           initial={{ opacity: 1 }}
@@ -107,7 +107,7 @@ const Preloader = () => {
               animate={{
                 opacity: [0, 1, 1],
                 x: [-80, 0, 0],
-                scale: [1, 1, 1],
+                scale: [1, 1, 60],
                 filter: [
                   "brightness(1.1) drop-shadow(0 0 2px rgba(0,0,0,0.2))",
                   "brightness(1.2) drop-shadow(0 0 8px #ff0000)",
