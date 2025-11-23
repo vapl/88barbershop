@@ -111,7 +111,7 @@ const Navbar: React.FC<NavbarProps> = ({ navData, contactsData, locale }) => {
                 >
                   {item.label[locale]}
                   <motion.span
-                    className={`absolute ${isHovered ? "left-0" : "right-0"} -bottom-1 h-[2px] bg-primary`}
+                    className={`absolute ${isHovered ? "left-0" : "right-0"} -bottom-1 h-0.5 bg-primary`}
                     variants={{
                       rest: { width: 0 },
                       hover: { width: "100%" },
@@ -163,7 +163,7 @@ const Navbar: React.FC<NavbarProps> = ({ navData, contactsData, locale }) => {
                 animate={{ x: 0, opacity: 1 }}
                 exit={{ x: "100%", opacity: 0 }}
                 transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-                className="fixed inset-y-0 right-0 top-0 h-[100dvh] pl-8 bg-black/80 backdrop-blur-md flex flex-col justify-between items-end px-4 md:px-16 lg:px-32 pt-6 pb-16"
+                className="fixed inset-y-0 right-0 top-0 h-dvh pl-8 bg-black/80 backdrop-blur-md flex flex-col justify-between items-end px-4 md:px-16 lg:px-32 pt-6 pb-16"
               >
                 <div className="flex self-end pt-20 items-center">
                   <ContactItem
@@ -202,7 +202,7 @@ const Navbar: React.FC<NavbarProps> = ({ navData, contactsData, locale }) => {
                         >
                           {item.label[locale]}
                           <motion.span
-                            className={`absolute ${isHovered ? "right-0" : "left-0"} -bottom-1 h-[2px] bg-primary`}
+                            className={`absolute ${isHovered ? "right-0" : "left-0"} -bottom-1 h-0.5 bg-primary`}
                             variants={{
                               rest: { width: 0 },
                               hover: { width: "100%" },

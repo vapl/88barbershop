@@ -24,7 +24,7 @@ const PhoneSelectModal: React.FC<Props> = ({ isOpen, onClose, onSelect, phone })
       {isOpen && (
         <motion.div
           key="map-modal"
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-background/60 backdrop-blur-xs"
+          className="fixed inset-0 z-9999 flex items-center justify-center bg-background/60 backdrop-blur-xs"
           initial={{ scale: 1, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 1, opacity: 0 }}
@@ -40,7 +40,8 @@ const PhoneSelectModal: React.FC<Props> = ({ isOpen, onClose, onSelect, phone })
             <h3 className="text-body mb-2">{phone}</h3>
 
             <div className="flex gap-3 justify-around">
-              <button
+              {/* WHATSAPP DISABLED FOR NOW */}
+              {/* <button
                 onClick={() => onSelect("whatsapp")}
                 className="flex flex-col gap-2 items-center justify-center cursor-pointer"
               >
@@ -49,7 +50,7 @@ const PhoneSelectModal: React.FC<Props> = ({ isOpen, onClose, onSelect, phone })
                   className="text-primary hover:text-primary-hover active:text-primary-hover transition-all duration-200 active:scale-95"
                 />
                 <span className="text-extra-small">WhatsApp</span>
-              </button>
+              </button> */}
 
               <button
                 onClick={() => onSelect("call")}
