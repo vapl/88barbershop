@@ -10,7 +10,7 @@ interface HeroProps {
 const HeroServices: React.FC<HeroProps> = ({ heroData, locale }) => {
   return (
     <section
-      className="relative flex justify-center items-center h-[480px] w-full bg-background-alt px-4 md:px-16 lg:px-32 pt-[80px]"
+      className="relative flex justify-center items-center h-[480px] w-full bg-background-alt px-4 md:px-16 lg:px-32 pt-20"
       style={{
         backgroundImage: "url(/images/bg-pattern-services.png)",
         backgroundRepeat: "repeat",

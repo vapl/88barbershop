@@ -61,7 +61,7 @@ const Contacts: React.FC<Props> = ({
   };
 
   return (
-    <section className="flex gap-[56px] flex-col flex-wrap items-center w-full bg-primary text-background px-4 md:px-16 lg:px-32 py-20">
+    <section className="flex gap-14 flex-col flex-wrap items-center w-full bg-primary text-background px-4 md:px-16 lg:px-32 py-20">
       {/* WORKING */}
       <div className="flex justify-between w-full">
         <div className="flex flex-col items-start">
@@ -82,7 +82,7 @@ const Contacts: React.FC<Props> = ({
         </div>
       </div>
       <div className="w-full">
-        <div className="w-full border-t-1 border-t-background-alt/80" />
+        <div className="w-full border-t border-t-background-alt/80" />
         {/* CONTACT LINKS */}
         <div className="md:flex lg:flex gap-6 py-4 justify-between w-full">
           <ContactItem
@@ -92,13 +92,15 @@ const Contacts: React.FC<Props> = ({
             link={contacts.phone.link}
             color="dark"
           />
+          {/* HIDDEN FOR NOW */}
           <ContactItem
-            className="hover:underline"
+            className="hidden hover:underline"
             type="email"
             value={contacts.email.label}
             link={contacts.email.link}
             color="dark"
           />
+          {/* HIDDEN FOR NOW */}
           <ContactItem
             className="hover:underline"
             type="address"
@@ -109,10 +111,11 @@ const Contacts: React.FC<Props> = ({
         </div>
       </div>
 
-      {/* CONTACT FORM */}
-      <div className="flex w-full sm:max-w-xl">
+      {/* CONTACT FORM --- HIDDEN FOR NOW */}
+      <div className="hidden w-full sm:max-w-xl">
         <InputForm contactsFormData={contactsFormData} errorsData={errorsData} locale={locale} />
       </div>
+      {/* CONTACT FORM --- HIDDEN FOR NOW */}
     </section>
   );
 };

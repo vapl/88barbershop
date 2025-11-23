@@ -165,7 +165,7 @@ const Navbar: React.FC<NavbarProps> = ({ navData, contactsData, locale }) => {
                 transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
                 className="fixed inset-y-0 right-0 top-0 h-[100dvh] pl-8 bg-black/80 backdrop-blur-md flex flex-col justify-between items-end px-4 md:px-16 lg:px-32 pt-6 pb-16"
               >
-                <div className="flex self-end pt-[80px] items-center">
+                <div className="flex self-end pt-20 items-center">
                   <ContactItem
                     type="phone"
                     value={contactsData.phone.label}

@@ -71,9 +71,10 @@ const HeroSection: React.FC<HeroProps> = ({ heroData, locale }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
         >
-          <Button variant="primary" outline={false} disabled={false} link={`/${locale}/contact`}>
+          {/* <Button variant="primary" outline={false} disabled={false} link={`/${locale}/contact`}>
             {heroData.cta1[locale]}
-          </Button>
+          </Button> */}
+
           <Button variant="primary" outline={true} disabled={false} link={`/${locale}/services`}>
             {heroData.cta2[locale]}
           </Button>

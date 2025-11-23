@@ -1,3 +1,5 @@
+import type { PortableTextBlock } from "next-sanity";
+
 export interface LocaleString {
   lv: string;
   en: string;
@@ -8,6 +10,12 @@ export interface LocaleStringArray {
   lv: string[];
   en: string[];
   ru: string[];
+}
+
+export interface LocalePortableText {
+  lv: PortableTextBlock[];
+  en: PortableTextBlock[];
+  ru: PortableTextBlock[];
 }
 
 export interface NavigationItem {
@@ -229,7 +237,14 @@ export interface SanityRawData {
     pages_group: PagesData;
     footer_group: FooterData;
     errors_group: ErrorsData;
+    privacy_group: PrivacyData;
   };
+}
+
+export interface PrivacyData {
+  title: LocaleString;
+  date_label: LocaleString;
+  content: LocalePortableText;
 }
 
 export interface SiteData {
@@ -248,4 +263,5 @@ export interface SiteData {
   pages: PagesData;
   footer: FooterData;
   errors: ErrorsData;
+  privacy: PrivacyData;
 }

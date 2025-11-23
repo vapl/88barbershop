@@ -1,20 +1,21 @@
-import { defineType, defineField } from "sanity"
+import { defineType, defineField } from "sanity";
 
 // Importē visus apakšfailus
-import general from "./globals/general"
-import navigation from "./globals/navigation"
-import contacts from "./globals/contacts"
-import workingTime from "./globals/workingTime"
-import modals from "./globals/modals"
-import footer from "./globals/footer"
-import errors from "./globals/errors"
-import hero from "./home/hero"
-import servicesSection from "./home/servicesSection"
-import ribbons from "./home/ribbons"
-import reviews from "./home/reviewsSection"
-import about from "./about/about"
-import contactForm from "./contact/contactForm"
-import pagesGroup from "./pages/pagesGroup"
+import general from "./globals/general";
+import navigation from "./globals/navigation";
+import contacts from "./globals/contacts";
+import workingTime from "./globals/workingTime";
+import modals from "./globals/modals";
+import footer from "./globals/footer";
+import errors from "./globals/errors";
+import hero from "./home/hero";
+import servicesSection from "./home/servicesSection";
+import ribbons from "./home/ribbons";
+import reviews from "./home/reviewsSection";
+import about from "./about/about";
+import privacyGroup from "./privacy/privacy";
+import contactForm from "./contact/contactForm";
+import pagesGroup from "./pages/pagesGroup";
 
 export default defineType({
   name: "settings",
@@ -54,20 +55,20 @@ export default defineType({
     defineField({ ...footer, group: "system" }),
     defineField({ ...errors, group: "system" }),
     defineField({ ...pagesGroup, group: "system" }),
+    defineField({ ...privacyGroup, group: "system" }),
   ],
 
   preview: {
-  select: {
-    title: "general_group.siteName",
-    subtitle: "general_group.slogan.lv",
+    select: {
+      title: "general_group.siteName",
+      subtitle: "general_group.slogan.lv",
+    },
+    prepare(selection) {
+      const { title, subtitle } = selection;
+      return {
+        title: title || "Lapas Iestatījumi",
+        subtitle: subtitle || "88 Barbershop konfigurācija",
+      };
+    },
   },
-  prepare(selection) {
-    const { title, subtitle } = selection
-    return {
-      title: title || "Lapas Iestatījumi",
-      subtitle: subtitle || "88 Barbershop konfigurācija",
-    }
-  },
-},
-
-})
+});

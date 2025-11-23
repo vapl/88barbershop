@@ -70,6 +70,22 @@ export function adaptSanityData(data: SanityRawData): SiteData {
       message_short_error: { lv: "", en: "", ru: "" },
       message_long_error: { lv: "", en: "", ru: "" },
     },
+    privacy: data.settings.footer_group
+      ? {
+          ...data.settings.privacy_group,
+          title: data.settings.privacy_group?.title || { lv: "", en: "", ru: "" },
+          date_label: data.settings.privacy_group?.date_label || {
+            lv: "Pēdējās izmaiņas:",
+            en: "Last updated:",
+            ru: "Последнее обновление:",
+          },
+          content: data.settings.privacy_group?.content || { lv: [], en: [], ru: [] },
+        }
+      : {
+          title: { lv: "", en: "", ru: "" },
+          date_label: { lv: "", en: "", ru: "" },
+          content: { lv: [], en: [], ru: [] },
+        },
   };
 
   return siteData;
