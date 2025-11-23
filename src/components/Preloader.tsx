@@ -103,11 +103,11 @@ const Preloader = () => {
             {/* === MAIN LOGO === */}
             <motion.div
               initial={{ opacity: 0, x: -80, scale: 1 }}
-              className="origin-[59.8%_43.8%] md:origin-[49.2%_38%]"
+              className="origin-[55.8%_53%] md:origin-[18%_48%]"
               animate={{
                 opacity: [0, 1, 1],
                 x: [-80, 0, 0],
-                scale: [1, 1, 500],
+                scale: [1, 1, 60],
                 filter: [
                   "brightness(1.1) drop-shadow(0 0 2px rgba(0,0,0,0.2))",
                   "brightness(1.2) drop-shadow(0 0 8px #ff0000)",

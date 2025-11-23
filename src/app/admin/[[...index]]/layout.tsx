@@ -1,3 +1,5 @@
+export { NextStudioLayout as default } from "next-sanity/studio";
+
 export const metadata = {
   robots: {
     index: false,
@@ -6,7 +8,3 @@ export const metadata = {
   title: "Admin Panel – 88 Barbershop",
   description: "Internal administration area",
 };
-
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
-}
