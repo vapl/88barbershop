@@ -28,7 +28,7 @@ const HeroSection: React.FC<HeroProps> = ({ heroData, locale }) => {
   return (
     <section
       ref={ref}
-      className="relative flex flex-col items-center justify-center min-h-[100svh] overflow-hidden px-4 pb-24"
+      className="relative flex flex-col items-center justify-center min-h-svh overflow-hidden px-4 pb-24"
     >
       {/* --- Background image --- */}
       <motion.div className="absolute inset-0 z-0 will-change-transform" style={{ y }}>
@@ -40,7 +40,7 @@ const HeroSection: React.FC<HeroProps> = ({ heroData, locale }) => {
           style={{
             objectFit: "cover",
           }}
-          className="-z-0"
+          className="z-0"
         />
       </motion.div>
       {/* --- Dark overlay --- */}
