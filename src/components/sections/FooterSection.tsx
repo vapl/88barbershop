@@ -89,11 +89,11 @@ const Footer: React.FC<FooterProps> = ({
               value={contactsData.phone.label}
               link={contactsData.phone.link}
             />
-            <ContactItem
+            {/* <ContactItem
               type="email"
               value={contactsData.email.label}
               link={contactsData.email.link}
-            />
+            /> */}
             <ContactItem
               type="address"
               value={contactsData.address.label}
