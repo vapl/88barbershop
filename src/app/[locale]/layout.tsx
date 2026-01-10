@@ -8,11 +8,6 @@ import Navbar from "@/components/navigation/Navbar";
 import Footer from "@/components/sections/FooterSection";
 import MobileActionButton from "@/components/ui/MobileActionButton";
 
-// Generate static params for all locales
-export function generateStaticParams() {
-  return [{ locale: "lv" }, { locale: "en" }, { locale: "ru" }];
-}
-
 export default async function LocaleLayout({
   children,
   params,

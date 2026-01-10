@@ -5,11 +5,6 @@ import HeroServices from "@/components/sections/HeroServices";
 import ServicePricingSection from "@/components/sections/ServicePricingSection";
 import { getSEOData } from "@/lib/getSEOData";
 
-// Tell Next.js which locales to generate
-export function generateStaticParams() {
-  return [{ locale: "lv" }, { locale: "en" }, { locale: "ru" }];
-}
-
 export async function generateMetadata({ params }: PageProps) {
   const { locale } = await params;
   return getSEOData(locale);

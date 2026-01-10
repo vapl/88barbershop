@@ -19,11 +19,6 @@ const merriweather = Merriweather({
   variable: "--font-merriweather",
 });
 
-// Generate static params for all locales
-export function generateStaticParams() {
-  return [{ locale: "lv" }, { locale: "en" }, { locale: "ru" }];
-}
-
 export async function generateMetadata({ params }: PageProps) {
   const { locale } = await params;
 
