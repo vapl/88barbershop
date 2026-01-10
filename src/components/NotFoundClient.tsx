@@ -4,11 +4,12 @@ import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Button from "@/components/ui/Button";
-import { useLocale } from "next-intl";
 
-const NotFoundClient: React.FC = () => {
-  const locale = useLocale() as "lv" | "en" | "ru";
+type Props = {
+  locale: "lv" | "en" | "ru";
+};
 
+const NotFoundClient: React.FC<Props> = ({ locale }) => {
   const texts = {
     lv: {
       title: "Lapa nav atrasta",
@@ -28,7 +29,7 @@ const NotFoundClient: React.FC = () => {
   }[locale];
 
   return (
-    <section className="flex flex-col items-center justify-center min-h-svh bg-background text-foreground text-center px-6">
+    <section className="flex flex-col items-center justify-center min-h-[100svh] bg-background text-foreground text-center px-6">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}

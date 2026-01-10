@@ -1,3 +1,4 @@
+import { getLocale } from "next-intl/server";
 import NotFoundClient from "@/components/NotFoundClient";
 
 export const metadata = {
@@ -10,5 +11,6 @@ export const metadata = {
 };
 
 export default async function NotFoundPage() {
-  return <NotFoundClient />;
+  const locale = (await getLocale()) as "lv" | "en" | "ru";
+  return <NotFoundClient locale={locale} />;
 }
