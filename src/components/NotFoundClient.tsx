@@ -29,7 +29,7 @@ const NotFoundClient: React.FC<Props> = ({ locale }) => {
   }[locale];
 
   return (
-    <section className="flex flex-col items-center justify-center min-h-[100svh] bg-background text-foreground text-center px-6">
+    <section className="flex flex-col items-center justify-center min-h-svh bg-background text-foreground text-center px-6">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
