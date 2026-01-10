@@ -40,7 +40,7 @@ const ReviewsSection: React.FC<Props> = ({ reviewsSectionData, locale }) => {
   const [paused, setPaused] = useState(false);
 
   return (
-    <section className="relative flex flex-col gap-[95px] items-center w-full text-background py-[120px] bg-gradient-to-br from-[#FFF9E9] via-[#FFF9E9]/80 to-[#E5DECE] overflow-hidden">
+    <section className="relative flex flex-col gap-[95px] items-center w-full text-background py-[120px] bg-linear-to-br from-[#FFF9E9] via-[#FFF9E9]/80 to-[#E5DECE] overflow-hidden">
       <div className="flex px-4 md:px-16 lg:px-32">
         <SectionHeading title={reviewsSectionData.title[locale]} decoration color="black" />
       </div>

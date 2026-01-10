@@ -41,13 +41,13 @@ const ServicesSection: React.FC<Props> = ({ servicesData, locale }) => {
           style={{
             objectFit: "cover",
           }}
-          className="-z-0"
+          className="z-0"
         />
       </motion.div>
       {/* --- Dark overlay --- */}
       <div className="absolute inset-0 bg-black/60 z-10" />
       {/* Content */}
-      <div className="relative z-20 flex flex-col items-center gap-[96px]">
+      <div className="relative z-20 flex flex-col items-center gap-24">
         <SectionHeading
           title={servicesData.services_section.title[locale]}
           subtitle={servicesData.services_section.subtitle[locale]}

@@ -1,4 +1,3 @@
-import { PageProps } from "@/lib/pageUtils";
 import NotFoundClient from "@/components/NotFoundClient";
 
 export const metadata = {
@@ -10,7 +9,6 @@ export const metadata = {
   },
 };
 
-export default async function NotFoundPage({ params }: PageProps) {
-  const { locale } = await params;
-  return <NotFoundClient locale={locale} />;
+export default async function NotFoundPage() {
+  return <NotFoundClient />;
 }

@@ -12,8 +12,25 @@ const Preloader = () => {
   const pathName = usePathname();
 
   useEffect(() => {
+    if (pathName?.startsWith("/admin")) return;
+
+    const hasShown = sessionStorage.getItem("preloaderShown");
+
+    if (!hasShown) {
+      setShow(true);
+      sessionStorage.setItem("preloaderShown", "true");
+    }
+  }, [pathName]);
+
+  useEffect(() => {
+    if (!show) return;
+
+    const timer = setTimeout(() => setShow(false), 6500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
     const preloaderWrapper = document.getElementById("preloader");
-    if (pathName.startsWith("/admin")) setShow(false);
 
     if (!preloaderWrapper) return;
 
@@ -34,10 +51,7 @@ const Preloader = () => {
 
   const LOGO = isMobile ? LogoMobile : LogoWeb;
 
-  useEffect(() => {
-    const timer = setTimeout(() => setShow(false), 6500);
-    return () => clearTimeout(timer);
-  }, []);
+  if (!show) return null;
 
   return (
     <AnimatePresence>

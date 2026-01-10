@@ -4,12 +4,11 @@ import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Button from "@/components/ui/Button";
+import { useLocale } from "next-intl";
 
-type Props = {
-  locale: "lv" | "en" | "ru";
-};
+const NotFoundClient: React.FC = () => {
+  const locale = useLocale() as "lv" | "en" | "ru";
 
-const NotFoundClient: React.FC<Props> = ({ locale }) => {
   const texts = {
     lv: {
       title: "Lapa nav atrasta",

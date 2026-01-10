@@ -4,7 +4,6 @@ import "./globals.css";
 import "./liquidGlass.css";
 import { getSEOData } from "@/lib/getSEOData";
 import Script from "next/script";
-import Preloader from "@/components/Preloader";
 
 // Fonts
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -32,7 +31,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       className={`${merriweather.variable} ${inter.variable} ${libreBodoni.variable} bg-white text-foreground scroll-smooth overflow-y-scroll [scrollbar-gutter:stable]`}
     >
       <body>
-        <Preloader />
         {children}
 
         <Script
