@@ -22,6 +22,7 @@ const Footer: React.FC<FooterProps> = ({
   workingTimeData,
   locale,
 }) => {
+  const currentYear = new Date().getFullYear();
   const { development: dev } = footerData;
   const working = workingTimeData;
 
@@ -128,7 +129,9 @@ const Footer: React.FC<FooterProps> = ({
           <ContactItem type="instagram" link={contactsData.social.instagram} />
           <ContactItem type="facebook" link={contactsData.social.facebook} />
         </div>
-        <p>{footerData.copyright[locale]}</p>
+        <p>
+          © {currentYear} {footerData.copyright[locale]}
+        </p>
         <div className="hidden lg:flex items-center justify-start gap-4">
           <ContactItem type="instagram" link={contactsData.social.instagram} />
           <ContactItem type="facebook" link={contactsData.social.facebook} />
