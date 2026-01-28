@@ -6,9 +6,18 @@ import { ServicesData } from "../../lib/types";
 interface PricingProps {
   serviceData: ServicesData;
   locale: "lv" | "en" | "ru";
+  locationId: "centrs" | "pardaugava";
+  locationLabel: string;
+  premiumTag?: string;
 }
 
-const ServicePricingSection: React.FC<PricingProps> = ({ serviceData, locale }) => {
+const ServicePricingSection: React.FC<PricingProps> = ({
+  serviceData,
+  locale,
+  locationId,
+  locationLabel,
+  premiumTag,
+}) => {
   const cardOrder = ["haircut", "shave", "combo"];
 
   const sortedServiceList = [...serviceData.services_list].sort((a, b) => {
@@ -23,13 +32,16 @@ const ServicePricingSection: React.FC<PricingProps> = ({ serviceData, locale }) 
 
   return (
     <section className="relative flex flex-col items-center w-full bg-background-alt px-4 md:px-16 lg:px-32 py-[120px] overflow-hidden">
-      <div className="flex flex-col gap-16 w-full max-w-6xl">
+      <div className="flex flex-col gap-10 w-full max-w-6xl">
         {sortedServiceList.map((serviceGroup) => (
           <PricingCard
             key={serviceGroup.id}
             list={serviceGroup}
             locale={locale}
             cardsData={serviceData.services_section.cards}
+            locationId={locationId}
+            locationLabel={locationLabel}
+            premiumTag={premiumTag}
           />
         ))}
       </div>

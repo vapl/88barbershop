@@ -106,6 +106,10 @@ export interface ServicePriceItem {
   name: LocaleString;
   note?: LocaleString;
   price: string;
+  pricesByLocation?: {
+    centrs?: string;
+    pardaugava?: string;
+  };
 }
 
 export interface ServiceGroup {

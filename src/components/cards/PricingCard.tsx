@@ -11,9 +11,19 @@ type Props = {
   list: ServiceGroup;
   cardsData: ServiceCards;
   locale: "lv" | "en" | "ru";
+  locationId: "centrs" | "pardaugava";
+  locationLabel: string;
+  premiumTag?: string;
 };
 
-const PricingCard: React.FC<Props> = ({ list, locale, cardsData }) => {
+const PricingCard: React.FC<Props> = ({
+  list,
+  locale,
+  cardsData,
+  locationId,
+  locationLabel,
+  premiumTag,
+}) => {
   return (
     <>
       <div
@@ -27,14 +37,24 @@ const PricingCard: React.FC<Props> = ({ list, locale, cardsData }) => {
         </div>
         {/* Header */}
         <div className="z-10 flex flex-col gap-4">
-          <span className="text-xs text-primary uppercase">{cardsData.label[locale]}</span>
+          <div className="flex items-center gap-3">
+            <span className="text-xs text-primary uppercase">{cardsData.label[locale]}</span>
+            {premiumTag && (
+              <span className="rounded-xs border border-primary/60 px-2 py-0.5 text-[10px] uppercase tracking-[0.2em] text-primary">
+                {premiumTag}
+              </span>
+            )}
+          </div>
           <h3 className="text-h3 text-foreground font-heading uppercase">{list.title[locale]}</h3>
+          <span className="text-xs text-foreground/70 uppercase">{locationLabel}</span>
         </div>
         {/* Services */}
         <div className="flex flex-col z-10 gap-8 text-wrap md:text-nowrap">
           {list.services?.map((service, i) => {
             const text = service.name[locale];
             const isLong = text.length > 24;
+            const priceByLocation = service.pricesByLocation?.[locationId];
+            const price = priceByLocation || service.price;
 
             return (
               <div key={`${list.id}-${i}`} className="p-2 text-foreground hover:bg-primary/20">
@@ -52,7 +72,7 @@ const PricingCard: React.FC<Props> = ({ list, locale, cardsData }) => {
                         </span>
                       )}
                       <div className="flex w-full h-[1px] bg-foreground/50" />
-                      <span>{service.price}</span>
+                      <span>{price}</span>
                     </div>
 
                     {service.note && service.note[locale] && (

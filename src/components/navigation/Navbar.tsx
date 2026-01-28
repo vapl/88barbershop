@@ -25,6 +25,11 @@ const Navbar: React.FC<NavbarProps> = ({ navData, contactsData, locale }) => {
   const pathname = usePathname();
 
   const isHome = pathname === `/${locale}`;
+  const isRouteActive = (href: string) => {
+    if (href === "/") return pathname === `/${locale}`;
+    const fullHref = `/${locale}${href}`;
+    return pathname === fullHref || pathname.startsWith(`${fullHref}/`);
+  };
 
   // Window width logic
   useEffect(() => {
@@ -86,7 +91,7 @@ const Navbar: React.FC<NavbarProps> = ({ navData, contactsData, locale }) => {
         <div className="hidden lg:flex items-center gap-8 text-body">
           {navData.map((item) => {
             const href = `/${locale}${item.href === "/" ? "" : item.href}`;
-            const isActive = pathname === href;
+            const isActive = isRouteActive(item.href);
 
             return (
               <Link
@@ -177,7 +182,7 @@ const Navbar: React.FC<NavbarProps> = ({ navData, contactsData, locale }) => {
                 <div className="flex flex-col items-end justify-center gap-10 uppercase font-heading text-h3">
                   {navData.map((item) => {
                     const href = `/${locale}${item.href === "/" ? "" : item.href}`;
-                    const isActive = pathname === href;
+                    const isActive = isRouteActive(item.href);
 
                     return (
                       <Link

@@ -78,6 +78,16 @@ export default defineType({
               type: "string",
               validation: (Rule) => Rule.required(),
             }),
+            defineField({
+              name: "pricesByLocation",
+              title: "Cenas pa saloniem",
+              type: "object",
+              fields: [
+                { name: "centrs", title: "Centrs", type: "string" },
+                { name: "pardaugava", title: "Pārdaugava", type: "string" },
+              ],
+              description: "Ja aizpildi šeit, tiks izmantotas cenas pa saloniem.",
+            }),
           ],
           preview: {
             select: {
