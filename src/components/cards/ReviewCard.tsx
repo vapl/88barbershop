@@ -44,7 +44,15 @@ const ReviewCard: React.FC<Props> = ({ review, text, avatar, author }) => {
       {/* Author */}
       <div className="flex gap-2 items-center text-small">
         {avatar ? (
-          <Image src={avatar} alt={author} fill className="h-9 w-9 rounded-full object-cover" />
+          <div className="relative h-9 w-9 overflow-hidden rounded-full">
+            <Image
+              src={avatar}
+              alt={author}
+              fill
+              sizes="36px"
+              className="object-cover"
+            />
+          </div>
         ) : (
           <div className="h-9 w-9 rounded-full bg-text-muted" />
         )}

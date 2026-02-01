@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import SectionHeading from "../SectionHeading";
 
 import Button from "../ui/Button";
@@ -36,8 +36,38 @@ const REVIEWS = [
   },
 ];
 
+type ReviewItem = {
+  id: number;
+  review: number;
+  text: string;
+  avatar?: string;
+  author: string;
+};
+
 const ReviewsSection: React.FC<Props> = ({ reviewsSectionData, locale }) => {
   const [paused, setPaused] = useState(false);
+  const [reviews, setReviews] = useState<ReviewItem[]>(REVIEWS);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const response = await fetch(`/api/google-reviews?lang=${locale}&limit=6`);
+        const data = await response.json();
+        if (response.ok && Array.isArray(data.reviews) && data.reviews.length > 0) {
+          const mapped = data.reviews.map((r: ReviewItem, index: number) => ({
+            ...r,
+            id: index + 1,
+          }));
+          setReviews(mapped);
+        }
+      } catch {
+        // Fallback to static reviews on failure
+      }
+    };
+    fetchReviews();
+  }, [locale]);
+
+  const repeatedReviews = useMemo(() => [...reviews, ...reviews], [reviews]);
 
   return (
     <section className="relative flex flex-col gap-[95px] items-center w-full text-background py-[120px] bg-linear-to-br from-[#FFF9E9] via-[#FFF9E9]/80 to-[#E5DECE] overflow-hidden">
@@ -57,7 +87,7 @@ const ReviewsSection: React.FC<Props> = ({ reviewsSectionData, locale }) => {
             animationPlayState: paused ? "paused" : "running",
           }}
         >
-          {[...REVIEWS, ...REVIEWS].map((r, i) => (
+          {repeatedReviews.map((r, i) => (
             <div key={i} className="mr-8 flex">
               <ReviewCard {...r} />
             </div>
