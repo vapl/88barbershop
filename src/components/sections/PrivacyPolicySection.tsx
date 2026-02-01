@@ -18,7 +18,7 @@ const getLastUpdate = (filePath: string) => {
 };
 
 const PrivacyPolicySection: React.FC<Props> = ({ privacyData, locale }) => {
-  const updatedDate = getLastUpdate("src/app/[locale]/privacy-policy/page.tsx");
+  const updatedDate = getLastUpdate("src/app/[locale]/privacy/page.tsx");
   const formatted = updatedDate.toLocaleDateString(locale, {
     year: "numeric",
     month: "long",

@@ -51,7 +51,7 @@ const ReviewsSection: React.FC<Props> = ({ reviewsSectionData, locale }) => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await fetch(`/api/google-reviews?lang=${locale}&limit=6`);
+        const response = await fetch(`/api/google-business-reviews?limit=10`);
         const data = await response.json();
         if (response.ok && Array.isArray(data.reviews) && data.reviews.length > 0) {
           const mapped = data.reviews.map((r: ReviewItem, index: number) => ({
