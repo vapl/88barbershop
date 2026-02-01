@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const LOCALES = ["lv", "en", "ru"];
+const DEFAULT_LOCALE = "lv";
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -16,10 +17,6 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  if (pathname === "/coming-soon") {
-    return NextResponse.next();
-  }
-
   const segments = pathname.split("/").filter(Boolean);
   const first = segments[0];
   const hasLocale = first && LOCALES.includes(first);
@@ -29,7 +26,9 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const redirectPath = hasLocale ? `/${first}/coming-soon` : "/coming-soon";
+  const redirectPath = hasLocale
+    ? `/${first}/coming-soon`
+    : `/${DEFAULT_LOCALE}/coming-soon`;
   const url = request.nextUrl.clone();
   url.pathname = redirectPath;
   return NextResponse.redirect(url);

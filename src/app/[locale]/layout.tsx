@@ -7,7 +7,7 @@ import { routing } from "@/i18n/routing";
 import Navbar from "@/components/navigation/Navbar";
 import Footer from "@/components/sections/FooterSection";
 import MobileActionButton from "@/components/ui/MobileActionButton";
-import Preloader from "@/components/Preloader";
+// import Preloader from "@/components/Preloader";
 
 export default async function LocaleLayout({
   children,
@@ -28,7 +28,7 @@ export default async function LocaleLayout({
   return (
     <NextIntlClientProvider locale={locale}>
       <ModalProvider modals={siteData.modals} locale={locale}>
-        <Preloader />
+        {/* <Preloader /> */}
 
         <div id="preloader" className="">
           <Navbar navData={siteData.navigation} contactsData={siteData.contacts} locale={locale} />
