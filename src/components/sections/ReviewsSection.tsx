@@ -110,7 +110,7 @@ const ReviewsSection: React.FC<Props> = ({ reviewsSectionData, locale }) => {
         </div>
       </div>
 
-      <div className="flex px-4 md:px-16 lg:px-32">
+      <div className="flex flex-wrap items-center justify-center gap-4 px-4 md:px-16 lg:px-32">
         <Button
           outline
           type="button"
@@ -118,6 +118,18 @@ const ReviewsSection: React.FC<Props> = ({ reviewsSectionData, locale }) => {
           link="https://search.google.com/local/writereview?placeid=ChIJZ8ENsrXP7kYRFpM0KzA2ApU"
         >
           {reviewsSectionData.ctaButton[locale]}
+        </Button>
+        <Button
+          outline
+          type="button"
+          variant="primary"
+          link="https://search.google.com/local/reviews?placeid=ChIJZ8ENsrXP7kYRFpM0KzA2ApU"
+        >
+          {locale === "lv"
+            ? "Skatīt visas atsauksmes"
+            : locale === "ru"
+              ? "Все отзывы"
+              : "View all reviews"}
         </Button>
       </div>
     </section>

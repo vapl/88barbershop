@@ -40,7 +40,7 @@ const ReviewCard: React.FC<Props> = ({ review, text, avatar, author }) => {
         })}
       </div>
       {/* Review */}
-      <p>{text}</p>
+      <p className="line-clamp-4">{text}</p>
       {/* Author */}
       <div className="flex gap-2 items-center text-small">
         {avatar ? (
