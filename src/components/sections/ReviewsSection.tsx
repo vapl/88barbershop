@@ -59,6 +59,21 @@ const ReviewsSection: React.FC<Props> = ({ reviewsSectionData, locale }) => {
             id: index + 1,
           }));
           setReviews(mapped);
+          return;
+        }
+
+        const fallbackResponse = await fetch(`/api/google-reviews?lang=${locale}&limit=5`);
+        const fallbackData = await fallbackResponse.json();
+        if (
+          fallbackResponse.ok &&
+          Array.isArray(fallbackData.reviews) &&
+          fallbackData.reviews.length > 0
+        ) {
+          const mapped = fallbackData.reviews.map((r: ReviewItem, index: number) => ({
+            ...r,
+            id: index + 1,
+          }));
+          setReviews(mapped);
         }
       } catch {
         // Fallback to static reviews on failure
