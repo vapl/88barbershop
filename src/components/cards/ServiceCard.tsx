@@ -31,8 +31,8 @@ const ServiceCard: React.FC<Props> = ({ cardType, locale }) => {
       ru: "Пардауґава",
     },
     centrsAddress: {
-      lv: "Barona iela 88, Rīga",
-      en: "Barona iela 88, Riga",
+      lv: "Ģertrūdes 34, Rīga",
+      en: "Ģertrūdes 34, Riga",
       ru: "Улица Барона 88, Рига",
     },
     pardaugavaAddress: {
