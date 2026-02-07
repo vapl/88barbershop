@@ -1,4 +1,4 @@
-import { defineField, defineType } from "sanity"
+import { defineField, defineType } from "sanity";
 
 export default defineType({
   name: "service",
@@ -79,14 +79,35 @@ export default defineType({
               validation: (Rule) => Rule.required(),
             }),
             defineField({
+              name: "locations",
+              title: "Pieejams Barbershopos",
+              type: "array",
+              of: [
+                {
+                  type: "string",
+                  options: {
+                    list: [
+                      { title: "Ģertrūdes 34 barbershop", value: "gertrudes34" },
+                      { title: "Akmeņu 16 barbershop", value: "akmenu16" },
+                    ],
+                  },
+                },
+              ],
+              options: {
+                layout: "list",
+              },
+              description: "Ja atstāsi tukšu, pakalpojums būs pieejams abos Barbershopos.",
+              validation: (Rule) => Rule.unique(),
+            }),
+            defineField({
               name: "pricesByLocation",
-              title: "Cenas pa saloniem",
+              title: "Cenas pa Barbershopiem",
               type: "object",
               fields: [
-                { name: "centrs", title: "Centrs", type: "string" },
-                { name: "pardaugava", title: "Pārdaugava", type: "string" },
+                { name: "gertrudes34", title: "Ģertrūdes 34", type: "string" },
+                { name: "akmenu16", title: "Akmeņu 16", type: "string" },
               ],
-              description: "Ja aizpildi šeit, tiks izmantotas cenas pa saloniem.",
+              description: "Ja aizpildi šeit, tiks izmantotas cenas pa Barbershopiem.",
             }),
           ],
           preview: {
@@ -95,11 +116,11 @@ export default defineType({
               subtitle: "price",
             },
             prepare(selection) {
-              const { title, subtitle } = selection
+              const { title, subtitle } = selection;
               return {
                 title: title || "—",
                 subtitle: subtitle ? `Cena: ${subtitle}` : "",
-              }
+              };
             },
           },
         }),
@@ -118,7 +139,7 @@ export default defineType({
       return {
         title: titleLv || titleEn || "— Bez nosaukuma —",
         subtitle: slug ? `slug: ${slug}` : "",
-      }
+      };
     },
   },
-})
+});

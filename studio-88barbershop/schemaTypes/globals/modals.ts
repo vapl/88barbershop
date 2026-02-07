@@ -11,6 +11,7 @@ export default defineField({
       type: "object",
       fields: [
         { name: "title", title: "Virsraksts", type: "localeString" },
+        { name: "subtitle", title: "Apakšvirsraksts", type: "localeString" },
         { name: "call", title: "“Zvanīt” teksts", type: "localeString" },
         { name: "cancel_button", title: "“Atcelt” poga", type: "localeString" },
       ],
