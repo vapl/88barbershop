@@ -43,7 +43,11 @@ const Preloader = () => {
   }, [show, pathName]);
 
   useEffect(() => {
-    const checkWidth = () => setIsMobile(window.innerWidth < 560);
+    const checkWidth = () =>
+      setIsMobile((prev) => {
+        const next = window.innerWidth < 560;
+        return prev === next ? prev : next;
+      });
     checkWidth();
     window.addEventListener("resize", checkWidth);
     return () => window.removeEventListener("resize", checkWidth);

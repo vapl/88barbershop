@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import clsx from "clsx";
@@ -9,6 +9,7 @@ import ContactItem from "../contacts/Contacts";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { NavigationItem, ContactsData } from "@/lib/types";
+import Button from "../ui/Button";
 
 interface NavbarProps {
   navData: NavigationItem[];
@@ -17,7 +18,13 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({ navData, contactsData, locale }) => {
+  const bookingLabel = {
+    lv: "Pierakstīties",
+    en: "Book now",
+    ru: "Записаться",
+  };
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
   const [showNav, setShowNav] = useState<boolean>(true);
   const [isHovered, setIsHovered] = useState(false);
   const [isTransparent, setIsTransparent] = useState(false);
@@ -30,6 +37,19 @@ const Navbar: React.FC<NavbarProps> = ({ navData, contactsData, locale }) => {
     const fullHref = `/${locale}${href}`;
     return pathname === fullHref || pathname.startsWith(`${fullHref}/`);
   };
+
+  const lastScrollYRef = useRef(0);
+
+  useEffect(() => {
+    const checkWidth = () =>
+      setIsMobile((prev) => {
+        const next = window.innerWidth <= 768;
+        return prev === next ? prev : next;
+      });
+    checkWidth();
+    window.addEventListener("resize", checkWidth);
+    return () => window.removeEventListener("resize", checkWidth);
+  }, []);
 
   // Window width logic
   useEffect(() => {
@@ -44,17 +64,22 @@ const Navbar: React.FC<NavbarProps> = ({ navData, contactsData, locale }) => {
   useEffect(() => {
     const handleScroll = () => {
       if (isOpen) return;
-      setShowNav(window.scrollY < lastScrollYRef.current || window.scrollY < 100);
+      setShowNav((prev) => {
+        const next = window.scrollY < lastScrollYRef.current || window.scrollY < 100;
+        return prev === next ? prev : next;
+      });
       lastScrollYRef.current = window.scrollY;
     };
-    const lastScrollYRef = { current: 0 };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsTransparent(window.scrollY < 150);
+      setIsTransparent((prev) => {
+        const next = window.scrollY < 150;
+        return prev === next ? prev : next;
+      });
     };
 
     handleScroll();
@@ -78,15 +103,17 @@ const Navbar: React.FC<NavbarProps> = ({ navData, contactsData, locale }) => {
     >
       <div className="mx-auto h-full flex items-center justify-between px-4 md:px-16 lg:px-32">
         {/* LOGO */}
-        <Link href={"/"}>
-          <Image
-            src="/logo/logo-outline-gold.svg"
-            alt="Logo 88barbershop"
-            width={50}
-            height={50}
-            priority
-          />
-        </Link>
+        {!isOpen && (
+          <Link href={"/"}>
+            <Image
+              src="/logo/logo-outline-gold.svg"
+              alt="Logo 88barbershop"
+              width={50}
+              height={50}
+              priority
+            />
+          </Link>
+        )}
         {/* Desktop Menu */}
         <div className="hidden lg:flex items-center gap-8 text-body">
           {navData.map((item) => {
@@ -130,14 +157,18 @@ const Navbar: React.FC<NavbarProps> = ({ navData, contactsData, locale }) => {
         </div>
         <div className="flex items-center gap-2">
           {!isOpen && (
-            <ContactItem
-              type="phone"
-              color="primary"
-              value={contactsData.phone.label}
-              link={contactsData.phone.link}
-            />
+            <Button
+              variant="primary"
+              outline={true}
+              phoneModal={{
+                phone: contactsData.phone.link,
+                locations: contactsData.locations,
+              }}
+              className="hidden lg:block"
+            >
+              {bookingLabel[locale]}
+            </Button>
           )}
-          <span className="hidden lg:block">|</span>
           <LanguageSwitcher className="hidden lg:block" locale={locale} />
         </div>
         {/* Mobile Hamburger */}
@@ -171,12 +202,19 @@ const Navbar: React.FC<NavbarProps> = ({ navData, contactsData, locale }) => {
                 className="fixed inset-y-0 right-0 top-0 h-dvh pl-8 bg-black/80 backdrop-blur-md flex flex-col justify-between items-end px-4 md:px-16 lg:px-32 pt-6 pb-16"
               >
                 <div className="flex self-end pt-20 items-center">
-                  <ContactItem
-                    type="phone"
-                    value={contactsData.phone.label}
-                    link={contactsData.phone.link}
-                  />
-                  <span>|</span>
+                  {isOpen && (
+                    <Button
+                      variant="primary"
+                      outline={true}
+                      phoneModal={{
+                        phone: contactsData.phone.link,
+                        locations: contactsData.locations,
+                      }}
+                      className="hidden lg:block"
+                    >
+                      {bookingLabel[locale]}
+                    </Button>
+                  )}
                   <LanguageSwitcher locale={locale} />
                 </div>
                 <div className="flex flex-col items-end justify-center gap-10 uppercase font-heading text-h3">
