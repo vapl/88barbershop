@@ -47,16 +47,18 @@ const ServicesSection: React.FC<Props> = ({ servicesData, locale }) => {
       {/* --- Dark overlay --- */}
       <div className="absolute inset-0 bg-black/60 z-10" />
       {/* Content */}
-      <div className="relative z-20 flex flex-col items-center gap-24">
+      <div className="relative w-full z-20 flex flex-col items-center gap-24">
         <SectionHeading
           title={servicesData.services_section.title[locale]}
           subtitle={servicesData.services_section.subtitle[locale]}
           decoration
         />
-        <div className="flex flex-col md:flex-row w-full justify-center gap-4 lg:gap-10">
+        <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           <SercviceCard cardType="haircut" locale={locale} />
           <SercviceCard cardType="shave" locale={locale} />
-          <SercviceCard cardType="combo" locale={locale} />
+          <div className="md:col-span-2 lg:col-span-1">
+            <SercviceCard cardType="combo" locale={locale} />
+          </div>
         </div>
       </div>
     </section>
