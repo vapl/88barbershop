@@ -10,6 +10,7 @@ const PhoneIcon: React.FC<Props> = ({ size = 36, className }) => {
       xmlns="http://www.w3.org/2000/svg"
       className={`${className}`}
       style={{ width: size, height: size }}
+      fill="currentColor"
     >
       <g id="layer1" transform="translate(-49.488346,-99.909123)">
         <path

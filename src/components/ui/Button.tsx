@@ -1,6 +1,9 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import clsx from "clsx";
 import Link from "next/link";
+import PhoneSelectModal from "../modals/PhoneSelectModal";
 
 type ButtonProps = {
   children: React.ReactNode;
@@ -11,6 +14,15 @@ type ButtonProps = {
   disabled?: boolean;
   className?: string;
   type?: "button" | "submit" | "reset";
+  phoneModal?: {
+    phone: string;
+    locations?: Array<{
+      id: "gertrudes34" | "akmenu16";
+      label: string;
+      phone?: { label?: string; link?: string };
+    }>;
+    locationId?: "gertrudes34" | "akmenu16";
+  };
 };
 
 const Button: React.FC<ButtonProps> = ({
@@ -22,10 +34,13 @@ const Button: React.FC<ButtonProps> = ({
   disabled = false,
   className,
   type = "button",
+  phoneModal,
 }) => {
+  const [isPhoneModalOpen, setIsPhoneModalOpen] = useState(false);
+
   const baseClasses = clsx(
     "inline-block px-5 py-2 rounded-xs font-semibold transition-all duration-200 active:scale-95",
-    "disabled:opacity-40 disabled:cursor-not-allowed capitalize",
+    "disabled:opacity-40 disabled:cursor-not-allowed capitalize cursor-pointer",
     {
       // PRIMARY
       "bg-primary text-gray-900 hover:bg-primary-hover":
@@ -41,6 +56,47 @@ const Button: React.FC<ButtonProps> = ({
     },
     className
   );
+
+  const handlePhoneSelect = (action: "call" | "whatsapp", phoneOverride?: string) => {
+    const number = (phoneOverride || phoneModal?.phone || "").toString();
+    if (!number) return;
+    const cleanNumber = number.replace(/[^\d]/g, "");
+
+    if (action === "call") {
+      window.location.href = `tel:${number}`;
+    } else if (action === "whatsapp") {
+      const appUrl = `whatsapp://send?phone=${cleanNumber}`;
+      window.location.href = appUrl;
+    }
+
+    setIsPhoneModalOpen(false);
+  };
+
+  if (phoneModal) {
+    return (
+      <>
+        <button
+          type={type}
+          onClick={() => {
+            onClick?.();
+            setIsPhoneModalOpen(true);
+          }}
+          disabled={disabled}
+          className={baseClasses}
+        >
+          {children}
+        </button>
+        <PhoneSelectModal
+          isOpen={isPhoneModalOpen}
+          onClose={() => setIsPhoneModalOpen(false)}
+          onSelect={handlePhoneSelect}
+          phone={phoneModal.phone}
+          locations={phoneModal.locations}
+          locationId={phoneModal.locationId}
+        />
+      </>
+    );
+  }
 
   if (link?.startsWith("http")) {
     return (

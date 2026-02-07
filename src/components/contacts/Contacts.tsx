@@ -12,6 +12,12 @@ type Props = {
   className?: string;
   color?: "primary" | "dark" | string;
   iconSize?: number;
+  locations?: Array<{
+    id: "gertrudes34" | "akmenu16";
+    label: string;
+    phone?: { label?: string; link?: string };
+    address?: { label?: string; link?: string };
+  }>;
 };
 
 const ContactItem: React.FC<Props> = ({
@@ -22,6 +28,7 @@ const ContactItem: React.FC<Props> = ({
   className,
   color = "primary",
   iconSize = 16,
+  locations,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPhoneModalOpen, setIsPhoneModalOpen] = useState(false);
@@ -51,22 +58,27 @@ const ContactItem: React.FC<Props> = ({
   const ua = typeof navigator !== "undefined" ? navigator.userAgent.toLowerCase() : "";
   const isIOS = /iphone|ipad|ipod/.test(ua);
   const isAndroid = /android/.test(ua);
-  const encoded = encodeURIComponent(value || "");
+  const locationOptions = locations || [];
+  const hasLocations = locationOptions.length > 0;
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
 
-    if (type === "address" && value) {
+    if (type === "address" && (value || hasLocations)) {
+      if (hasLocations) {
+        setIsModalOpen(true);
+        return;
+      }
       if (isIOS || isAndroid) {
         setIsModalOpen(true);
       } else {
         window.open(
-          `https://www.google.com/maps/dir/?api=1&destination=${encoded}`,
+          `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(value || "")}`,
           "_blank",
           "noopener,noreferrer"
         );
       }
-    } else if (type === "phone" && link) {
+    } else if (type === "phone" && (link || hasLocations)) {
       setIsPhoneModalOpen(true);
     } else if (isSocial && link) {
       window.open(link, "_blank", "noopener, noreferrer");
@@ -75,8 +87,10 @@ const ContactItem: React.FC<Props> = ({
     }
   };
 
-  const openApp = (service: "apple" | "google" | "waze") => {
+  const openApp = (service: "apple" | "google" | "waze", addressOverride?: string) => {
     canceledRef.current = false;
+    const addressValue = addressOverride || value || "";
+    const encoded = encodeURIComponent(addressValue);
 
     const clear = () => {
       if (timeoutRef.current) {
@@ -93,27 +107,31 @@ const ContactItem: React.FC<Props> = ({
     if (service === "apple") {
       openUrl(`https://maps.apple.com/?daddr=${encoded}`);
     } else if (service === "google") {
-      const appUrl = isAndroid ? `geo:0,0?q=${encoded}` : `comgooglemaps://?daddr=${encoded}`;
       const webUrl = `https://www.google.com/maps/dir/?api=1&destination=${encoded}`;
-
-      openUrl(appUrl);
-
-      timeoutRef.current = setTimeout(() => {
-        if (!canceledRef.current && !isModalOpen) {
-          window.location.href = webUrl;
-        }
-      }, 1200);
+      if (!isIOS && !isAndroid) {
+        window.open(webUrl, "_blank", "noopener,noreferrer");
+      } else {
+        const appUrl = isAndroid ? `geo:0,0?q=${encoded}` : `comgooglemaps://?daddr=${encoded}`;
+        openUrl(appUrl);
+        timeoutRef.current = setTimeout(() => {
+          if (!canceledRef.current) {
+            window.location.href = webUrl;
+          }
+        }, 1200);
+      }
     } else if (service === "waze") {
-      const appUrl = `waze://?q=${encoded}&navigate=yes`;
       const webUrl = `https://www.waze.com/ul?q=${encoded}`;
-
-      openUrl(appUrl);
-
-      timeoutRef.current = setTimeout(() => {
-        if (!canceledRef.current && !isModalOpen) {
-          window.location.href = webUrl;
-        }
-      }, 1200);
+      if (!isIOS && !isAndroid) {
+        window.open(webUrl, "_blank", "noopener,noreferrer");
+      } else {
+        const appUrl = `waze://?q=${encoded}&navigate=yes`;
+        openUrl(appUrl);
+        timeoutRef.current = setTimeout(() => {
+          if (!canceledRef.current) {
+            window.location.href = webUrl;
+          }
+        }, 1200);
+      }
     }
 
     setIsModalOpen(false);
@@ -128,9 +146,9 @@ const ContactItem: React.FC<Props> = ({
     setIsModalOpen(false);
   };
 
-  const handlePhoneSelect = (action: "call" | "whatsapp") => {
-    if (!link) return;
-    const number = link.toString();
+  const handlePhoneSelect = (action: "call" | "whatsapp", phoneOverride?: string) => {
+    const number = (phoneOverride || link || "").toString();
+    if (!number) return;
     const cleanNumber = number.replace(/[^\d]/g, "");
 
     if (action === "call") {
@@ -163,12 +181,14 @@ const ContactItem: React.FC<Props> = ({
         onSelect={openApp}
         isIOS={isIOS}
         value={value}
+        locations={locationOptions}
       />
       <PhoneSelectModal
         isOpen={isPhoneModalOpen}
         onClose={() => setIsPhoneModalOpen(false)}
         onSelect={handlePhoneSelect}
         phone={link || ""}
+        locations={locationOptions}
       />
     </>
   );

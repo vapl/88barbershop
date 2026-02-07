@@ -29,6 +29,12 @@ export interface ContactsData {
   email: { label: string; link: string };
   address: { label: string; link: string };
   social: { instagram: string; facebook: string };
+  locations?: Array<{
+    id: "gertrudes34" | "akmenu16";
+    label: string;
+    phone: { label: string; link: string };
+    address: { label: string; link: string };
+  }>;
 }
 
 export interface Image {
@@ -106,6 +112,11 @@ export interface ServicePriceItem {
   name: LocaleString;
   note?: LocaleString;
   price: string;
+  locations?: Array<"gertrudes34" | "akmenu16">;
+  pricesByLocation?: {
+    gertrudes34?: string;
+    akmenu16?: string;
+  };
 }
 
 export interface ServiceGroup {
@@ -205,6 +216,7 @@ export interface ReviewsSectionData {
 export interface ModalData {
   modal: {
     title: LocaleString;
+    subtitle?: LocaleString;
     call: LocaleString;
     cancel_button: LocaleString;
   };
