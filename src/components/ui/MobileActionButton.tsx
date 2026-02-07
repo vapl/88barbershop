@@ -18,10 +18,10 @@ const MobileActionButton: React.FC<Props> = ({ contactsData }) => {
           variant="secondary"
           outline={false}
           phoneModal={{
-          phone: contactsData.phone.link,
-          locations: contactsData.locations,
-        }}
-          className="!p-0 !px-0 !py-0 h-14 w-14 rounded-full bg-transparent text-primary hover:bg-transparent !inline-flex items-center justify-center"
+            phone: contactsData.phone.link,
+            locations: contactsData.locations,
+          }}
+          className="p-0! px-0! py-0! h-14 w-14 rounded-full bg-transparent text-primary hover:bg-transparent inline-flex! items-center justify-center"
         >
           <PhoneIcon size={28} className="text-primary" />
         </Button>
