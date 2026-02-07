@@ -24,10 +24,10 @@ const EmployeeCard: React.FC<Props> = ({ name, position, photo, alt, socialLinks
     setShowSocial((prev) => !prev);
   };
   return (
-    <div className="group flex h-[460px] max-w-[380px] overflow-hidden">
+    <div className="group flex w-full max-w-[380px] flex-row overflow-hidden md:h-[460px]">
       {/* === PHOTO BLOCK === */}
       <motion.div
-        className="relative aspect-3/4 overflow-hidden rounded-xs"
+        className="relative aspect-3/4 w-full overflow-hidden rounded-xs"
         initial="initial"
         whileHover="hover"
         onClick={toggleSocial}
@@ -64,7 +64,7 @@ const EmployeeCard: React.FC<Props> = ({ name, position, photo, alt, socialLinks
       </motion.div>
       {/* === TEXT ON THE RIGHT === */}
       <motion.div
-        className="flex gap-3 items-end tracking-wide font-heading text-h3 text-primary uppercase text-nowrap [writing-mode:vertical-rl]"
+        className="mt-0 flex items-start justify-start gap-2 tracking-wide font-heading text-h3 text-primary uppercase [writing-mode:vertical-rl] text-nowrap md:items-start md:text-h3 text-h4"
         initial={{ opacity: 0, y: -100 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: [0.4, 0, 0.3, 1] }}

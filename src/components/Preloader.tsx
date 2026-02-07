@@ -19,6 +19,8 @@ const Preloader = () => {
     if (!hasShown) {
       setShow(true);
       sessionStorage.setItem("preloaderShown", "true");
+    } else {
+      setShow(false);
     }
   }, [pathName]);
 
