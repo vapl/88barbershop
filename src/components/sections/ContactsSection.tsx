@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import ContactItem from "../contacts/Contacts";
 import InputForm from "../contacts/InputForm";
 import { WorkingTimeData, ContactsData, ContactFormData, ErrorsData } from "@/lib/types";
@@ -11,6 +12,7 @@ interface Props {
   contactsFormData: ContactFormData;
   errorsData: ErrorsData;
   locale: "lv" | "en" | "ru";
+  locationId?: "gertrudes34" | "akmenu16";
 }
 
 const Contacts: React.FC<Props> = ({
@@ -19,6 +21,7 @@ const Contacts: React.FC<Props> = ({
   contactsFormData,
   errorsData,
   locale,
+  locationId,
 }) => {
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
 
@@ -60,6 +63,13 @@ const Contacts: React.FC<Props> = ({
     }
   };
 
+  const locations = contacts.locations || [];
+  const hasLocations = locations.length > 0;
+  const activeLocation =
+    locationId && hasLocations ? locations.find((loc) => loc.id === locationId) : null;
+  const locationsToRender =
+    locationId && activeLocation ? [activeLocation] : hasLocations ? locations : [];
+
   return (
     <section className="flex gap-14 flex-col flex-wrap items-center w-full bg-primary text-background px-4 md:px-16 lg:px-32 py-20">
       {/* WORKING */}
@@ -83,32 +93,80 @@ const Contacts: React.FC<Props> = ({
       </div>
       <div className="w-full">
         <div className="w-full border-t border-t-background-alt/80" />
+        {hasLocations && locationId && locations.length > 1 && (
+          <div className="flex w-full items-center justify-center gap-3 py-4">
+            {locations.map((loc) => {
+              const isActive = loc.id === locationId;
+              return (
+                <Link
+                  key={loc.id}
+                  href={`/${locale}/services/${loc.id}`}
+                  className={`rounded-xs border px-5 py-2 text-[11px] uppercase tracking-[0.3em] transition ${
+                    isActive
+                      ? "border-background bg-background text-primary shadow-lg"
+                      : "border-background/50 bg-black/20 text-background/70 hover:border-background hover:text-background"
+                  }`}
+                >
+                  {loc.label}
+                </Link>
+              );
+            })}
+          </div>
+        )}
         {/* CONTACT LINKS */}
-        <div className="md:flex lg:flex gap-6 py-4 justify-between w-full">
-          <ContactItem
-            className="hover:underline whitespace-nowrap"
-            type="phone"
-            value={contacts.phone.label}
-            link={contacts.phone.link}
-            color="dark"
-          />
-          {/* HIDDEN FOR NOW */}
-          <ContactItem
-            className="hidden hover:underline"
-            type="email"
-            value={contacts.email.label}
-            link={contacts.email.link}
-            color="dark"
-          />
-          {/* HIDDEN FOR NOW */}
-          <ContactItem
-            className="hover:underline"
-            type="address"
-            value={contacts.address.label}
-            link={contacts.address.link}
-            color="dark"
-          />
-        </div>
+        {hasLocations ? (
+          <div className="flex flex-col gap-6 py-4 w-full">
+            {locationsToRender.map((loc) => (
+              <div key={loc.id} className="flex flex-col gap-3">
+                <span className="text-xs uppercase tracking-[0.3em] text-background/80">
+                  {loc.label}
+                </span>
+                <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                  <ContactItem
+                    className="hover:underline whitespace-nowrap"
+                    type="phone"
+                    value={loc.phone?.label}
+                    link={loc.phone?.link}
+                    color="dark"
+                  />
+                  <ContactItem
+                    className="hover:underline"
+                    type="address"
+                    value={loc.address?.label}
+                    link={loc.address?.link}
+                    color="dark"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="md:flex lg:flex gap-6 py-4 justify-between w-full">
+            <ContactItem
+              className="hover:underline whitespace-nowrap"
+              type="phone"
+              value={contacts.phone.label}
+              link={contacts.phone.link}
+              color="dark"
+            />
+            {/* HIDDEN FOR NOW */}
+            <ContactItem
+              className="hidden hover:underline"
+              type="email"
+              value={contacts.email.label}
+              link={contacts.email.link}
+              color="dark"
+            />
+            {/* HIDDEN FOR NOW */}
+            <ContactItem
+              className="hover:underline"
+              type="address"
+              value={contacts.address.label}
+              link={contacts.address.link}
+              color="dark"
+            />
+          </div>
+        )}
       </div>
 
       {/* CONTACT FORM --- HIDDEN FOR NOW */}

@@ -25,6 +25,8 @@ const Footer: React.FC<FooterProps> = ({
   const currentYear = new Date().getFullYear();
   const { development: dev } = footerData;
   const working = workingTimeData;
+  const locations = contactsData.locations || [];
+  const hasLocations = locations.length > 0;
 
   const shortenDays = () => {
     const text = working.days.working_days[locale];
@@ -85,21 +87,41 @@ const Footer: React.FC<FooterProps> = ({
             <h1 className="hidden lg:flex font-heading text-h3 pb-6">
               {footerData.sections.contact.title[locale]}
             </h1>
-            <ContactItem
-              type="phone"
-              value={contactsData.phone.label}
-              link={contactsData.phone.link}
-            />
-            {/* <ContactItem
-              type="email"
-              value={contactsData.email.label}
-              link={contactsData.email.link}
-            /> */}
-            <ContactItem
-              type="address"
-              value={contactsData.address.label}
-              link={contactsData.address.link}
-            />
+            {hasLocations ? (
+              <div className="flex flex-col gap-4">
+                {locations.map((loc) => (
+                  <div key={loc.id} className="flex flex-col gap-2">
+                    <span className="text-xs uppercase tracking-[0.25em] text-white/70">
+                      {loc.label}
+                    </span>
+                    <ContactItem type="phone" value={loc.phone?.label} link={loc.phone?.link} />
+                    <ContactItem
+                      type="address"
+                      value={loc.address?.label}
+                      link={loc.address?.link}
+                    />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <>
+                <ContactItem
+                  type="phone"
+                  value={contactsData.phone.label}
+                  link={contactsData.phone.link}
+                />
+                <ContactItem
+                  type="email"
+                  value={contactsData.email.label}
+                  link={contactsData.email.link}
+                />
+                <ContactItem
+                  type="address"
+                  value={contactsData.address.label}
+                  link={contactsData.address.link}
+                />
+              </>
+            )}
           </div>
           <div className="flex flex-col">
             <div className="flex gap-2">
