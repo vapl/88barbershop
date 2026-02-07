@@ -19,26 +19,26 @@ export default async function ServicesPage({ params }: PageProps) {
 
   const copy = {
     heading: {
-      lv: "Izvēlies salonu",
-      en: "Choose a salon",
-      ru: "Выберите салон",
+      lv: "Izvēlies barbershopu",
+      en: "Choose a barbershop",
+      ru: "Выберите барбершоп",
     },
     subheading: {
-      lv: "Izvēlies sev ērtāko lokāciju.",
-      en: "Choose the location that suits you best.",
-      ru: "Выберите наиболее удобную для вас локацию.",
+      lv: "Cenas var atšķirties atkarībā no barbershopa koncepta un lokācijas.",
+      en: "Prices may vary depending on the barbershop concept and location.",
+      ru: "Цены могут отличаться в зависимости от концепции барбершопа и локации.",
     },
-    salonLabel: {
-      lv: "Salons",
-      en: "Salon",
-      ru: "Салон",
+    BarbershopLabel: {
+      lv: "88 Barbershop",
+      en: "88 Barbershop",
+      ru: "88 Barbershop",
     },
-    centrs: {
-      label: "Centrs",
+    gertrudes34: {
+      label: "Ģertrūdes 34",
       image: "/images/price_centrs_bg-4.jpg",
     },
-    pardaugava: {
-      label: "Pārdaugava",
+    akmenu16: {
+      label: "Akmeņu 16",
       image: "/images/hero-bg.jpg",
     },
   };
@@ -56,15 +56,15 @@ export default async function ServicesPage({ params }: PageProps) {
         </div>
         <div className="mt-12 grid w-full max-w-6xl grid-cols-1 gap-8 md:grid-cols-2">
           <Link
-            href={`/${locale}/services/centrs`}
+            href={`/${locale}/services/gertrudes34`}
             className="group relative flex min-h-[360px] items-end overflow-hidden rounded-xs border border-primary/30"
           >
             <div className="absolute right-4 top-4 z-20 rounded-xs border border-primary/70 bg-black/70 px-3 py-1 text-[10px] uppercase tracking-[0.25em] text-primary">
               Premium
             </div>
             <Image
-              src={copy.centrs.image}
-              alt="Centrs salon"
+              src={copy.gertrudes34.image}
+              alt="Ģertrūdes 34 Barbershop"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -72,20 +72,20 @@ export default async function ServicesPage({ params }: PageProps) {
             <div className="absolute inset-0 bg-black/50 transition-colors duration-300 group-hover:bg-black/30" />
             <div className="relative z-10 p-8">
               <span className="text-xs text-primary uppercase tracking-widest">
-                {copy.salonLabel[locale]}
+                {copy.BarbershopLabel[locale]}
               </span>
               <h3 className="mt-2 text-h3 text-foreground font-heading uppercase">
-                {copy.centrs.label}
+                {copy.gertrudes34.label}
               </h3>
             </div>
           </Link>
           <Link
-            href={`/${locale}/services/pardaugava`}
+            href={`/${locale}/services/akmenu16`}
             className="group relative flex min-h-[360px] items-end overflow-hidden rounded-xs border border-primary/30"
           >
             <Image
-              src={copy.pardaugava.image}
-              alt="Pārdaugava salon"
+              src={copy.akmenu16.image}
+              alt="Akmeņu 16 Barbershop"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -93,10 +93,10 @@ export default async function ServicesPage({ params }: PageProps) {
             <div className="absolute inset-0 bg-black/50 transition-colors duration-300 group-hover:bg-black/30" />
             <div className="relative z-10 p-8">
               <span className="text-xs text-primary uppercase tracking-widest">
-                {copy.salonLabel[locale]}
+                {copy.BarbershopLabel[locale]}
               </span>
               <h3 className="mt-2 text-h3 text-foreground font-heading uppercase">
-                {copy.pardaugava.label}
+                {copy.akmenu16.label}
               </h3>
             </div>
           </Link>
