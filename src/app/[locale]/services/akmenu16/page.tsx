@@ -18,8 +18,8 @@ export default async function ServicesPardaugavaPage({ params }: PageProps) {
 
   const label = {
     lv: "Akmeņu 16",
-    en: "Central library",
-    ru: "Пардауґава",
+    en: "Akmeņu 16",
+    ru: "Akmeņu 16",
   };
   const BarbershopLabel = {
     lv: "Barbershop",
@@ -45,11 +45,11 @@ export default async function ServicesPardaugavaPage({ params }: PageProps) {
         locale={locale}
         label={BarbershopLabel[locale]}
         titleOverride={label[locale]}
-        backgroundImage="url(/images/bg-pattern-services.png), url(/images/hero-bg.jpg)"
+        backgroundImage="url(/images/akmenu/akmenu_1.jpeg)"
         overlayClassName="bg-black/45"
-        backgroundSize="220px auto, cover"
-        backgroundRepeat="repeat, no-repeat"
-        backgroundPosition="center, center"
+        backgroundSize="cover"
+        backgroundRepeat="no-repeat"
+        className="bg-bottom lg:bg-position-[center_90%]"
       />
       <section className="bg-background-alt px-4 md:px-16 lg:px-32">
         <div className="mx-auto flex w-full max-w-4xl items-center justify-center gap-3 py-6">

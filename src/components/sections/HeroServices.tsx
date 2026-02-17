@@ -13,6 +13,7 @@ interface HeroProps {
   backgroundSize?: string;
   backgroundRepeat?: string;
   backgroundPosition?: string;
+  className?: string;
 }
 
 const HeroServices: React.FC<HeroProps> = ({
@@ -25,7 +26,7 @@ const HeroServices: React.FC<HeroProps> = ({
   overlayClassName,
   backgroundSize,
   backgroundRepeat,
-  backgroundPosition,
+  className,
 }) => {
   const title = titleOverride || heroData.hero_services[locale];
   const overlayClass = overlayClassName || "bg-black/35";
@@ -35,12 +36,11 @@ const HeroServices: React.FC<HeroProps> = ({
 
   return (
     <section
-      className="relative flex justify-center items-center h-[480px] w-full bg-background-alt px-4 md:px-16 lg:px-32 pt-20"
+      className={`relative flex justify-center items-center h-[480px] w-full bg-background-alt px-4 md:px-16 lg:px-32 pt-20 ${className || ""}`}
       style={{
         backgroundImage: backgroundValue,
         backgroundRepeat: backgroundRepeat || "repeat",
         backgroundSize: backgroundSize || "220px auto",
-        backgroundPosition: backgroundPosition || "center",
       }}
     >
       {badgeText && (

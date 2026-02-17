@@ -52,11 +52,12 @@ export default async function ServicesCentrsPage({ params }: PageProps) {
         label={BarbershopLabel[locale]}
         titleOverride={label[locale]}
         badgeText={premiumLabel[locale]}
-        backgroundImage="url(/images/bg-pattern-services.png), url(/images/services-bg.jpg)"
+        backgroundImage="url(/images/services-bg.jpg)"
         overlayClassName="bg-black/45"
-        backgroundSize="220px auto, cover"
-        backgroundRepeat="repeat, no-repeat"
-        backgroundPosition="center, center"
+        backgroundSize="cover"
+        backgroundRepeat="no-repeat"
+        backgroundPosition="center"
+        className="bg-bottom lg:bg-position-[center_center]"
       />
       <section className="bg-background-alt px-4 md:px-16 lg:px-32">
         <div className="mx-auto flex w-full max-w-4xl items-center justify-center gap-3 py-6">

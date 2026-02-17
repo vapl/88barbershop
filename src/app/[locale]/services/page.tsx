@@ -39,13 +39,13 @@ export default async function ServicesPage({ params }: PageProps) {
     },
     akmenu16: {
       label: "Akmeņu 16",
-      image: "/images/hero-bg.jpg",
+      image: "/images/akmenu/akmenu_bg_fasade.png",
     },
   };
 
   return (
     <>
-      <HeroServices heroData={siteData.hero} locale={locale} />
+      {/* <HeroServices heroData={siteData.hero} locale={locale} /> */}
       <section className="relative flex flex-col items-center w-full bg-background-alt px-4 md:px-16 lg:px-32 py-[120px]">
         <div className="flex flex-col items-center gap-6 text-center max-w-3xl">
           <SectionHeading
@@ -57,7 +57,7 @@ export default async function ServicesPage({ params }: PageProps) {
         <div className="mt-12 grid w-full max-w-6xl grid-cols-1 gap-8 md:grid-cols-2">
           <Link
             href={`/${locale}/services/gertrudes34`}
-            className="group relative flex min-h-[360px] items-end overflow-hidden rounded-xs border border-primary/30"
+            className="group relative aspect-6/5 w-full  flex items-end overflow-hidden rounded-xs border border-primary/30"
           >
             <div className="absolute right-4 top-4 z-20 rounded-xs border border-primary/70 bg-black/70 px-3 py-1 text-[10px] uppercase tracking-[0.25em] text-primary">
               Premium
@@ -66,7 +66,6 @@ export default async function ServicesPage({ params }: PageProps) {
               src={copy.gertrudes34.image}
               alt="Ģertrūdes 34 Barbershop"
               fill
-              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-black/50 transition-colors duration-300 group-hover:bg-black/30" />
@@ -81,17 +80,18 @@ export default async function ServicesPage({ params }: PageProps) {
           </Link>
           <Link
             href={`/${locale}/services/akmenu16`}
-            className="group relative flex min-h-[360px] items-end overflow-hidden rounded-xs border border-primary/30"
+            className="group relative aspect-6/5 w-full  flex items-end overflow-hidden rounded-xs border border-primary/30"
           >
             <Image
               src={copy.akmenu16.image}
               alt="Akmeņu 16 Barbershop"
               fill
-              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
+
             <div className="absolute inset-0 bg-black/50 transition-colors duration-300 group-hover:bg-black/30" />
-            <div className="relative z-10 p-8">
+
+            <div className="absolute bottom-0 left-0 z-10 p-8">
               <span className="text-xs text-primary uppercase tracking-widest">
                 {copy.BarbershopLabel[locale]}
               </span>
