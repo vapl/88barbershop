@@ -26,7 +26,7 @@ export default async function AboutPage({ params }: PageProps) {
 
   return (
     <>
-      <HeroAbout heroData={siteData.hero} locale={locale} />
+      {/* <HeroAbout heroData={siteData.hero} locale={locale} /> */}
       <div className="flex flex-col items-center justify-center px-4 md:px-16 lg:px-32 py-20 bg-background-alt">
         <SectionHeading
           title={siteData.pages.about_page.heading_intro[locale]}
