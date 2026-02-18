@@ -44,11 +44,11 @@ export default async function AboutPage({ params }: PageProps) {
         <ImagesCarousel images={siteData.gallery} />
       </div>
       <AboutSection2 about={siteData.about} locale={locale} />
-      <TeamSection
+      {/* <TeamSection
         heading={siteData.pages.about_page.heading_team}
         barbers={siteData.general.barbers}
         locale={locale}
-      />
+      /> */}
       <Contacts
         workingTime={siteData.working_time}
         contacts={siteData.contacts}
