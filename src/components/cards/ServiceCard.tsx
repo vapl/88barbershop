@@ -174,7 +174,7 @@ const ServiceCard: React.FC<Props> = ({ cardType, locale }) => {
           <div className={bottomDrawerClass}>
             <div className="flex h-full flex-col items-center justify-center gap-2 px-4 text-center">
               <Link
-                href={`${BarbershopLinks.gertrudes34}${cardType ? `#${cardType}` : ""}`}
+                href={`${BarbershopLinks.akmenu16}${cardType ? `#${cardType}` : ""}`}
                 className="w-[80%] justify-center pointer-events-auto cursor-pointer text-xs uppercase tracking-[0.25em] text-primary hover:text-primary-hover transition"
               >
                 <div className="flex flex-col items-center justify-center border p-3 gap-3 rounded-sm hover:bg-primary/10 transition-colors duration-300">
