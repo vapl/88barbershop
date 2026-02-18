@@ -52,7 +52,7 @@ export default async function ServicesCentrsPage({ params }: PageProps) {
         label={BarbershopLabel[locale]}
         titleOverride={label[locale]}
         badgeText={premiumLabel[locale]}
-        backgroundImage="url(/images/services-bg.jpg)"
+        backgroundImage="url(/images/gertrudes/gertrudes_bg_2.jpeg)"
         overlayClassName="bg-black/45"
         backgroundSize="cover"
         backgroundRepeat="no-repeat"
