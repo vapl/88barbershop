@@ -96,7 +96,7 @@ export default async function ServicesCentrsPage({ params }: PageProps) {
 
         <div className="relative w-full md:w-1/2 md:h-full">
           <Image
-            src="/images/gertrudes/gertrudes_bg_3.jpeg"
+            src="/images/gertrudes/gertrudes_bg_3.png"
             alt="Ģertrūdes 34 Barbershop interior"
             fill
             className="object-cover"
