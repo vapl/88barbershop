@@ -36,7 +36,8 @@ const HeroSection: React.FC<HeroProps> = ({ heroData, locale }) => {
           src={urlFor(heroData.backgroundImage).url()}
           alt="Hero image 88barbershop"
           fill
-          sizes="100vw"
+          priority
+          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 100vw, 1280px"
           style={{
             objectFit: "cover",
           }}

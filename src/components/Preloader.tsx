@@ -38,19 +38,6 @@ const Preloader = () => {
   }, [show]);
 
   useEffect(() => {
-    const preloaderWrapper = document.getElementById("preloader");
-
-    if (!preloaderWrapper) return;
-
-    if (show) {
-      preloaderWrapper.classList.add("content-hidden");
-    } else {
-      preloaderWrapper.classList.remove("content-hidden");
-      preloaderWrapper.classList.add("content-visible");
-    }
-  }, [show, pathName]);
-
-  useEffect(() => {
     const checkWidth = () =>
       setIsMobile((prev) => {
         const next = window.innerWidth < 560;
