@@ -11,7 +11,7 @@ import { getSEOData } from "@/lib/getSEOData";
 
 export async function generateMetadata({ params }: PageProps) {
   const { locale } = await params;
-  return getSEOData(locale);
+  return getSEOData(locale, "about");
 }
 
 export default async function AboutPage({ params }: PageProps) {
@@ -27,7 +27,7 @@ export default async function AboutPage({ params }: PageProps) {
   return (
     <>
       {/* <HeroAbout heroData={siteData.hero} locale={locale} /> */}
-      <div className="flex flex-col items-center justify-center px-4 md:px-16 lg:px-32 py-20 bg-background-alt">
+      <div className="flex flex-col items-center justify-center px-4 md:px-16 lg:px-32 py-20 pt-48 bg-background-alt">
         <SectionHeading
           title={siteData.pages.about_page.heading_intro[locale]}
           decoration={false}

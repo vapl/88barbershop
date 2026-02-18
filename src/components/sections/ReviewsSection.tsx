@@ -2,10 +2,10 @@
 
 import React, { useEffect, useMemo, useState } from "react";
 import SectionHeading from "../SectionHeading";
-
 import Button from "../ui/Button";
 import ReviewCard from "../cards/ReviewCard";
 import { ReviewsSectionData } from "@/lib/types";
+import StarIcon from "@/icons/star.svg";
 
 interface Props {
   reviewsSectionData: ReviewsSectionData;
@@ -44,41 +44,61 @@ type ReviewItem = {
   author: string;
 };
 
+type GoogleSummary = {
+  rating: number | null;
+  totalReviews: number | null;
+};
+
 const ReviewsSection: React.FC<Props> = ({ reviewsSectionData, locale }) => {
   const [paused, setPaused] = useState(false);
   const [reviews, setReviews] = useState<ReviewItem[]>(REVIEWS);
+  const [summary, setSummary] = useState<GoogleSummary | null>(null);
 
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await fetch(`/api/google-business-reviews?limit=10`);
-        const data = await response.json();
-        if (response.ok && Array.isArray(data.reviews) && data.reviews.length > 0) {
-          const mapped = data.reviews.map((r: ReviewItem, index: number) => ({
+        const businessResponse = await fetch("/api/google-business-reviews?limit=5");
+        const businessData = await businessResponse.json();
+
+        if (
+          businessResponse.ok &&
+          Array.isArray(businessData.reviews) &&
+          businessData.reviews.length > 0
+        ) {
+          const mapped = businessData.reviews.map((r: ReviewItem, index: number) => ({
             ...r,
             id: index + 1,
           }));
           setReviews(mapped);
-          return;
         }
 
-        const fallbackResponse = await fetch(`/api/google-reviews?lang=${locale}&limit=5`);
-        const fallbackData = await fallbackResponse.json();
-        if (
-          fallbackResponse.ok &&
-          Array.isArray(fallbackData.reviews) &&
-          fallbackData.reviews.length > 0
-        ) {
-          const mapped = fallbackData.reviews.map((r: ReviewItem, index: number) => ({
-            ...r,
-            id: index + 1,
-          }));
-          setReviews(mapped);
+        const googleResponse = await fetch(`/api/google-reviews?lang=${locale}&limit=5`);
+        const googleData = await googleResponse.json();
+
+        if (googleResponse.ok) {
+          if (googleData.summary) {
+            setSummary(googleData.summary as GoogleSummary);
+          }
+
+          if (
+            (!businessResponse.ok ||
+              !Array.isArray(businessData.reviews) ||
+              businessData.reviews.length === 0) &&
+            Array.isArray(googleData.reviews) &&
+            googleData.reviews.length > 0
+          ) {
+            const mapped = googleData.reviews.map((r: ReviewItem, index: number) => ({
+              ...r,
+              id: index + 1,
+            }));
+            setReviews(mapped);
+          }
         }
       } catch {
         // Fallback to static reviews on failure
       }
     };
+
     fetchReviews();
   }, [locale]);
 
@@ -87,10 +107,11 @@ const ReviewsSection: React.FC<Props> = ({ reviewsSectionData, locale }) => {
   return (
     <section className="relative flex flex-col gap-[95px] items-center w-full text-background py-[120px] bg-linear-to-br from-[#FFF9E9] via-[#FFF9E9]/80 to-[#E5DECE] overflow-hidden">
       <div className="flex px-4 md:px-16 lg:px-32">
-        <SectionHeading title={reviewsSectionData.title[locale]} decoration color="black" />
+        <div className="flex flex-col items-center gap-4">
+          <SectionHeading title={reviewsSectionData.title[locale]} decoration color="black" />
+        </div>
       </div>
 
-      {/* Slided container */}
       <div
         className="relative w-full overflow-hidden py-3"
         onMouseEnter={() => setPaused(true)}
@@ -107,6 +128,26 @@ const ReviewsSection: React.FC<Props> = ({ reviewsSectionData, locale }) => {
               <ReviewCard {...r} />
             </div>
           ))}
+        </div>
+        <div className="w-full flex justify-center pt-16">
+          {summary && summary.rating !== null && summary.totalReviews !== null && (
+            <div className="text-background text-lg md:text-xl flex flex-col items-end">
+              <div className="flex items-center gap-2">
+                <span className="font-semibold">Google</span>{" "}
+                {summary.rating.toFixed(1).replace(".", ",")}
+                <div className="flex flex-col items-end">
+                  <div className="flex gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <StarIcon key={i} className="h-4 w-4" fill="#C5A85D" stroke="#C5A85D" />
+                    ))}
+                  </div>
+                  <span className="text-sm p-0! text-text-muted">
+                    {summary.totalReviews} reviews
+                  </span>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 

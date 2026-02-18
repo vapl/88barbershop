@@ -8,7 +8,7 @@ import { getSEOData } from "@/lib/getSEOData";
 
 export async function generateMetadata({ params }: PageProps) {
   const { locale } = await params;
-  return getSEOData(locale);
+  return getSEOData(locale, "contact");
 }
 
 export default async function ContactPage({ params }: PageProps) {

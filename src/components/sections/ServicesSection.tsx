@@ -41,7 +41,7 @@ const ServicesSection: React.FC<Props> = ({ servicesData, locale }) => {
           style={{
             objectFit: "cover",
           }}
-          className="z-0"
+          className="z-0 object-bottom lg:object-position-[center_80%]"
         />
       </motion.div>
       {/* --- Dark overlay --- */}

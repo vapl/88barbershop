@@ -1,9 +1,8 @@
-import { PageProps } from "@/lib/pageUtils";
 import { Inter, Libre_Bodoni, Merriweather } from "next/font/google";
 import "./globals.css";
 import "./liquidGlass.css";
-import { getSEOData } from "@/lib/getSEOData";
 import Script from "next/script";
+import { cookies, headers } from "next/headers";
 
 // Fonts
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -18,16 +17,16 @@ const merriweather = Merriweather({
   variable: "--font-merriweather",
 });
 
-export async function generateMetadata({ params }: PageProps) {
-  const { locale } = await params;
-
-  return getSEOData(locale);
-}
-
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const requestHeaders = await headers();
+  const localeHeader = requestHeaders.get("x-next-intl-locale");
+  const localeCookie = (await cookies()).get("NEXT_LOCALE")?.value;
+  const localeValue = localeHeader || localeCookie || "lv";
+  const lang = localeValue === "lv" || localeValue === "en" || localeValue === "ru" ? localeValue : "lv";
+
   return (
     <html
-      lang="lv"
+      lang={lang}
       className={`${merriweather.variable} ${inter.variable} ${libreBodoni.variable} bg-white text-foreground scroll-smooth overflow-y-scroll [scrollbar-gutter:stable]`}
     >
       <body>
@@ -41,7 +40,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               "@context": "https://schema.org",
               "@type": "Barbershop",
               name: "88 Barber shop Riga",
-              image: "https://88barbershop.lv/og-image.jpg",
+              image: "https://88barbershop.lv/og-image.jpeg",
               telephone: "+37128816466",
               address: {
                 "@type": "PostalAddress",
@@ -55,11 +54,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                 "https://www.instagram.com/barbershop88.lv/",
                 "https://www.facebook.com/88barbershoplv",
               ],
-              aggregateRating: {
-                "@type": "AggregateRating",
-                ratingValue: "4.9",
-                reviewCount: "395",
-              },
               url: "https://88barbershop.lv",
             }),
           }}

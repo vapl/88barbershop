@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 type BusinessReview = {
   starRating?: string;
   comment?: string;
+  updateTime?: string;
   reviewer?: {
     displayName?: string;
     profilePhotoUrl?: string;
@@ -83,6 +84,11 @@ export async function GET(request: Request) {
 
   const reviews = (reviewsData.reviews || [])
     .filter((review) => review.comment)
+    .sort((a, b) => {
+      const aTime = a.updateTime ? new Date(a.updateTime).getTime() : 0;
+      const bTime = b.updateTime ? new Date(b.updateTime).getTime() : 0;
+      return bTime - aTime;
+    })
     .slice(0, limit)
     .map((review, index) => ({
       id: index + 1,

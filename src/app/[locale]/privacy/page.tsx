@@ -6,7 +6,7 @@ import { getSEOData } from "@/lib/getSEOData";
 
 export async function generateMetadata({ params }: PageProps) {
   const { locale } = await params;
-  return getSEOData(locale);
+  return getSEOData(locale, "privacy");
 }
 
 export default async function PrivacyPage({ params }: PageProps) {

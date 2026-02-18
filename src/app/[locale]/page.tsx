@@ -12,7 +12,7 @@ import { getSEOData } from "@/lib/getSEOData";
 export async function generateMetadata({ params }: PageProps) {
   const { locale } = await params;
 
-  return getSEOData(locale);
+  return getSEOData(locale, "");
 }
 
 export default async function Home({ params }: PageProps) {

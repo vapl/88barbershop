@@ -7,11 +7,20 @@ async function getSanityData() {
   return data;
 }
 
-export async function getSEOData(locale: "lv" | "en" | "ru") {
+const normalizePath = (path?: string) => {
+  if (!path) return "";
+  const trimmed = path.trim().replace(/^\/+|\/+$/g, "");
+  return trimmed ? `/${trimmed}` : "";
+};
+
+export async function getSEOData(locale: "lv" | "en" | "ru", path?: string) {
   const sanityData = await getSanityData();
   const siteData = adaptSanityData(sanityData);
 
   const baseUrl = "https://88barbershop.lv";
+  const localePrefix = locale === "lv" ? "" : `/${locale}`;
+  const routePath = normalizePath(path);
+  const canonicalUrl = `${baseUrl}${localePrefix}${routePath}`;
   const title = `${siteData.general.siteName} - ${siteData.general.slogan[locale]}`;
   const description = siteData.general.description[locale];
 
@@ -22,11 +31,11 @@ export async function getSEOData(locale: "lv" | "en" | "ru") {
     openGraph: {
       title,
       description,
-      url: `${baseUrl}/${locale === "lv" ? "" : locale}`,
+      url: canonicalUrl,
       siteName: siteData.general.siteName,
       images: [
         {
-          url: `${baseUrl}/og-image.jpg`,
+          url: `${baseUrl}/og-image.jpeg`,
           width: 1200,
           height: 630,
           alt: `${siteData.general.slogan[locale]}`,
@@ -36,11 +45,11 @@ export async function getSEOData(locale: "lv" | "en" | "ru") {
       type: "website",
     },
     alternates: {
-      canonical: `${baseUrl}/${locale === "lv" ? "" : locale}`,
+      canonical: canonicalUrl,
       languages: {
-        lv: `${baseUrl}`,
-        en: `${baseUrl}/en`,
-        ru: `${baseUrl}/ru`,
+        lv: `${baseUrl}${routePath}`,
+        en: `${baseUrl}/en${routePath}`,
+        ru: `${baseUrl}/ru${routePath}`,
       },
     },
   };

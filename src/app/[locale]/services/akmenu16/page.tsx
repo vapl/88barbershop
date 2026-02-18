@@ -5,10 +5,11 @@ import HeroServices from "@/components/sections/HeroServices";
 import ServicePricingSection from "@/components/sections/ServicePricingSection";
 import { getSEOData } from "@/lib/getSEOData";
 import Link from "next/link";
+import Image from "next/image";
 
 export async function generateMetadata({ params }: PageProps) {
   const { locale } = await params;
-  return getSEOData(locale);
+  return getSEOData(locale, "services/akmenu16");
 }
 
 export default async function ServicesPardaugavaPage({ params }: PageProps) {
@@ -74,6 +75,26 @@ export default async function ServicesPardaugavaPage({ params }: PageProps) {
         locationLabel={label[locale]}
         contactsData={siteData.contacts}
       />
+      <div className="flex flex-wrap md:flex-nowrap w-full h-[560px]">
+        <div className="relative w-full md:w-1/2 md:h-full">
+          <Image
+            src="/images/akmenu/akmenu-bg_1.jpeg"
+            alt="Akmeņu 16 Barbershop interior"
+            fill
+            className="object-cover"
+          />
+        </div>
+
+        <div className="relative w-full md:w-1/2 md:h-full">
+          <Image
+            src="/images/akmenu/akmenu-bg_2.jpeg"
+            alt="Akmeņu 16 Barbershop interior"
+            fill
+            className="object-cover"
+          />
+        </div>
+      </div>
+
       <Contacts
         workingTime={siteData.working_time}
         contacts={siteData.contacts}

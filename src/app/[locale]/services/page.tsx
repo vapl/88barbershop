@@ -9,7 +9,7 @@ import SectionHeading from "@/components/SectionHeading";
 
 export async function generateMetadata({ params }: PageProps) {
   const { locale } = await params;
-  return getSEOData(locale);
+  return getSEOData(locale, "services");
 }
 
 export default async function ServicesPage({ params }: PageProps) {
@@ -46,7 +46,7 @@ export default async function ServicesPage({ params }: PageProps) {
   return (
     <>
       {/* <HeroServices heroData={siteData.hero} locale={locale} /> */}
-      <section className="relative flex flex-col items-center w-full bg-background-alt px-4 md:px-16 lg:px-32 py-[120px]">
+      <section className="relative flex flex-col items-center w-full bg-background-alt px-4 md:px-16 lg:px-32 py-[120px] pt-48">
         <div className="flex flex-col items-center gap-6 text-center max-w-3xl">
           <SectionHeading
             title={copy.heading[locale]} //servicesData.services_section.title[locale]

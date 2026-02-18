@@ -11,6 +11,8 @@ type GoogleReview = {
 type GooglePlaceDetailsResponse = {
   status: string;
   result?: {
+    rating?: number;
+    user_ratings_total?: number;
     reviews?: GoogleReview[];
   };
 };
@@ -29,7 +31,7 @@ export async function GET(request: Request) {
 
   const url = new URL("https://maps.googleapis.com/maps/api/place/details/json");
   url.searchParams.set("place_id", placeId);
-  url.searchParams.set("fields", "reviews");
+  url.searchParams.set("fields", "reviews,rating,user_ratings_total");
   url.searchParams.set("language", language);
   url.searchParams.set("key", apiKey);
 
@@ -52,5 +54,11 @@ export async function GET(request: Request) {
     avatar: review.profile_photo_url || "",
   }));
 
-  return NextResponse.json({ reviews });
+  return NextResponse.json({
+    reviews,
+    summary: {
+      rating: data.result?.rating ?? null,
+      totalReviews: data.result?.user_ratings_total ?? null,
+    },
+  });
 }
