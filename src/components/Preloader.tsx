@@ -6,19 +6,25 @@ import LogoWeb from "../../public/logo/logo-88barbershop.svg";
 import LogoMobile from "../../public/logo/logo-88barbershop-mobile.svg";
 import { usePathname } from "next/navigation";
 
+const PRELOADER_KEY = "preloaderShown-v2";
+const PRELOADER_DURATION_MS = 3200;
+
 const Preloader = () => {
   const [show, setShow] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   const pathName = usePathname();
 
   useEffect(() => {
-    if (pathName?.startsWith("/admin")) return;
+    if (pathName?.startsWith("/admin")) {
+      setShow(false);
+      return;
+    }
 
-    const hasShown = sessionStorage.getItem("preloaderShown");
+    const hasShown = sessionStorage.getItem(PRELOADER_KEY);
 
     if (!hasShown) {
       setShow(true);
-      sessionStorage.setItem("preloaderShown", "true");
+      sessionStorage.setItem(PRELOADER_KEY, "true");
     } else {
       setShow(false);
     }
@@ -27,9 +33,9 @@ const Preloader = () => {
   useEffect(() => {
     if (!show) return;
 
-    const timer = setTimeout(() => setShow(false), 6500);
+    const timer = setTimeout(() => setShow(false), PRELOADER_DURATION_MS);
     return () => clearTimeout(timer);
-  }, []);
+  }, [show]);
 
   useEffect(() => {
     const preloaderWrapper = document.getElementById("preloader");
@@ -70,37 +76,48 @@ const Preloader = () => {
           className="fullscreen-safe flex items-center justify-center px-8 bg-black overflow-hidden"
         >
           <div className="relative w-full max-w-[900px] overflow-visible">
-            {/* === RGB GLITCH LAYER: RED === */}
+            <motion.div
+              className="pointer-events-none absolute inset-0 -z-10 blur-2xl"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0, 0.45, 0.12] }}
+              transition={{ duration: 1.1, ease: "easeOut" }}
+              style={{
+                background:
+                  "radial-gradient(circle at center, rgba(201,169,76,0.45) 0%, rgba(201,169,76,0.15) 40%, transparent 70%)",
+              }}
+            />
+
             <motion.div
               className="absolute inset-0 overflow-visible"
-              style={{ filter: "drop-shadow(3px 0px 3px #ff0000)" }}
+              style={{ filter: "drop-shadow(3px 0px 4px #ff2d55)", mixBlendMode: "screen" }}
               initial={{ opacity: 0 }}
               animate={{
-                opacity: [0, 0.8, 0, 0.7, 0, 0.6, 0.9, 0, 0.5, 0, 0],
-                x: [-4, -6, -3, -7, -2, -5, -8, -3, -4, 0, 0],
+                opacity: [0, 0.9, 0, 0.65, 0, 0.5, 0],
+                x: [-6, -8, -4, -7, -3, -2, 0],
+                y: [0, -1, 1, 0, -1, 0, 0],
               }}
               transition={{
-                duration: 1.2,
-                times: [0, 0.08, 0.15, 0.22, 0.3, 0.38, 0.45, 0.52, 0.6, 0.7, 1],
-                delay: 0.3,
+                duration: 0.9,
+                times: [0, 0.16, 0.3, 0.45, 0.6, 0.75, 1],
+                delay: 0.12,
               }}
             >
               <LOGO className="w-full h-auto select-none p-6" />
             </motion.div>
 
-            {/* === RGB GLITCH LAYER: BLUE === */}
             <motion.div
               className="absolute inset-0 overflow-visible"
-              style={{ filter: "drop-shadow(-3px 0px 3px #0000ff)" }}
+              style={{ filter: "drop-shadow(-3px 0px 4px #00c8ff)", mixBlendMode: "screen" }}
               initial={{ opacity: 0 }}
               animate={{
-                opacity: [0, 0, 0.7, 0.4, 0.8, 0, 0.5, 0.9, 0, 0.6, 0, 0],
-                x: [4, 3, 6, 2, 7, 3, 5, 8, 2, 4, 0, 0],
+                opacity: [0, 0.75, 0, 0.6, 0, 0.45, 0],
+                x: [6, 8, 4, 6, 2, 1, 0],
+                y: [0, 1, -1, 0, 1, 0, 0],
               }}
               transition={{
-                duration: 1.2,
-                times: [0, 0.05, 0.12, 0.2, 0.28, 0.35, 0.42, 0.5, 0.58, 0.65, 0.75, 1],
-                delay: 0.32,
+                duration: 0.9,
+                times: [0, 0.16, 0.3, 0.45, 0.6, 0.75, 1],
+                delay: 0.14,
               }}
             >
               <LOGO className="w-full h-auto select-none p-6" />
@@ -109,43 +126,40 @@ const Preloader = () => {
             <motion.div
               className="absolute inset-0 overflow-visible"
               animate={{
-                opacity: [0, 0.2, 0, 0.3, 0, 0.5, 0, 0.2, 0.4, 0, 0.3, 0, 0],
+                opacity: [0, 0.22, 0, 0.28, 0, 0.42, 0, 0.15, 0],
               }}
               transition={{
-                duration: 1.2,
-                times: [0, 0.08, 0.12, 0.18, 0.24, 0.3, 0.36, 0.42, 0.48, 0.54, 0.6, 0.7, 1],
-                delay: 0.3,
+                duration: 0.85,
+                times: [0, 0.16, 0.26, 0.4, 0.54, 0.68, 0.82, 0.92, 1],
+                delay: 0.14,
               }}
             >
               <LOGO className="w-full h-auto select-none p-6" />
             </motion.div>
 
-            {/* === MAIN LOGO === */}
             <motion.div
-              initial={{ opacity: 0, x: -80, scale: 1 }}
+              initial={{ opacity: 0, x: -70, scale: 1 }}
               className="origin-[55.8%_53%] md:origin-[18%_48%]"
               animate={{
-                opacity: [0, 1, 1],
-                x: [-80, 0, 0],
-                scale: [1, 1, 60],
+                opacity: [0, 1, 0.55, 1, 0.82, 1, 1],
+                x: [-70, 0, 0, 0, 0, 0, 0],
+                scale: [1, 1, 1, 1, 1, 1, 42],
                 filter: [
-                  "brightness(1.1) drop-shadow(0 0 2px rgba(0,0,0,0.2))",
-                  "brightness(1.2) drop-shadow(0 0 8px #ff0000)",
-                  "brightness(1.2) drop-shadow(0 0 10px #00ff00)",
-                  "brightness(1.2) drop-shadow(0 0 10px #0000ff)",
+                  "brightness(0.8) drop-shadow(0 0 0 rgba(201,169,76,0))",
+                  "brightness(1.25) drop-shadow(0 0 16px rgba(255,60,60,0.8))",
+                  "brightness(0.95) drop-shadow(0 0 8px rgba(201,169,76,0.45))",
+                  "brightness(1.3) drop-shadow(0 0 18px rgba(0,195,255,0.75))",
+                  "brightness(1.05) drop-shadow(0 0 10px rgba(201,169,76,0.5))",
+                  "brightness(1.2) drop-shadow(0 0 14px rgba(255,60,60,0.65))",
+                  "brightness(1.15) drop-shadow(0 0 12px rgba(201,169,76,0.6))",
                 ],
               }}
               transition={{
-                opacity: { duration: 0.8 },
-                x: { duration: 1, ease: "easeOut" },
-                scale: { duration: 5, delay: 3, ease: "easeIn" },
-                filter: {
-                  duration: 3,
-                  repeat: Infinity,
-                  repeatType: "mirror",
-                  ease: "linear",
-                  delay: 1.2,
-                },
+                duration: 2.9,
+                times: [0, 0.12, 0.2, 0.3, 0.4, 0.52, 1],
+                ease: "easeOut",
+                scale: { duration: 1.7, delay: 1.05, ease: "easeIn" },
+                filter: { duration: 1.5, ease: "linear", delay: 0.28 },
               }}
             >
               <LOGO className="relative w-full h-auto select-none p-6" />
