@@ -35,7 +35,7 @@ export default async function ServicesPage({ params }: PageProps) {
     },
     gertrudes34: {
       label: "Ģertrūdes 34",
-      image: "/images/price_centrs_bg-4.jpg",
+      image: "/images/gertrudes/gertrudes_bg_shop.png",
     },
     akmenu16: {
       label: "Akmeņu 16",
@@ -57,7 +57,7 @@ export default async function ServicesPage({ params }: PageProps) {
         <div className="mt-12 grid w-full max-w-6xl grid-cols-1 gap-8 md:grid-cols-2">
           <Link
             href={`/${locale}/services/gertrudes34`}
-            className="group relative aspect-6/5 w-full  flex items-end overflow-hidden rounded-xs border border-primary/30"
+            className="group relative aspect-square w-full  flex items-end overflow-hidden rounded-xs border border-primary/30"
           >
             <div className="absolute right-4 top-4 z-20 rounded-xs border border-primary/70 bg-black/70 px-3 py-1 text-[10px] uppercase tracking-[0.25em] text-primary">
               Premium
@@ -80,7 +80,7 @@ export default async function ServicesPage({ params }: PageProps) {
           </Link>
           <Link
             href={`/${locale}/services/akmenu16`}
-            className="group relative aspect-6/5 w-full  flex items-end overflow-hidden rounded-xs border border-primary/30"
+            className="group relative aspect-square w-full  flex items-end overflow-hidden rounded-xs border border-primary/30"
           >
             <Image
               src={copy.akmenu16.image}
