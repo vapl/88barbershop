@@ -59,22 +59,7 @@ const ReviewsSection: React.FC<Props> = ({ reviewsSectionData, locale }) => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const businessResponse = await fetch("/api/google-business-reviews?limit=5");
-        const businessData = await businessResponse.json();
-
-        if (
-          businessResponse.ok &&
-          Array.isArray(businessData.reviews) &&
-          businessData.reviews.length > 0
-        ) {
-          const mapped = businessData.reviews.map((r: ReviewItem, index: number) => ({
-            ...r,
-            id: index + 1,
-          }));
-          setReviews(mapped);
-        }
-
-        const googleResponse = await fetch(`/api/google-reviews?lang=${locale}&limit=5`);
+        const googleResponse = await fetch("/api/google-reviews?perPlaceLimit=5");
         const googleData = await googleResponse.json();
 
         if (googleResponse.ok) {
@@ -82,13 +67,7 @@ const ReviewsSection: React.FC<Props> = ({ reviewsSectionData, locale }) => {
             setSummary(googleData.summary as GoogleSummary);
           }
 
-          if (
-            (!businessResponse.ok ||
-              !Array.isArray(businessData.reviews) ||
-              businessData.reviews.length === 0) &&
-            Array.isArray(googleData.reviews) &&
-            googleData.reviews.length > 0
-          ) {
+          if (Array.isArray(googleData.reviews) && googleData.reviews.length > 0) {
             const mapped = googleData.reviews.map((r: ReviewItem, index: number) => ({
               ...r,
               id: index + 1,
