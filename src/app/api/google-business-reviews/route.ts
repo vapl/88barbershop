@@ -40,7 +40,12 @@ export async function GET(request: Request) {
   const locationId = process.env.GOOGLE_BUSINESS_LOCATION_ID;
 
   if (!clientId || !clientSecret || !refreshToken || !accountId || !locationId) {
-    return NextResponse.json({ error: "Missing Business Profile env vars." }, { status: 500 });
+    return NextResponse.json({
+      reviews: [],
+      source: "google-business-reviews",
+      unavailable: true,
+      reason: "Missing Business Profile env vars.",
+    });
   }
 
   const { searchParams } = new URL(request.url);
@@ -61,7 +66,13 @@ export async function GET(request: Request) {
 
   const tokenData = await tokenRes.json();
   if (!tokenRes.ok) {
-    return NextResponse.json({ error: "Token refresh failed", details: tokenData }, { status: 500 });
+    return NextResponse.json({
+      reviews: [],
+      source: "google-business-reviews",
+      unavailable: true,
+      reason: "Token refresh failed",
+      details: tokenData,
+    });
   }
 
   const accessToken = tokenData.access_token as string;
@@ -79,7 +90,13 @@ export async function GET(request: Request) {
   const reviewsData = (await reviewsRes.json()) as ReviewsResponse;
 
   if (!reviewsRes.ok) {
-    return NextResponse.json({ error: "Reviews fetch failed", details: reviewsData }, { status: 500 });
+    return NextResponse.json({
+      reviews: [],
+      source: "google-business-reviews",
+      unavailable: true,
+      reason: "Reviews fetch failed",
+      details: reviewsData,
+    });
   }
 
   const reviews = (reviewsData.reviews || [])

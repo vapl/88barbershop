@@ -12,7 +12,7 @@ type Props = {
 
 const ReviewCard: React.FC<Props> = ({ review, text, avatar, author }) => {
   return (
-    <div className="relative flex flex-col gap-12 w-[320px] md:w-[620px] p-6 px-10 items-start justify-between bg-background-alt rounded-sm text-foreground shadow-black shadow-md overflow-hidden">
+    <div className="relative flex flex-col gap-12 w-[296px] sm:w-[320px] md:w-[620px] p-6 px-10 items-start justify-between bg-background-alt rounded-sm text-foreground shadow-black shadow-md overflow-hidden">
       {/* Quote decoration bg */}
       <QuoteIcon className="absolute -right-9 md:right-0 top-0 h-[60%] md:h-[95%]" />
       {/* Stars */}
@@ -45,13 +45,7 @@ const ReviewCard: React.FC<Props> = ({ review, text, avatar, author }) => {
       <div className="flex gap-2 items-center text-small">
         {avatar ? (
           <div className="relative h-9 w-9 overflow-hidden rounded-full">
-            <Image
-              src={avatar}
-              alt={author}
-              fill
-              sizes="36px"
-              className="object-cover"
-            />
+            <Image src={avatar} alt={author} fill sizes="36px" className="object-cover" />
           </div>
         ) : (
           <div className="h-9 w-9 rounded-full bg-text-muted" />

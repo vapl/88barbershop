@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import SectionHeading from "../SectionHeading";
 import Button from "../ui/Button";
 import ReviewCard from "../cards/ReviewCard";
 import { ReviewsSectionData } from "@/lib/types";
 import StarIcon from "@/icons/star.svg";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface Props {
   reviewsSectionData: ReviewsSectionData;
@@ -53,6 +54,7 @@ const ReviewsSection: React.FC<Props> = ({ reviewsSectionData, locale }) => {
   const [paused, setPaused] = useState(false);
   const [reviews, setReviews] = useState<ReviewItem[]>(REVIEWS);
   const [summary, setSummary] = useState<GoogleSummary | null>(null);
+  const [mobileIndex, setMobileIndex] = useState(0);
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -102,7 +104,13 @@ const ReviewsSection: React.FC<Props> = ({ reviewsSectionData, locale }) => {
     fetchReviews();
   }, [locale]);
 
-  const repeatedReviews = useMemo(() => [...reviews, ...reviews], [reviews]);
+  useEffect(() => {
+    if (reviews.length <= 1) return;
+    const id = setInterval(() => {
+      setMobileIndex((prev) => (prev + 1) % reviews.length);
+    }, 4200);
+    return () => clearInterval(id);
+  }, [reviews.length]);
 
   return (
     <section className="relative flex flex-col gap-[95px] items-center w-full text-background py-[120px] bg-linear-to-br from-[#FFF9E9] via-[#FFF9E9]/80 to-[#E5DECE] overflow-hidden">
@@ -112,23 +120,49 @@ const ReviewsSection: React.FC<Props> = ({ reviewsSectionData, locale }) => {
         </div>
       </div>
 
-      <div
-        className="relative w-full overflow-hidden py-3"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-      >
-        <div
-          className="flex w-max animate-infinite-scroll"
-          style={{
-            animationPlayState: paused ? "paused" : "running",
-          }}
-        >
-          {repeatedReviews.map((r, i) => (
-            <div key={i} className="mr-8 flex">
-              <ReviewCard {...r} />
-            </div>
-          ))}
+      <div className="relative w-full py-3">
+        {/* Mobile: one full card with smooth slide transition */}
+        <div className="md:hidden w-full px-4 pb-3">
+          <div className="mx-auto w-full flex justify-center overflow-hidden">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`mobile-review-${reviews[mobileIndex]?.id ?? mobileIndex}`}
+                initial={{ x: 52, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: -52, opacity: 0 }}
+                transition={{ duration: 0.42, ease: [0.4, 0, 0.2, 1] }}
+                className="pb-3"
+              >
+                <ReviewCard {...reviews[mobileIndex]} />
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
+
+        {/* Desktop: infinite marquee */}
+        <div
+          className="hidden md:block w-full overflow-hidden pb-3"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
+          <div
+            className="flex w-max animate-infinite-scroll"
+            style={{
+              animationPlayState: paused ? "paused" : "running",
+            }}
+          >
+            {[0, 1].map((group) => (
+              <div key={group} className="flex shrink-0">
+                {reviews.map((r, i) => (
+                  <div key={`d-${group}-${r.id}-${i}`} className="mr-8 flex">
+                    <ReviewCard {...r} />
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div className="w-full flex justify-center pt-16">
           {summary && summary.rating !== null && summary.totalReviews !== null && (
             <div className="text-background text-lg md:text-xl flex flex-col items-end">
