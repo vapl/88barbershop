@@ -3,6 +3,7 @@ import "./globals.css";
 import "./liquidGlass.css";
 import Script from "next/script";
 import { cookies, headers } from "next/headers";
+import { Analytics } from "@vercel/analytics/react";
 
 // Fonts
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -31,6 +32,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     >
       <body>
         {children}
+        <Analytics />
 
         <Script
           id="schema-localbusiness"
