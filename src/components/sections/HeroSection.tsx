@@ -46,6 +46,41 @@ const HeroSection: React.FC<HeroProps> = ({ heroData, locale }) => {
       </motion.div>
       {/* --- Dark overlay --- */}
       <div className="absolute inset-0 bg-black/60 z-10" />
+      <>
+        <div className="pointer-events-none absolute inset-x-0 bottom-34 z-40 flex justify-center px-3 sm:hidden">
+          <div className="relative h-[180px] w-[180px]">
+            <Image
+              src={`/images/spec-offer/spec-offer-${locale === "lv" ? "lv" : locale === "en" ? "en" : "ru"}-20.png`}
+              alt="Special offer 88barbershop"
+              fill
+              sizes="108px"
+              className="object-contain drop-shadow-[0_8px_24px_rgba(0,0,0,0.45)]"
+            />
+          </div>
+        </div>
+        <div className="pointer-events-none absolute inset-x-0 bottom-4 z-40 hidden px-3 sm:bottom-6 sm:block sm:px-6 lg:px-8">
+          <div className="mx-auto flex w-full max-w-[1600px] items-end justify-between">
+            <div className="relative h-[128px] w-[128px] md:h-[170px] md:w-[170px] lg:h-[200px] lg:w-[200px] xl:h-[220px] xl:w-[220px]">
+              <Image
+                src={`/images/spec-offer/spec-offer-${locale === "lv" ? "lv" : locale === "en" ? "en" : "ru"}-20.png`}
+                alt="Special offer 88barbershop"
+                fill
+                sizes="(max-width: 768px) 128px, (max-width: 1024px) 170px, (max-width: 1280px) 200px, 220px"
+                className="object-contain drop-shadow-[0_8px_24px_rgba(0,0,0,0.45)]"
+              />
+            </div>
+            <div className="relative h-[128px] w-[128px] md:h-[170px] md:w-[170px] lg:h-[200px] lg:w-[200px] xl:h-[220px] xl:w-[220px]">
+              <Image
+                src={`/images/spec-offer/spec-offer-${locale === "lv" ? "lv" : locale === "en" ? "en" : "ru"}-20.png`}
+                alt="Special offer 88barbershop"
+                fill
+                sizes="(max-width: 768px) 128px, (max-width: 1024px) 170px, (max-width: 1280px) 200px, 220px"
+                className="object-contain drop-shadow-[0_8px_24px_rgba(0,0,0,0.45)]"
+              />
+            </div>
+          </div>
+        </div>
+      </>
 
       {/* --- Content (logo + buttons) --- */}
 
